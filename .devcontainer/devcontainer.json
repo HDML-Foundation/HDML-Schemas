@@ -1,0 +1,10 @@
+{
+  "name": "HDML Schema Environment",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".."
+  },
+  "mounts": [
+    "source=${localEnv:HOME}/.ssh,target=/home/.ssh,type=bind,consistency=cached,readonly"
+  ]
+}
