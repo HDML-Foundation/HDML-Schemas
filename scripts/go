@@ -1,0 +1,3 @@
+#!/bin/bash
+
+flatc --go -o ./src/.go -I ./src/fbs ./src/fbs/*.fbs
