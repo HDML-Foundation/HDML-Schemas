@@ -5,7 +5,7 @@
 import * as flatbuffers from 'flatbuffers';
 
 import { ConnectionParameters, unionToConnectionParameters, unionListToConnectionParameters } from '../document/connection-parameters.js';
-import { ConnectionTypes } from '../enum/connection-types.js';
+import { ConnectorTypes } from '../enum/connector-types.js';
 
 
 /**
@@ -29,9 +29,9 @@ static getSizePrefixedRootAsConnectionOptions(bb:flatbuffers.ByteBuffer, obj?:Co
   return (obj || new ConnectionOptions()).__init(bb.readInt32(bb.position()) + bb.position(), bb);
 }
 
-type():ConnectionTypes {
+connector():ConnectorTypes {
   const offset = this.bb!.__offset(this.bb_pos, 4);
-  return offset ? this.bb!.readInt8(this.bb_pos + offset) : ConnectionTypes.Postgres;
+  return offset ? this.bb!.readInt8(this.bb_pos + offset) : ConnectorTypes.Postgres;
 }
 
 parametersType():ConnectionParameters {
@@ -48,8 +48,8 @@ static startConnectionOptions(builder:flatbuffers.Builder) {
   builder.startObject(3);
 }
 
-static addType(builder:flatbuffers.Builder, type:ConnectionTypes) {
-  builder.addFieldInt8(0, type, ConnectionTypes.Postgres);
+static addConnector(builder:flatbuffers.Builder, connector:ConnectorTypes) {
+  builder.addFieldInt8(0, connector, ConnectorTypes.Postgres);
 }
 
 static addParametersType(builder:flatbuffers.Builder, parametersType:ConnectionParameters) {
@@ -65,9 +65,9 @@ static endConnectionOptions(builder:flatbuffers.Builder):flatbuffers.Offset {
   return offset;
 }
 
-static createConnectionOptions(builder:flatbuffers.Builder, type:ConnectionTypes, parametersType:ConnectionParameters, parametersOffset:flatbuffers.Offset):flatbuffers.Offset {
+static createConnectionOptions(builder:flatbuffers.Builder, connector:ConnectorTypes, parametersType:ConnectionParameters, parametersOffset:flatbuffers.Offset):flatbuffers.Offset {
   ConnectionOptions.startConnectionOptions(builder);
-  ConnectionOptions.addType(builder, type);
+  ConnectionOptions.addConnector(builder, connector);
   ConnectionOptions.addParametersType(builder, parametersType);
   ConnectionOptions.addParameters(builder, parametersOffset);
   return ConnectionOptions.endConnectionOptions(builder);

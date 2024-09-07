@@ -3,9 +3,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any, @typescript-eslint/no-non-null-assertion */
 
 /**
- * Database connection type.
+ * Database connector type.
  */
-export enum ConnectionTypes {
+export enum ConnectorTypes {
   Postgres = 0,
   MySQL = 1,
   MsSQL = 2,

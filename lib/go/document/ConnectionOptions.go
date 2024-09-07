@@ -44,15 +44,15 @@ func (rcv *ConnectionOptions) Table() flatbuffers.Table {
 	return rcv._tab
 }
 
-func (rcv *ConnectionOptions) Type() enum.ConnectionTypes {
+func (rcv *ConnectionOptions) Connector() enum.ConnectorTypes {
 	o := flatbuffers.UOffsetT(rcv._tab.Offset(4))
 	if o != 0 {
-		return enum.ConnectionTypes(rcv._tab.GetInt8(o + rcv._tab.Pos))
+		return enum.ConnectorTypes(rcv._tab.GetInt8(o + rcv._tab.Pos))
 	}
 	return 0
 }
 
-func (rcv *ConnectionOptions) MutateType(n enum.ConnectionTypes) bool {
+func (rcv *ConnectionOptions) MutateConnector(n enum.ConnectorTypes) bool {
 	return rcv._tab.MutateInt8Slot(4, int8(n))
 }
 
@@ -80,8 +80,8 @@ func (rcv *ConnectionOptions) Parameters(obj *flatbuffers.Table) bool {
 func ConnectionOptionsStart(builder *flatbuffers.Builder) {
 	builder.StartObject(3)
 }
-func ConnectionOptionsAddType(builder *flatbuffers.Builder, type_ enum.ConnectionTypes) {
-	builder.PrependInt8Slot(0, int8(type_), 0)
+func ConnectionOptionsAddConnector(builder *flatbuffers.Builder, connector enum.ConnectorTypes) {
+	builder.PrependInt8Slot(0, int8(connector), 0)
 }
 func ConnectionOptionsAddParametersType(builder *flatbuffers.Builder, parametersType ConnectionParameters) {
 	builder.PrependByteSlot(1, byte(parametersType), 0)
