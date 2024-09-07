@@ -1,0 +1,6 @@
+#!/bin/bash
+
+rm -rf ./lib
+flatc --ts --ts-flat-files -o ./lib/ts -I ./src/fbs ./src/fbs/*.fbs
+flatc --go -o ./lib/go -I ./src/fbs ./src/fbs/*.fbs
+git add .
