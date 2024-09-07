@@ -10,7 +10,7 @@ namespace document;
 
 /// Options to connect to one the of the following DB: Postgres,
 /// MySQL, MS SQL, MariaDB, Oracle, ClickHouse, Druid, Ignite,
-/// Redshift.
+/// Redshift (JDBC).
 table JDBCOptions {
   host: string (required);
   user: string (required);
