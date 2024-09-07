@@ -5,7 +5,7 @@
  */
 
 include "./document.Include.fbs";
-include "./document.Connection.fbs"
+include "./document.Connection.fbs";
 
 namespace document;
 
