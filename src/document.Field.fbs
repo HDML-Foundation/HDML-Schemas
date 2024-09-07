@@ -1,0 +1,73 @@
+/**
+ * @author Artem Lytvynov
+ * @copyright Artem Lytvynov
+ * @license Apache2.0
+ */
+
+include "./enum.AggType.fbs";
+include "./enum.DataType.fbs";
+include "./enum.DecBitWidth.fbs";
+include "./enum.DateUnit.fbs";
+include "./enum.OrderType.fbs";
+include "./enum.TimeUnit.fbs";
+include "./enum.TimeZone.fbs";
+
+namespace document;
+
+/// Common data type options structure.
+table CommonOpts {
+  nullable: bool;
+}
+
+/// Decimal data type options structure.
+table DecimalOpts {
+  nullable: bool;
+  scale: ushort;
+  precision: ushort;
+  bit_width: enum.DecBitWidth;
+}
+
+/// Date data type options structure.
+table DateOpts {
+  nullable: bool;
+  unit: enum.DateUnit;
+}
+
+/// Time data type options structure.
+table TimeOpts {
+  nullable: bool;
+  unit: enum.TimeUnit;
+}
+
+/// Timestamp data type options structure.
+table TimestampOpts {
+  nullable: bool;
+  unit: enum.TimeUnit;
+  timezone: enum.TimeZone;
+}
+
+/// Data type options union.
+union DataTypeOptions {
+  CommonOpts,
+  DecimalOpts,
+  DateOpts,
+  TimeOpts,
+  TimestampOpts,
+}
+
+/// Field type structure.
+table FieldType {
+  type: enum.DataType;
+  options: DataTypeOptions;
+}
+
+/// Data field structure.
+table Field {
+  name: string;
+  description: string;
+  origin: string;
+  clause: string;
+  type: FieldType;
+  agg: enum.AggType;
+  asc: enum.OrderType;
+}

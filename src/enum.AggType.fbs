@@ -6,7 +6,7 @@
 
 namespace enum;
 
-/// Query aggregations enum.
+/// Aggregation functions enum.
 enum AggType: byte {
   None = 0,
   Count,

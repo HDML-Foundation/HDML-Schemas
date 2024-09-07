@@ -4,7 +4,7 @@ package enum
 
 import "strconv"
 
-/// Query aggregations enum.
+/// Aggregation functions enum.
 type AggType int8
 
 const (

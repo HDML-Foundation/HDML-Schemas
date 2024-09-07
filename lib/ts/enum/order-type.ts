@@ -3,15 +3,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any, @typescript-eslint/no-non-null-assertion */
 
 /**
- * Aggregation functions enum.
+ * Ordering types enum.
  */
-export enum AggType {
+export enum OrderType {
   None = 0,
-  Count = 1,
-  CountDistinct = 2,
-  CountDistinctApprox = 3,
-  Sum = 4,
-  Avg = 5,
-  Min = 6,
-  Max = 7
+  Asc = 1,
+  Desc = 2
 }

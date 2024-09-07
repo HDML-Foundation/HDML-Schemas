@@ -1,0 +1,13 @@
+/**
+ * @author Artem Lytvynov
+ * @copyright Artem Lytvynov
+ * @license Apache2.0
+ */
+
+namespace enum;
+
+/// Decimal data type bit width enum.
+enum DecBitWidth: byte {
+  _128,
+  _256,
+}

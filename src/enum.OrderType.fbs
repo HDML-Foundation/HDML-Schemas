@@ -1,0 +1,14 @@
+/**
+ * @author Artem Lytvynov
+ * @copyright Artem Lytvynov
+ * @license Apache2.0
+ */
+
+namespace enum;
+
+/// Ordering types enum.
+enum OrderType: byte {
+  None = 0,
+  Asc,
+  Desc,
+}

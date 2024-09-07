@@ -3,15 +3,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any, @typescript-eslint/no-non-null-assertion */
 
 /**
- * Aggregation functions enum.
+ * Time type units enum.
  */
-export enum AggType {
-  None = 0,
-  Count = 1,
-  CountDistinct = 2,
-  CountDistinctApprox = 3,
-  Sum = 4,
-  Avg = 5,
-  Min = 6,
-  Max = 7
+export enum TimeUnit {
+  second = 0,
+  millisecond = 1,
+  microsecond = 2,
+  nanosecond = 3
 }
