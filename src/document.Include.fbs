@@ -1,0 +1,12 @@
+/**
+ * @author Artem Lytvynov
+ * @copyright Artem Lytvynov
+ * @license Apache2.0
+ */
+
+namespace document;
+
+/// HDML document include component data structure.
+table Include {
+  path: string (required);
+}

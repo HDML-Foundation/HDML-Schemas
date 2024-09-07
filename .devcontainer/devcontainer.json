@@ -6,5 +6,11 @@
   },
   "mounts": [
     "source=${localEnv:HOME}/.ssh,target=/home/.ssh,type=bind,consistency=cached,readonly"
-  ]
+  ],
+  "customizations": {
+    "vscode": {
+      "settings": {},
+      "extensions": ["gaborv.flatbuffers", "golang.go"]
+    }
+  }
 }

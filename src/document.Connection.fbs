@@ -1,0 +1,75 @@
+/**
+ * @author Artem Lytvynov
+ * @copyright Artem Lytvynov
+ * @license Apache2.0
+ */
+
+include "./enum.ConnectionTypes.fbs";
+
+namespace document;
+
+/// Options to connect to one the of the following DB: Postgres,
+/// MySQL, MS SQL, MariaDB, Oracle, ClickHouse, Druid, Ignite,
+/// Redshift.
+table JDBCOptions {
+  host: string (required);
+  user: string (required);
+  password: string (required);
+  ssl: bool;
+}
+
+/// Options to connect to the BigQuery.
+table BigQueryOptions {
+  project_id: string (required);
+  credentials_key: string (required);
+}
+
+/// Options to connect to the Google Sheets.
+table GoogleSheetsOptions {
+  sheet_id: string (required);
+  credentials_key: string (required);
+}
+
+/// Options to connect to the Elasticsearch.
+table ElasticsearchOptions {
+  host: string (required);
+  port: ushort;
+  user: string;
+  password: string;
+  ssl: bool;
+  region: string;
+  access_key: string;
+  secret_key: string;
+}
+
+/// Options to connect to the MongoDB.
+table MongoDBOptions {
+  host: string (required);
+  port: ushort;
+  user: string (required);
+  password: string (required);
+  schema: string (required);
+  ssl: bool;
+}
+
+/// Union type to describe DB connection options.
+union ConnectionOptionsUnion {
+  JDBCOptions,
+  BigQueryOptions,
+  GoogleSheetsOptions,
+  ElasticsearchOptions,
+  MongoDBOptions,
+}
+
+/// Database connection options structure.
+table ConnectionOptions {
+  type: enum.ConnectionTypes;
+  options: ConnectionOptionsUnion;
+}
+
+/// HDML document connection component data structure.
+table Connection {
+  name: string (required);
+  meta: string;
+  options: ConnectionOptions;
+}

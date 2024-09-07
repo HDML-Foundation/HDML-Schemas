@@ -1,0 +1,24 @@
+/**
+ * @author Artem Lytvynov
+ * @copyright Artem Lytvynov
+ * @license Apache2.0
+ */
+
+namespace enum;
+
+/// Database connection type.
+enum ConnectionTypes: byte {
+  Postgres = 0,
+  MySQL,
+  MsSQL,
+  MariaDB,
+  Oracle,
+  Clickhouse,
+  Druid,
+  Ignite,
+  Redshift,
+  BigQuery,
+  GoogleSheets,
+  ElasticSearch,
+  MongoDB,
+}

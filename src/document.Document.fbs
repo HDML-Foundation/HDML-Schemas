@@ -1,0 +1,14 @@
+/**
+ * @author Artem Lytvynov
+ * @copyright Artem Lytvynov
+ * @license Apache2.0
+ */
+
+include "./document.Include.fbs";
+
+namespace document;
+
+/// HDML document data structure.
+table Document {
+  includes: [document.Include];
+}
