@@ -1,3 +1,0 @@
-#!/bin/bash
-
-flatc --ts --ts-flat-files -o ./src/.ts -I ./src/fbs ./src/fbs/*.fbs
