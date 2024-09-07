@@ -5,10 +5,12 @@
  */
 
 include "./document.Include.fbs";
+include "./document.Connection.fbs"
 
 namespace document;
 
 /// HDML document data structure.
 table Document {
   includes: [document.Include];
+  connections: [document.Connection];
 }
