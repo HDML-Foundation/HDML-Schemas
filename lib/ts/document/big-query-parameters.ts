@@ -5,24 +5,24 @@
 import * as flatbuffers from 'flatbuffers';
 
 /**
- * Options to connect to the BigQuery.
+ * Parameters to connect to the BigQuery.
  */
-export class BigQueryOptions {
+export class BigQueryParameters {
   bb: flatbuffers.ByteBuffer|null = null;
   bb_pos = 0;
-  __init(i:number, bb:flatbuffers.ByteBuffer):BigQueryOptions {
+  __init(i:number, bb:flatbuffers.ByteBuffer):BigQueryParameters {
   this.bb_pos = i;
   this.bb = bb;
   return this;
 }
 
-static getRootAsBigQueryOptions(bb:flatbuffers.ByteBuffer, obj?:BigQueryOptions):BigQueryOptions {
-  return (obj || new BigQueryOptions()).__init(bb.readInt32(bb.position()) + bb.position(), bb);
+static getRootAsBigQueryParameters(bb:flatbuffers.ByteBuffer, obj?:BigQueryParameters):BigQueryParameters {
+  return (obj || new BigQueryParameters()).__init(bb.readInt32(bb.position()) + bb.position(), bb);
 }
 
-static getSizePrefixedRootAsBigQueryOptions(bb:flatbuffers.ByteBuffer, obj?:BigQueryOptions):BigQueryOptions {
+static getSizePrefixedRootAsBigQueryParameters(bb:flatbuffers.ByteBuffer, obj?:BigQueryParameters):BigQueryParameters {
   bb.setPosition(bb.position() + flatbuffers.SIZE_PREFIX_LENGTH);
-  return (obj || new BigQueryOptions()).__init(bb.readInt32(bb.position()) + bb.position(), bb);
+  return (obj || new BigQueryParameters()).__init(bb.readInt32(bb.position()) + bb.position(), bb);
 }
 
 projectId():string|null
@@ -39,7 +39,7 @@ credentialsKey(optionalEncoding?:any):string|Uint8Array|null {
   return offset ? this.bb!.__string(this.bb_pos + offset, optionalEncoding) : null;
 }
 
-static startBigQueryOptions(builder:flatbuffers.Builder) {
+static startBigQueryParameters(builder:flatbuffers.Builder) {
   builder.startObject(2);
 }
 
@@ -51,17 +51,17 @@ static addCredentialsKey(builder:flatbuffers.Builder, credentialsKeyOffset:flatb
   builder.addFieldOffset(1, credentialsKeyOffset, 0);
 }
 
-static endBigQueryOptions(builder:flatbuffers.Builder):flatbuffers.Offset {
+static endBigQueryParameters(builder:flatbuffers.Builder):flatbuffers.Offset {
   const offset = builder.endObject();
   builder.requiredField(offset, 4) // project_id
   builder.requiredField(offset, 6) // credentials_key
   return offset;
 }
 
-static createBigQueryOptions(builder:flatbuffers.Builder, projectIdOffset:flatbuffers.Offset, credentialsKeyOffset:flatbuffers.Offset):flatbuffers.Offset {
-  BigQueryOptions.startBigQueryOptions(builder);
-  BigQueryOptions.addProjectId(builder, projectIdOffset);
-  BigQueryOptions.addCredentialsKey(builder, credentialsKeyOffset);
-  return BigQueryOptions.endBigQueryOptions(builder);
+static createBigQueryParameters(builder:flatbuffers.Builder, projectIdOffset:flatbuffers.Offset, credentialsKeyOffset:flatbuffers.Offset):flatbuffers.Offset {
+  BigQueryParameters.startBigQueryParameters(builder);
+  BigQueryParameters.addProjectId(builder, projectIdOffset);
+  BigQueryParameters.addCredentialsKey(builder, credentialsKeyOffset);
+  return BigQueryParameters.endBigQueryParameters(builder);
 }
 }

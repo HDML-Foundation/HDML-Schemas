@@ -4,7 +4,7 @@
 
 import * as flatbuffers from 'flatbuffers';
 
-import { ConnectionOptionsUnion, unionToConnectionOptionsUnion, unionListToConnectionOptionsUnion } from '../document/connection-options-union.js';
+import { ConnectionParameters, unionToConnectionParameters, unionListToConnectionParameters } from '../document/connection-parameters.js';
 import { ConnectionTypes } from '../enum/connection-types.js';
 
 
@@ -34,12 +34,12 @@ type():ConnectionTypes {
   return offset ? this.bb!.readInt8(this.bb_pos + offset) : ConnectionTypes.Postgres;
 }
 
-optionsType():ConnectionOptionsUnion {
+parametersType():ConnectionParameters {
   const offset = this.bb!.__offset(this.bb_pos, 6);
-  return offset ? this.bb!.readUint8(this.bb_pos + offset) : ConnectionOptionsUnion.NONE;
+  return offset ? this.bb!.readUint8(this.bb_pos + offset) : ConnectionParameters.NONE;
 }
 
-options<T extends flatbuffers.Table>(obj:any):any|null {
+parameters<T extends flatbuffers.Table>(obj:any):any|null {
   const offset = this.bb!.__offset(this.bb_pos, 8);
   return offset ? this.bb!.__union(obj, this.bb_pos + offset) : null;
 }
@@ -52,12 +52,12 @@ static addType(builder:flatbuffers.Builder, type:ConnectionTypes) {
   builder.addFieldInt8(0, type, ConnectionTypes.Postgres);
 }
 
-static addOptionsType(builder:flatbuffers.Builder, optionsType:ConnectionOptionsUnion) {
-  builder.addFieldInt8(1, optionsType, ConnectionOptionsUnion.NONE);
+static addParametersType(builder:flatbuffers.Builder, parametersType:ConnectionParameters) {
+  builder.addFieldInt8(1, parametersType, ConnectionParameters.NONE);
 }
 
-static addOptions(builder:flatbuffers.Builder, optionsOffset:flatbuffers.Offset) {
-  builder.addFieldOffset(2, optionsOffset, 0);
+static addParameters(builder:flatbuffers.Builder, parametersOffset:flatbuffers.Offset) {
+  builder.addFieldOffset(2, parametersOffset, 0);
 }
 
 static endConnectionOptions(builder:flatbuffers.Builder):flatbuffers.Offset {
@@ -65,11 +65,11 @@ static endConnectionOptions(builder:flatbuffers.Builder):flatbuffers.Offset {
   return offset;
 }
 
-static createConnectionOptions(builder:flatbuffers.Builder, type:ConnectionTypes, optionsType:ConnectionOptionsUnion, optionsOffset:flatbuffers.Offset):flatbuffers.Offset {
+static createConnectionOptions(builder:flatbuffers.Builder, type:ConnectionTypes, parametersType:ConnectionParameters, parametersOffset:flatbuffers.Offset):flatbuffers.Offset {
   ConnectionOptions.startConnectionOptions(builder);
   ConnectionOptions.addType(builder, type);
-  ConnectionOptions.addOptionsType(builder, optionsType);
-  ConnectionOptions.addOptions(builder, optionsOffset);
+  ConnectionOptions.addParametersType(builder, parametersType);
+  ConnectionOptions.addParameters(builder, parametersOffset);
   return ConnectionOptions.endConnectionOptions(builder);
 }
 }

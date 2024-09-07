@@ -5,26 +5,26 @@
 import * as flatbuffers from 'flatbuffers';
 
 /**
- * Options to connect to one the of the following DB: Postgres,
+ * Parameters to connect to one the of the following DB: Postgres,
  * MySQL, MS SQL, MariaDB, Oracle, ClickHouse, Druid, Ignite,
  * Redshift.
  */
-export class JDBCOptions {
+export class JDBCParameters {
   bb: flatbuffers.ByteBuffer|null = null;
   bb_pos = 0;
-  __init(i:number, bb:flatbuffers.ByteBuffer):JDBCOptions {
+  __init(i:number, bb:flatbuffers.ByteBuffer):JDBCParameters {
   this.bb_pos = i;
   this.bb = bb;
   return this;
 }
 
-static getRootAsJDBCOptions(bb:flatbuffers.ByteBuffer, obj?:JDBCOptions):JDBCOptions {
-  return (obj || new JDBCOptions()).__init(bb.readInt32(bb.position()) + bb.position(), bb);
+static getRootAsJDBCParameters(bb:flatbuffers.ByteBuffer, obj?:JDBCParameters):JDBCParameters {
+  return (obj || new JDBCParameters()).__init(bb.readInt32(bb.position()) + bb.position(), bb);
 }
 
-static getSizePrefixedRootAsJDBCOptions(bb:flatbuffers.ByteBuffer, obj?:JDBCOptions):JDBCOptions {
+static getSizePrefixedRootAsJDBCParameters(bb:flatbuffers.ByteBuffer, obj?:JDBCParameters):JDBCParameters {
   bb.setPosition(bb.position() + flatbuffers.SIZE_PREFIX_LENGTH);
-  return (obj || new JDBCOptions()).__init(bb.readInt32(bb.position()) + bb.position(), bb);
+  return (obj || new JDBCParameters()).__init(bb.readInt32(bb.position()) + bb.position(), bb);
 }
 
 host():string|null
@@ -53,7 +53,7 @@ ssl():boolean {
   return offset ? !!this.bb!.readInt8(this.bb_pos + offset) : false;
 }
 
-static startJDBCOptions(builder:flatbuffers.Builder) {
+static startJDBCParameters(builder:flatbuffers.Builder) {
   builder.startObject(4);
 }
 
@@ -73,7 +73,7 @@ static addSsl(builder:flatbuffers.Builder, ssl:boolean) {
   builder.addFieldInt8(3, +ssl, +false);
 }
 
-static endJDBCOptions(builder:flatbuffers.Builder):flatbuffers.Offset {
+static endJDBCParameters(builder:flatbuffers.Builder):flatbuffers.Offset {
   const offset = builder.endObject();
   builder.requiredField(offset, 4) // host
   builder.requiredField(offset, 6) // user
@@ -81,12 +81,12 @@ static endJDBCOptions(builder:flatbuffers.Builder):flatbuffers.Offset {
   return offset;
 }
 
-static createJDBCOptions(builder:flatbuffers.Builder, hostOffset:flatbuffers.Offset, userOffset:flatbuffers.Offset, passwordOffset:flatbuffers.Offset, ssl:boolean):flatbuffers.Offset {
-  JDBCOptions.startJDBCOptions(builder);
-  JDBCOptions.addHost(builder, hostOffset);
-  JDBCOptions.addUser(builder, userOffset);
-  JDBCOptions.addPassword(builder, passwordOffset);
-  JDBCOptions.addSsl(builder, ssl);
-  return JDBCOptions.endJDBCOptions(builder);
+static createJDBCParameters(builder:flatbuffers.Builder, hostOffset:flatbuffers.Offset, userOffset:flatbuffers.Offset, passwordOffset:flatbuffers.Offset, ssl:boolean):flatbuffers.Offset {
+  JDBCParameters.startJDBCParameters(builder);
+  JDBCParameters.addHost(builder, hostOffset);
+  JDBCParameters.addUser(builder, userOffset);
+  JDBCParameters.addPassword(builder, passwordOffset);
+  JDBCParameters.addSsl(builder, ssl);
+  return JDBCParameters.endJDBCParameters(builder);
 }
 }

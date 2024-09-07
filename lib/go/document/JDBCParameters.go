@@ -6,45 +6,45 @@ import (
 	flatbuffers "github.com/google/flatbuffers/go"
 )
 
-/// Options to connect to one the of the following DB: Postgres,
+/// Parameters to connect to one the of the following DB: Postgres,
 /// MySQL, MS SQL, MariaDB, Oracle, ClickHouse, Druid, Ignite,
 /// Redshift.
-type JDBCOptions struct {
+type JDBCParameters struct {
 	_tab flatbuffers.Table
 }
 
-func GetRootAsJDBCOptions(buf []byte, offset flatbuffers.UOffsetT) *JDBCOptions {
+func GetRootAsJDBCParameters(buf []byte, offset flatbuffers.UOffsetT) *JDBCParameters {
 	n := flatbuffers.GetUOffsetT(buf[offset:])
-	x := &JDBCOptions{}
+	x := &JDBCParameters{}
 	x.Init(buf, n+offset)
 	return x
 }
 
-func FinishJDBCOptionsBuffer(builder *flatbuffers.Builder, offset flatbuffers.UOffsetT) {
+func FinishJDBCParametersBuffer(builder *flatbuffers.Builder, offset flatbuffers.UOffsetT) {
 	builder.Finish(offset)
 }
 
-func GetSizePrefixedRootAsJDBCOptions(buf []byte, offset flatbuffers.UOffsetT) *JDBCOptions {
+func GetSizePrefixedRootAsJDBCParameters(buf []byte, offset flatbuffers.UOffsetT) *JDBCParameters {
 	n := flatbuffers.GetUOffsetT(buf[offset+flatbuffers.SizeUint32:])
-	x := &JDBCOptions{}
+	x := &JDBCParameters{}
 	x.Init(buf, n+offset+flatbuffers.SizeUint32)
 	return x
 }
 
-func FinishSizePrefixedJDBCOptionsBuffer(builder *flatbuffers.Builder, offset flatbuffers.UOffsetT) {
+func FinishSizePrefixedJDBCParametersBuffer(builder *flatbuffers.Builder, offset flatbuffers.UOffsetT) {
 	builder.FinishSizePrefixed(offset)
 }
 
-func (rcv *JDBCOptions) Init(buf []byte, i flatbuffers.UOffsetT) {
+func (rcv *JDBCParameters) Init(buf []byte, i flatbuffers.UOffsetT) {
 	rcv._tab.Bytes = buf
 	rcv._tab.Pos = i
 }
 
-func (rcv *JDBCOptions) Table() flatbuffers.Table {
+func (rcv *JDBCParameters) Table() flatbuffers.Table {
 	return rcv._tab
 }
 
-func (rcv *JDBCOptions) Host() []byte {
+func (rcv *JDBCParameters) Host() []byte {
 	o := flatbuffers.UOffsetT(rcv._tab.Offset(4))
 	if o != 0 {
 		return rcv._tab.ByteVector(o + rcv._tab.Pos)
@@ -52,7 +52,7 @@ func (rcv *JDBCOptions) Host() []byte {
 	return nil
 }
 
-func (rcv *JDBCOptions) User() []byte {
+func (rcv *JDBCParameters) User() []byte {
 	o := flatbuffers.UOffsetT(rcv._tab.Offset(6))
 	if o != 0 {
 		return rcv._tab.ByteVector(o + rcv._tab.Pos)
@@ -60,7 +60,7 @@ func (rcv *JDBCOptions) User() []byte {
 	return nil
 }
 
-func (rcv *JDBCOptions) Password() []byte {
+func (rcv *JDBCParameters) Password() []byte {
 	o := flatbuffers.UOffsetT(rcv._tab.Offset(8))
 	if o != 0 {
 		return rcv._tab.ByteVector(o + rcv._tab.Pos)
@@ -68,7 +68,7 @@ func (rcv *JDBCOptions) Password() []byte {
 	return nil
 }
 
-func (rcv *JDBCOptions) Ssl() bool {
+func (rcv *JDBCParameters) Ssl() bool {
 	o := flatbuffers.UOffsetT(rcv._tab.Offset(10))
 	if o != 0 {
 		return rcv._tab.GetBool(o + rcv._tab.Pos)
@@ -76,25 +76,25 @@ func (rcv *JDBCOptions) Ssl() bool {
 	return false
 }
 
-func (rcv *JDBCOptions) MutateSsl(n bool) bool {
+func (rcv *JDBCParameters) MutateSsl(n bool) bool {
 	return rcv._tab.MutateBoolSlot(10, n)
 }
 
-func JDBCOptionsStart(builder *flatbuffers.Builder) {
+func JDBCParametersStart(builder *flatbuffers.Builder) {
 	builder.StartObject(4)
 }
-func JDBCOptionsAddHost(builder *flatbuffers.Builder, host flatbuffers.UOffsetT) {
+func JDBCParametersAddHost(builder *flatbuffers.Builder, host flatbuffers.UOffsetT) {
 	builder.PrependUOffsetTSlot(0, flatbuffers.UOffsetT(host), 0)
 }
-func JDBCOptionsAddUser(builder *flatbuffers.Builder, user flatbuffers.UOffsetT) {
+func JDBCParametersAddUser(builder *flatbuffers.Builder, user flatbuffers.UOffsetT) {
 	builder.PrependUOffsetTSlot(1, flatbuffers.UOffsetT(user), 0)
 }
-func JDBCOptionsAddPassword(builder *flatbuffers.Builder, password flatbuffers.UOffsetT) {
+func JDBCParametersAddPassword(builder *flatbuffers.Builder, password flatbuffers.UOffsetT) {
 	builder.PrependUOffsetTSlot(2, flatbuffers.UOffsetT(password), 0)
 }
-func JDBCOptionsAddSsl(builder *flatbuffers.Builder, ssl bool) {
+func JDBCParametersAddSsl(builder *flatbuffers.Builder, ssl bool) {
 	builder.PrependBoolSlot(3, ssl, false)
 }
-func JDBCOptionsEnd(builder *flatbuffers.Builder) flatbuffers.UOffsetT {
+func JDBCParametersEnd(builder *flatbuffers.Builder) flatbuffers.UOffsetT {
 	return builder.EndObject()
 }

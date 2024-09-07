@@ -8,30 +8,30 @@ include "./enum.ConnectionTypes.fbs";
 
 namespace document;
 
-/// Options to connect to one the of the following DB: Postgres,
+/// Parameters to connect to one the of the following DB: Postgres,
 /// MySQL, MS SQL, MariaDB, Oracle, ClickHouse, Druid, Ignite,
 /// Redshift.
-table JDBCOptions {
+table JDBCParameters {
   host: string (required);
   user: string (required);
   password: string (required);
   ssl: bool;
 }
 
-/// Options to connect to the BigQuery.
-table BigQueryOptions {
+/// Parameters to connect to the BigQuery.
+table BigQueryParameters {
   project_id: string (required);
   credentials_key: string (required);
 }
 
-/// Options to connect to the Google Sheets.
-table GoogleSheetsOptions {
+/// Parameters to connect to the Google Sheets.
+table GoogleSheetsParameters {
   sheet_id: string (required);
   credentials_key: string (required);
 }
 
-/// Options to connect to the Elasticsearch.
-table ElasticsearchOptions {
+/// Parameters to connect to the Elasticsearch.
+table ElasticsearchParameters {
   host: string (required);
   port: ushort;
   user: string;
@@ -42,8 +42,8 @@ table ElasticsearchOptions {
   secret_key: string;
 }
 
-/// Options to connect to the MongoDB.
-table MongoDBOptions {
+/// Parameters to connect to the MongoDB.
+table MongoDBParameters {
   host: string (required);
   port: ushort;
   user: string (required);
@@ -52,19 +52,19 @@ table MongoDBOptions {
   ssl: bool;
 }
 
-/// Union type to describe DB connection options.
-union ConnectionOptionsUnion {
-  JDBCOptions,
-  BigQueryOptions,
-  GoogleSheetsOptions,
-  ElasticsearchOptions,
-  MongoDBOptions,
+/// Union type to describe DB connection parameters.
+union ConnectionParameters {
+  JDBCParameters,
+  BigQueryParameters,
+  GoogleSheetsParameters,
+  ElasticsearchParameters,
+  MongoDBParameters,
 }
 
 /// Database connection options structure.
 table ConnectionOptions {
   type: enum.ConnectionTypes;
-  options: ConnectionOptionsUnion;
+  parameters: ConnectionParameters;
 }
 
 /// HDML document connection component data structure.

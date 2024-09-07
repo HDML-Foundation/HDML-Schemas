@@ -6,43 +6,43 @@ import (
 	flatbuffers "github.com/google/flatbuffers/go"
 )
 
-/// Options to connect to the MongoDB.
-type MongoDBOptions struct {
+/// Parameters to connect to the MongoDB.
+type MongoDBParameters struct {
 	_tab flatbuffers.Table
 }
 
-func GetRootAsMongoDBOptions(buf []byte, offset flatbuffers.UOffsetT) *MongoDBOptions {
+func GetRootAsMongoDBParameters(buf []byte, offset flatbuffers.UOffsetT) *MongoDBParameters {
 	n := flatbuffers.GetUOffsetT(buf[offset:])
-	x := &MongoDBOptions{}
+	x := &MongoDBParameters{}
 	x.Init(buf, n+offset)
 	return x
 }
 
-func FinishMongoDBOptionsBuffer(builder *flatbuffers.Builder, offset flatbuffers.UOffsetT) {
+func FinishMongoDBParametersBuffer(builder *flatbuffers.Builder, offset flatbuffers.UOffsetT) {
 	builder.Finish(offset)
 }
 
-func GetSizePrefixedRootAsMongoDBOptions(buf []byte, offset flatbuffers.UOffsetT) *MongoDBOptions {
+func GetSizePrefixedRootAsMongoDBParameters(buf []byte, offset flatbuffers.UOffsetT) *MongoDBParameters {
 	n := flatbuffers.GetUOffsetT(buf[offset+flatbuffers.SizeUint32:])
-	x := &MongoDBOptions{}
+	x := &MongoDBParameters{}
 	x.Init(buf, n+offset+flatbuffers.SizeUint32)
 	return x
 }
 
-func FinishSizePrefixedMongoDBOptionsBuffer(builder *flatbuffers.Builder, offset flatbuffers.UOffsetT) {
+func FinishSizePrefixedMongoDBParametersBuffer(builder *flatbuffers.Builder, offset flatbuffers.UOffsetT) {
 	builder.FinishSizePrefixed(offset)
 }
 
-func (rcv *MongoDBOptions) Init(buf []byte, i flatbuffers.UOffsetT) {
+func (rcv *MongoDBParameters) Init(buf []byte, i flatbuffers.UOffsetT) {
 	rcv._tab.Bytes = buf
 	rcv._tab.Pos = i
 }
 
-func (rcv *MongoDBOptions) Table() flatbuffers.Table {
+func (rcv *MongoDBParameters) Table() flatbuffers.Table {
 	return rcv._tab
 }
 
-func (rcv *MongoDBOptions) Host() []byte {
+func (rcv *MongoDBParameters) Host() []byte {
 	o := flatbuffers.UOffsetT(rcv._tab.Offset(4))
 	if o != 0 {
 		return rcv._tab.ByteVector(o + rcv._tab.Pos)
@@ -50,7 +50,7 @@ func (rcv *MongoDBOptions) Host() []byte {
 	return nil
 }
 
-func (rcv *MongoDBOptions) Port() uint16 {
+func (rcv *MongoDBParameters) Port() uint16 {
 	o := flatbuffers.UOffsetT(rcv._tab.Offset(6))
 	if o != 0 {
 		return rcv._tab.GetUint16(o + rcv._tab.Pos)
@@ -58,11 +58,11 @@ func (rcv *MongoDBOptions) Port() uint16 {
 	return 0
 }
 
-func (rcv *MongoDBOptions) MutatePort(n uint16) bool {
+func (rcv *MongoDBParameters) MutatePort(n uint16) bool {
 	return rcv._tab.MutateUint16Slot(6, n)
 }
 
-func (rcv *MongoDBOptions) User() []byte {
+func (rcv *MongoDBParameters) User() []byte {
 	o := flatbuffers.UOffsetT(rcv._tab.Offset(8))
 	if o != 0 {
 		return rcv._tab.ByteVector(o + rcv._tab.Pos)
@@ -70,7 +70,7 @@ func (rcv *MongoDBOptions) User() []byte {
 	return nil
 }
 
-func (rcv *MongoDBOptions) Password() []byte {
+func (rcv *MongoDBParameters) Password() []byte {
 	o := flatbuffers.UOffsetT(rcv._tab.Offset(10))
 	if o != 0 {
 		return rcv._tab.ByteVector(o + rcv._tab.Pos)
@@ -78,7 +78,7 @@ func (rcv *MongoDBOptions) Password() []byte {
 	return nil
 }
 
-func (rcv *MongoDBOptions) Schema() []byte {
+func (rcv *MongoDBParameters) Schema() []byte {
 	o := flatbuffers.UOffsetT(rcv._tab.Offset(12))
 	if o != 0 {
 		return rcv._tab.ByteVector(o + rcv._tab.Pos)
@@ -86,7 +86,7 @@ func (rcv *MongoDBOptions) Schema() []byte {
 	return nil
 }
 
-func (rcv *MongoDBOptions) Ssl() bool {
+func (rcv *MongoDBParameters) Ssl() bool {
 	o := flatbuffers.UOffsetT(rcv._tab.Offset(14))
 	if o != 0 {
 		return rcv._tab.GetBool(o + rcv._tab.Pos)
@@ -94,31 +94,31 @@ func (rcv *MongoDBOptions) Ssl() bool {
 	return false
 }
 
-func (rcv *MongoDBOptions) MutateSsl(n bool) bool {
+func (rcv *MongoDBParameters) MutateSsl(n bool) bool {
 	return rcv._tab.MutateBoolSlot(14, n)
 }
 
-func MongoDBOptionsStart(builder *flatbuffers.Builder) {
+func MongoDBParametersStart(builder *flatbuffers.Builder) {
 	builder.StartObject(6)
 }
-func MongoDBOptionsAddHost(builder *flatbuffers.Builder, host flatbuffers.UOffsetT) {
+func MongoDBParametersAddHost(builder *flatbuffers.Builder, host flatbuffers.UOffsetT) {
 	builder.PrependUOffsetTSlot(0, flatbuffers.UOffsetT(host), 0)
 }
-func MongoDBOptionsAddPort(builder *flatbuffers.Builder, port uint16) {
+func MongoDBParametersAddPort(builder *flatbuffers.Builder, port uint16) {
 	builder.PrependUint16Slot(1, port, 0)
 }
-func MongoDBOptionsAddUser(builder *flatbuffers.Builder, user flatbuffers.UOffsetT) {
+func MongoDBParametersAddUser(builder *flatbuffers.Builder, user flatbuffers.UOffsetT) {
 	builder.PrependUOffsetTSlot(2, flatbuffers.UOffsetT(user), 0)
 }
-func MongoDBOptionsAddPassword(builder *flatbuffers.Builder, password flatbuffers.UOffsetT) {
+func MongoDBParametersAddPassword(builder *flatbuffers.Builder, password flatbuffers.UOffsetT) {
 	builder.PrependUOffsetTSlot(3, flatbuffers.UOffsetT(password), 0)
 }
-func MongoDBOptionsAddSchema(builder *flatbuffers.Builder, schema flatbuffers.UOffsetT) {
+func MongoDBParametersAddSchema(builder *flatbuffers.Builder, schema flatbuffers.UOffsetT) {
 	builder.PrependUOffsetTSlot(4, flatbuffers.UOffsetT(schema), 0)
 }
-func MongoDBOptionsAddSsl(builder *flatbuffers.Builder, ssl bool) {
+func MongoDBParametersAddSsl(builder *flatbuffers.Builder, ssl bool) {
 	builder.PrependBoolSlot(5, ssl, false)
 }
-func MongoDBOptionsEnd(builder *flatbuffers.Builder) flatbuffers.UOffsetT {
+func MongoDBParametersEnd(builder *flatbuffers.Builder) flatbuffers.UOffsetT {
 	return builder.EndObject()
 }

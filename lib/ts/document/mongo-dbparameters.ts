@@ -5,24 +5,24 @@
 import * as flatbuffers from 'flatbuffers';
 
 /**
- * Options to connect to the MongoDB.
+ * Parameters to connect to the MongoDB.
  */
-export class MongoDBOptions {
+export class MongoDBParameters {
   bb: flatbuffers.ByteBuffer|null = null;
   bb_pos = 0;
-  __init(i:number, bb:flatbuffers.ByteBuffer):MongoDBOptions {
+  __init(i:number, bb:flatbuffers.ByteBuffer):MongoDBParameters {
   this.bb_pos = i;
   this.bb = bb;
   return this;
 }
 
-static getRootAsMongoDBOptions(bb:flatbuffers.ByteBuffer, obj?:MongoDBOptions):MongoDBOptions {
-  return (obj || new MongoDBOptions()).__init(bb.readInt32(bb.position()) + bb.position(), bb);
+static getRootAsMongoDBParameters(bb:flatbuffers.ByteBuffer, obj?:MongoDBParameters):MongoDBParameters {
+  return (obj || new MongoDBParameters()).__init(bb.readInt32(bb.position()) + bb.position(), bb);
 }
 
-static getSizePrefixedRootAsMongoDBOptions(bb:flatbuffers.ByteBuffer, obj?:MongoDBOptions):MongoDBOptions {
+static getSizePrefixedRootAsMongoDBParameters(bb:flatbuffers.ByteBuffer, obj?:MongoDBParameters):MongoDBParameters {
   bb.setPosition(bb.position() + flatbuffers.SIZE_PREFIX_LENGTH);
-  return (obj || new MongoDBOptions()).__init(bb.readInt32(bb.position()) + bb.position(), bb);
+  return (obj || new MongoDBParameters()).__init(bb.readInt32(bb.position()) + bb.position(), bb);
 }
 
 host():string|null
@@ -63,7 +63,7 @@ ssl():boolean {
   return offset ? !!this.bb!.readInt8(this.bb_pos + offset) : false;
 }
 
-static startMongoDBOptions(builder:flatbuffers.Builder) {
+static startMongoDBParameters(builder:flatbuffers.Builder) {
   builder.startObject(6);
 }
 
@@ -91,7 +91,7 @@ static addSsl(builder:flatbuffers.Builder, ssl:boolean) {
   builder.addFieldInt8(5, +ssl, +false);
 }
 
-static endMongoDBOptions(builder:flatbuffers.Builder):flatbuffers.Offset {
+static endMongoDBParameters(builder:flatbuffers.Builder):flatbuffers.Offset {
   const offset = builder.endObject();
   builder.requiredField(offset, 4) // host
   builder.requiredField(offset, 8) // user
@@ -100,14 +100,14 @@ static endMongoDBOptions(builder:flatbuffers.Builder):flatbuffers.Offset {
   return offset;
 }
 
-static createMongoDBOptions(builder:flatbuffers.Builder, hostOffset:flatbuffers.Offset, port:number, userOffset:flatbuffers.Offset, passwordOffset:flatbuffers.Offset, schemaOffset:flatbuffers.Offset, ssl:boolean):flatbuffers.Offset {
-  MongoDBOptions.startMongoDBOptions(builder);
-  MongoDBOptions.addHost(builder, hostOffset);
-  MongoDBOptions.addPort(builder, port);
-  MongoDBOptions.addUser(builder, userOffset);
-  MongoDBOptions.addPassword(builder, passwordOffset);
-  MongoDBOptions.addSchema(builder, schemaOffset);
-  MongoDBOptions.addSsl(builder, ssl);
-  return MongoDBOptions.endMongoDBOptions(builder);
+static createMongoDBParameters(builder:flatbuffers.Builder, hostOffset:flatbuffers.Offset, port:number, userOffset:flatbuffers.Offset, passwordOffset:flatbuffers.Offset, schemaOffset:flatbuffers.Offset, ssl:boolean):flatbuffers.Offset {
+  MongoDBParameters.startMongoDBParameters(builder);
+  MongoDBParameters.addHost(builder, hostOffset);
+  MongoDBParameters.addPort(builder, port);
+  MongoDBParameters.addUser(builder, userOffset);
+  MongoDBParameters.addPassword(builder, passwordOffset);
+  MongoDBParameters.addSchema(builder, schemaOffset);
+  MongoDBParameters.addSsl(builder, ssl);
+  return MongoDBParameters.endMongoDBParameters(builder);
 }
 }

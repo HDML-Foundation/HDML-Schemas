@@ -56,19 +56,19 @@ func (rcv *ConnectionOptions) MutateType(n enum.ConnectionTypes) bool {
 	return rcv._tab.MutateInt8Slot(4, int8(n))
 }
 
-func (rcv *ConnectionOptions) OptionsType() ConnectionOptionsUnion {
+func (rcv *ConnectionOptions) ParametersType() ConnectionParameters {
 	o := flatbuffers.UOffsetT(rcv._tab.Offset(6))
 	if o != 0 {
-		return ConnectionOptionsUnion(rcv._tab.GetByte(o + rcv._tab.Pos))
+		return ConnectionParameters(rcv._tab.GetByte(o + rcv._tab.Pos))
 	}
 	return 0
 }
 
-func (rcv *ConnectionOptions) MutateOptionsType(n ConnectionOptionsUnion) bool {
+func (rcv *ConnectionOptions) MutateParametersType(n ConnectionParameters) bool {
 	return rcv._tab.MutateByteSlot(6, byte(n))
 }
 
-func (rcv *ConnectionOptions) Options(obj *flatbuffers.Table) bool {
+func (rcv *ConnectionOptions) Parameters(obj *flatbuffers.Table) bool {
 	o := flatbuffers.UOffsetT(rcv._tab.Offset(8))
 	if o != 0 {
 		rcv._tab.Union(obj, o)
@@ -83,11 +83,11 @@ func ConnectionOptionsStart(builder *flatbuffers.Builder) {
 func ConnectionOptionsAddType(builder *flatbuffers.Builder, type_ enum.ConnectionTypes) {
 	builder.PrependInt8Slot(0, int8(type_), 0)
 }
-func ConnectionOptionsAddOptionsType(builder *flatbuffers.Builder, optionsType ConnectionOptionsUnion) {
-	builder.PrependByteSlot(1, byte(optionsType), 0)
+func ConnectionOptionsAddParametersType(builder *flatbuffers.Builder, parametersType ConnectionParameters) {
+	builder.PrependByteSlot(1, byte(parametersType), 0)
 }
-func ConnectionOptionsAddOptions(builder *flatbuffers.Builder, options flatbuffers.UOffsetT) {
-	builder.PrependUOffsetTSlot(2, flatbuffers.UOffsetT(options), 0)
+func ConnectionOptionsAddParameters(builder *flatbuffers.Builder, parameters flatbuffers.UOffsetT) {
+	builder.PrependUOffsetTSlot(2, flatbuffers.UOffsetT(parameters), 0)
 }
 func ConnectionOptionsEnd(builder *flatbuffers.Builder) flatbuffers.UOffsetT {
 	return builder.EndObject()

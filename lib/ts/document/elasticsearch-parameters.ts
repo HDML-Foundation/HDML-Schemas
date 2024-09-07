@@ -5,24 +5,24 @@
 import * as flatbuffers from 'flatbuffers';
 
 /**
- * Options to connect to the Elasticsearch.
+ * Parameters to connect to the Elasticsearch.
  */
-export class ElasticsearchOptions {
+export class ElasticsearchParameters {
   bb: flatbuffers.ByteBuffer|null = null;
   bb_pos = 0;
-  __init(i:number, bb:flatbuffers.ByteBuffer):ElasticsearchOptions {
+  __init(i:number, bb:flatbuffers.ByteBuffer):ElasticsearchParameters {
   this.bb_pos = i;
   this.bb = bb;
   return this;
 }
 
-static getRootAsElasticsearchOptions(bb:flatbuffers.ByteBuffer, obj?:ElasticsearchOptions):ElasticsearchOptions {
-  return (obj || new ElasticsearchOptions()).__init(bb.readInt32(bb.position()) + bb.position(), bb);
+static getRootAsElasticsearchParameters(bb:flatbuffers.ByteBuffer, obj?:ElasticsearchParameters):ElasticsearchParameters {
+  return (obj || new ElasticsearchParameters()).__init(bb.readInt32(bb.position()) + bb.position(), bb);
 }
 
-static getSizePrefixedRootAsElasticsearchOptions(bb:flatbuffers.ByteBuffer, obj?:ElasticsearchOptions):ElasticsearchOptions {
+static getSizePrefixedRootAsElasticsearchParameters(bb:flatbuffers.ByteBuffer, obj?:ElasticsearchParameters):ElasticsearchParameters {
   bb.setPosition(bb.position() + flatbuffers.SIZE_PREFIX_LENGTH);
-  return (obj || new ElasticsearchOptions()).__init(bb.readInt32(bb.position()) + bb.position(), bb);
+  return (obj || new ElasticsearchParameters()).__init(bb.readInt32(bb.position()) + bb.position(), bb);
 }
 
 host():string|null
@@ -77,7 +77,7 @@ secretKey(optionalEncoding?:any):string|Uint8Array|null {
   return offset ? this.bb!.__string(this.bb_pos + offset, optionalEncoding) : null;
 }
 
-static startElasticsearchOptions(builder:flatbuffers.Builder) {
+static startElasticsearchParameters(builder:flatbuffers.Builder) {
   builder.startObject(8);
 }
 
@@ -113,22 +113,22 @@ static addSecretKey(builder:flatbuffers.Builder, secretKeyOffset:flatbuffers.Off
   builder.addFieldOffset(7, secretKeyOffset, 0);
 }
 
-static endElasticsearchOptions(builder:flatbuffers.Builder):flatbuffers.Offset {
+static endElasticsearchParameters(builder:flatbuffers.Builder):flatbuffers.Offset {
   const offset = builder.endObject();
   builder.requiredField(offset, 4) // host
   return offset;
 }
 
-static createElasticsearchOptions(builder:flatbuffers.Builder, hostOffset:flatbuffers.Offset, port:number, userOffset:flatbuffers.Offset, passwordOffset:flatbuffers.Offset, ssl:boolean, regionOffset:flatbuffers.Offset, accessKeyOffset:flatbuffers.Offset, secretKeyOffset:flatbuffers.Offset):flatbuffers.Offset {
-  ElasticsearchOptions.startElasticsearchOptions(builder);
-  ElasticsearchOptions.addHost(builder, hostOffset);
-  ElasticsearchOptions.addPort(builder, port);
-  ElasticsearchOptions.addUser(builder, userOffset);
-  ElasticsearchOptions.addPassword(builder, passwordOffset);
-  ElasticsearchOptions.addSsl(builder, ssl);
-  ElasticsearchOptions.addRegion(builder, regionOffset);
-  ElasticsearchOptions.addAccessKey(builder, accessKeyOffset);
-  ElasticsearchOptions.addSecretKey(builder, secretKeyOffset);
-  return ElasticsearchOptions.endElasticsearchOptions(builder);
+static createElasticsearchParameters(builder:flatbuffers.Builder, hostOffset:flatbuffers.Offset, port:number, userOffset:flatbuffers.Offset, passwordOffset:flatbuffers.Offset, ssl:boolean, regionOffset:flatbuffers.Offset, accessKeyOffset:flatbuffers.Offset, secretKeyOffset:flatbuffers.Offset):flatbuffers.Offset {
+  ElasticsearchParameters.startElasticsearchParameters(builder);
+  ElasticsearchParameters.addHost(builder, hostOffset);
+  ElasticsearchParameters.addPort(builder, port);
+  ElasticsearchParameters.addUser(builder, userOffset);
+  ElasticsearchParameters.addPassword(builder, passwordOffset);
+  ElasticsearchParameters.addSsl(builder, ssl);
+  ElasticsearchParameters.addRegion(builder, regionOffset);
+  ElasticsearchParameters.addAccessKey(builder, accessKeyOffset);
+  ElasticsearchParameters.addSecretKey(builder, secretKeyOffset);
+  return ElasticsearchParameters.endElasticsearchParameters(builder);
 }
 }
