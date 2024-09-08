@@ -1,0 +1,14 @@
+/**
+ * @author Artem Lytvynov
+ * @copyright Artem Lytvynov
+ * @license Apache2.0
+ */
+
+namespace enum;
+
+/// Filter types enum.
+enum FilterType: byte {
+  Expr,
+  Keys,
+  Named,
+}
