@@ -31,7 +31,7 @@ static getSizePrefixedRootAsFilter(bb:flatbuffers.ByteBuffer, obj?:Filter):Filte
 
 type():FilterType {
   const offset = this.bb!.__offset(this.bb_pos, 4);
-  return offset ? this.bb!.readInt8(this.bb_pos + offset) : FilterType.Expr;
+  return offset ? this.bb!.readInt8(this.bb_pos + offset) : FilterType.Expression;
 }
 
 optionsType():FilterOptions {
@@ -49,7 +49,7 @@ static startFilter(builder:flatbuffers.Builder) {
 }
 
 static addType(builder:flatbuffers.Builder, type:FilterType) {
-  builder.addFieldInt8(0, type, FilterType.Expr);
+  builder.addFieldInt8(0, type, FilterType.Expression);
 }
 
 static addOptionsType(builder:flatbuffers.Builder, optionsType:FilterOptions) {

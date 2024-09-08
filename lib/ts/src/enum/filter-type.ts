@@ -6,7 +6,7 @@
  * Filter types enum.
  */
 export enum FilterType {
-  Expr = 0,
+  Expression = 0,
   Keys = 1,
   Named = 2
 }

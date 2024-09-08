@@ -15,7 +15,7 @@ namespace document;
 table Table {
   name: string;
   type: enum.TableType;
-  source: string;
+  identifier: string;
   fields: [document.Field];
 }
 

@@ -14,9 +14,6 @@ import { Connection } from "./Connection";
  * relationships.
  */
 export interface HDDM {
-  /**
-   * includes
-   */
   includes: Include[];
   connections: Connection[];
   models: unknown;

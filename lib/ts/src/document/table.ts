@@ -41,9 +41,9 @@ type():TableType {
   return offset ? this.bb!.readInt8(this.bb_pos + offset) : TableType.Table;
 }
 
-source():string|null
-source(optionalEncoding:flatbuffers.Encoding):string|Uint8Array|null
-source(optionalEncoding?:any):string|Uint8Array|null {
+identifier():string|null
+identifier(optionalEncoding:flatbuffers.Encoding):string|Uint8Array|null
+identifier(optionalEncoding?:any):string|Uint8Array|null {
   const offset = this.bb!.__offset(this.bb_pos, 8);
   return offset ? this.bb!.__string(this.bb_pos + offset, optionalEncoding) : null;
 }
@@ -70,8 +70,8 @@ static addType(builder:flatbuffers.Builder, type:TableType) {
   builder.addFieldInt8(1, type, TableType.Table);
 }
 
-static addSource(builder:flatbuffers.Builder, sourceOffset:flatbuffers.Offset) {
-  builder.addFieldOffset(2, sourceOffset, 0);
+static addIdentifier(builder:flatbuffers.Builder, identifierOffset:flatbuffers.Offset) {
+  builder.addFieldOffset(2, identifierOffset, 0);
 }
 
 static addFields(builder:flatbuffers.Builder, fieldsOffset:flatbuffers.Offset) {
@@ -95,11 +95,11 @@ static endTable(builder:flatbuffers.Builder):flatbuffers.Offset {
   return offset;
 }
 
-static createTable(builder:flatbuffers.Builder, nameOffset:flatbuffers.Offset, type:TableType, sourceOffset:flatbuffers.Offset, fieldsOffset:flatbuffers.Offset):flatbuffers.Offset {
+static createTable(builder:flatbuffers.Builder, nameOffset:flatbuffers.Offset, type:TableType, identifierOffset:flatbuffers.Offset, fieldsOffset:flatbuffers.Offset):flatbuffers.Offset {
   Table.startTable(builder);
   Table.addName(builder, nameOffset);
   Table.addType(builder, type);
-  Table.addSource(builder, sourceOffset);
+  Table.addIdentifier(builder, identifierOffset);
   Table.addFields(builder, fieldsOffset);
   return Table.endTable(builder);
 }

@@ -8,21 +8,21 @@ import "strconv"
 type FilterType int8
 
 const (
-	FilterTypeExpr  FilterType = 0
-	FilterTypeKeys  FilterType = 1
-	FilterTypeNamed FilterType = 2
+	FilterTypeExpression FilterType = 0
+	FilterTypeKeys       FilterType = 1
+	FilterTypeNamed      FilterType = 2
 )
 
 var EnumNamesFilterType = map[FilterType]string{
-	FilterTypeExpr:  "Expr",
-	FilterTypeKeys:  "Keys",
-	FilterTypeNamed: "Named",
+	FilterTypeExpression: "Expression",
+	FilterTypeKeys:       "Keys",
+	FilterTypeNamed:      "Named",
 }
 
 var EnumValuesFilterType = map[string]FilterType{
-	"Expr":  FilterTypeExpr,
-	"Keys":  FilterTypeKeys,
-	"Named": FilterTypeNamed,
+	"Expression": FilterTypeExpression,
+	"Keys":       FilterTypeKeys,
+	"Named":      FilterTypeNamed,
 }
 
 func (v FilterType) String() string {

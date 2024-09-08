@@ -64,7 +64,7 @@ func (rcv *Table) MutateType(n enum.TableType) bool {
 	return rcv._tab.MutateInt8Slot(6, int8(n))
 }
 
-func (rcv *Table) Source() []byte {
+func (rcv *Table) Identifier() []byte {
 	o := flatbuffers.UOffsetT(rcv._tab.Offset(8))
 	if o != 0 {
 		return rcv._tab.ByteVector(o + rcv._tab.Pos)
@@ -101,8 +101,8 @@ func TableAddName(builder *flatbuffers.Builder, name flatbuffers.UOffsetT) {
 func TableAddType(builder *flatbuffers.Builder, type_ enum.TableType) {
 	builder.PrependInt8Slot(1, int8(type_), 0)
 }
-func TableAddSource(builder *flatbuffers.Builder, source flatbuffers.UOffsetT) {
-	builder.PrependUOffsetTSlot(2, flatbuffers.UOffsetT(source), 0)
+func TableAddIdentifier(builder *flatbuffers.Builder, identifier flatbuffers.UOffsetT) {
+	builder.PrependUOffsetTSlot(2, flatbuffers.UOffsetT(identifier), 0)
 }
 func TableAddFields(builder *flatbuffers.Builder, fields flatbuffers.UOffsetT) {
 	builder.PrependUOffsetTSlot(3, flatbuffers.UOffsetT(fields), 0)
