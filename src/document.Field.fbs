@@ -16,34 +16,34 @@ namespace document;
 
 /// Common data type parameters structure.
 table CommonParameters {
-  Nullable: bool;
+  nullable: bool;
 }
 
 /// Decimal data type parameters structure.
 table DecimalParameters {
-  Nullable: bool;
-  Scale: ushort;
-  Precision: ushort;
-  BitWidth: enum.DecimalBitWidth;
+  nullable: bool;
+  scale: ushort;
+  precision: ushort;
+  bit_width: enum.DecimalBitWidth;
 }
 
 /// Date data type parameters structure.
 table DateParameters {
-  Nullable: bool;
-  Unit: enum.DateUnit;
+  nullable: bool;
+  unit: enum.DateUnit;
 }
 
 /// Time data type parameters structure.
 table TimeParameters {
-  Nullable: bool;
-  Unit: enum.TimeUnit;
+  nullable: bool;
+  unit: enum.TimeUnit;
 }
 
 /// Timestamp data type parameters structure.
 table TimestampParameters {
-  Nullable: bool;
-  Unit: enum.TimeUnit;
-  Timezone: enum.TimeZone;
+  nullable: bool;
+  unit: enum.TimeUnit;
+  timezone: enum.TimeZone;
 }
 
 /// Data type options.
@@ -57,17 +57,17 @@ union DataTypeOptions {
 
 /// Field type structure.
 table FieldType {
-  Type: enum.DataType;
-  Options: DataTypeOptions;
+  type: enum.DataType;
+  options: DataTypeOptions;
 }
 
 /// Data field structure.
 table Field {
-  Name: string;
-  Description: string;
-  Origin: string;
-  Clause: string;
-  Type: FieldType;
-  Aggregation: enum.AggregationType;
-  Order: enum.OrderType;
+  name: string;
+  description: string;
+  origin: string;
+  clause: string;
+  type: FieldType;
+  aggregation: enum.AggregationType;
+  order: enum.OrderType;
 }
