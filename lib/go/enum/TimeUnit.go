@@ -4,28 +4,28 @@ package enum
 
 import "strconv"
 
-/// Time type units enum.
+/// Time units enum.
 type TimeUnit int8
 
 const (
-	TimeUnitsecond      TimeUnit = 0
-	TimeUnitmillisecond TimeUnit = 1
-	TimeUnitmicrosecond TimeUnit = 2
-	TimeUnitnanosecond  TimeUnit = 3
+	TimeUnitSecond      TimeUnit = 0
+	TimeUnitMillisecond TimeUnit = 1
+	TimeUnitMicrosecond TimeUnit = 2
+	TimeUnitNanosecond  TimeUnit = 3
 )
 
 var EnumNamesTimeUnit = map[TimeUnit]string{
-	TimeUnitsecond:      "second",
-	TimeUnitmillisecond: "millisecond",
-	TimeUnitmicrosecond: "microsecond",
-	TimeUnitnanosecond:  "nanosecond",
+	TimeUnitSecond:      "Second",
+	TimeUnitMillisecond: "Millisecond",
+	TimeUnitMicrosecond: "Microsecond",
+	TimeUnitNanosecond:  "Nanosecond",
 }
 
 var EnumValuesTimeUnit = map[string]TimeUnit{
-	"second":      TimeUnitsecond,
-	"millisecond": TimeUnitmillisecond,
-	"microsecond": TimeUnitmicrosecond,
-	"nanosecond":  TimeUnitnanosecond,
+	"Second":      TimeUnitSecond,
+	"Millisecond": TimeUnitMillisecond,
+	"Microsecond": TimeUnitMicrosecond,
+	"Nanosecond":  TimeUnitNanosecond,
 }
 
 func (v TimeUnit) String() string {

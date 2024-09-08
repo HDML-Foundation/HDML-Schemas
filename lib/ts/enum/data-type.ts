@@ -3,7 +3,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any, @typescript-eslint/no-non-null-assertion */
 
 /**
- * Field data types enum.
+ * Data types enum.
  */
 export enum DataType {
   Int8 = 0,

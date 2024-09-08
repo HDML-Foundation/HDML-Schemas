@@ -6,7 +6,7 @@
 
 namespace enum;
 
-/// Field data types enum.
+/// Data types enum.
 enum DataType: byte {
   Int8,
   Int16,

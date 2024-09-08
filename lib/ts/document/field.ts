@@ -5,7 +5,7 @@
 import * as flatbuffers from 'flatbuffers';
 
 import { FieldType } from '../document/field-type.js';
-import { AggType } from '../enum/agg-type.js';
+import { AggregationType } from '../enum/aggregation-type.js';
 import { OrderType } from '../enum/order-type.js';
 
 
@@ -63,12 +63,12 @@ type(obj?:FieldType):FieldType|null {
   return offset ? (obj || new FieldType()).__init(this.bb!.__indirect(this.bb_pos + offset), this.bb!) : null;
 }
 
-agg():AggType {
+aggregation():AggregationType {
   const offset = this.bb!.__offset(this.bb_pos, 14);
-  return offset ? this.bb!.readInt8(this.bb_pos + offset) : AggType.None;
+  return offset ? this.bb!.readInt8(this.bb_pos + offset) : AggregationType.None;
 }
 
-asc():OrderType {
+order():OrderType {
   const offset = this.bb!.__offset(this.bb_pos, 16);
   return offset ? this.bb!.readInt8(this.bb_pos + offset) : OrderType.None;
 }
@@ -97,12 +97,12 @@ static addType(builder:flatbuffers.Builder, typeOffset:flatbuffers.Offset) {
   builder.addFieldOffset(4, typeOffset, 0);
 }
 
-static addAgg(builder:flatbuffers.Builder, agg:AggType) {
-  builder.addFieldInt8(5, agg, AggType.None);
+static addAggregation(builder:flatbuffers.Builder, aggregation:AggregationType) {
+  builder.addFieldInt8(5, aggregation, AggregationType.None);
 }
 
-static addAsc(builder:flatbuffers.Builder, asc:OrderType) {
-  builder.addFieldInt8(6, asc, OrderType.None);
+static addOrder(builder:flatbuffers.Builder, order:OrderType) {
+  builder.addFieldInt8(6, order, OrderType.None);
 }
 
 static endField(builder:flatbuffers.Builder):flatbuffers.Offset {

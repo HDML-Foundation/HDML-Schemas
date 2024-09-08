@@ -8,5 +8,5 @@ namespace document;
 
 /// HDML document include component data structure.
 table Include {
-  path: string (required);
+  Path: string (required);
 }

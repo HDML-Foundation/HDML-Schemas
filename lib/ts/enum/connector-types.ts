@@ -3,7 +3,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any, @typescript-eslint/no-non-null-assertion */
 
 /**
- * Database connector type.
+ * Database connectors type.
  */
 export enum ConnectorTypes {
   Postgres = 0,

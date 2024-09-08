@@ -7,7 +7,7 @@
 namespace enum;
 
 /// Decimal data type bit width enum.
-enum DecBitWidth: byte {
+enum DecimalBitWidth: byte {
   _128,
   _256,
 }

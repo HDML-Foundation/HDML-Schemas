@@ -2,52 +2,52 @@
 
 /* eslint-disable @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any, @typescript-eslint/no-non-null-assertion */
 
-import { CommonOpts } from '../document/common-opts.js';
-import { DateOpts } from '../document/date-opts.js';
-import { DecimalOpts } from '../document/decimal-opts.js';
-import { TimeOpts } from '../document/time-opts.js';
-import { TimestampOpts } from '../document/timestamp-opts.js';
+import { CommonParameters } from '../document/common-parameters.js';
+import { DateParameters } from '../document/date-parameters.js';
+import { DecimalParameters } from '../document/decimal-parameters.js';
+import { TimeParameters } from '../document/time-parameters.js';
+import { TimestampParameters } from '../document/timestamp-parameters.js';
 
 
 /**
- * Data type options union.
+ * Data type options.
  */
 export enum DataTypeOptions {
   NONE = 0,
-  CommonOpts = 1,
-  DecimalOpts = 2,
-  DateOpts = 3,
-  TimeOpts = 4,
-  TimestampOpts = 5
+  CommonParameters = 1,
+  DecimalParameters = 2,
+  DateParameters = 3,
+  TimeParameters = 4,
+  TimestampParameters = 5
 }
 
 export function unionToDataTypeOptions(
   type: DataTypeOptions,
-  accessor: (obj:CommonOpts|DateOpts|DecimalOpts|TimeOpts|TimestampOpts) => CommonOpts|DateOpts|DecimalOpts|TimeOpts|TimestampOpts|null
-): CommonOpts|DateOpts|DecimalOpts|TimeOpts|TimestampOpts|null {
+  accessor: (obj:CommonParameters|DateParameters|DecimalParameters|TimeParameters|TimestampParameters) => CommonParameters|DateParameters|DecimalParameters|TimeParameters|TimestampParameters|null
+): CommonParameters|DateParameters|DecimalParameters|TimeParameters|TimestampParameters|null {
   switch(DataTypeOptions[type]) {
     case 'NONE': return null; 
-    case 'CommonOpts': return accessor(new CommonOpts())! as CommonOpts;
-    case 'DecimalOpts': return accessor(new DecimalOpts())! as DecimalOpts;
-    case 'DateOpts': return accessor(new DateOpts())! as DateOpts;
-    case 'TimeOpts': return accessor(new TimeOpts())! as TimeOpts;
-    case 'TimestampOpts': return accessor(new TimestampOpts())! as TimestampOpts;
+    case 'CommonParameters': return accessor(new CommonParameters())! as CommonParameters;
+    case 'DecimalParameters': return accessor(new DecimalParameters())! as DecimalParameters;
+    case 'DateParameters': return accessor(new DateParameters())! as DateParameters;
+    case 'TimeParameters': return accessor(new TimeParameters())! as TimeParameters;
+    case 'TimestampParameters': return accessor(new TimestampParameters())! as TimestampParameters;
     default: return null;
   }
 }
 
 export function unionListToDataTypeOptions(
   type: DataTypeOptions, 
-  accessor: (index: number, obj:CommonOpts|DateOpts|DecimalOpts|TimeOpts|TimestampOpts) => CommonOpts|DateOpts|DecimalOpts|TimeOpts|TimestampOpts|null, 
+  accessor: (index: number, obj:CommonParameters|DateParameters|DecimalParameters|TimeParameters|TimestampParameters) => CommonParameters|DateParameters|DecimalParameters|TimeParameters|TimestampParameters|null, 
   index: number
-): CommonOpts|DateOpts|DecimalOpts|TimeOpts|TimestampOpts|null {
+): CommonParameters|DateParameters|DecimalParameters|TimeParameters|TimestampParameters|null {
   switch(DataTypeOptions[type]) {
     case 'NONE': return null; 
-    case 'CommonOpts': return accessor(index, new CommonOpts())! as CommonOpts;
-    case 'DecimalOpts': return accessor(index, new DecimalOpts())! as DecimalOpts;
-    case 'DateOpts': return accessor(index, new DateOpts())! as DateOpts;
-    case 'TimeOpts': return accessor(index, new TimeOpts())! as TimeOpts;
-    case 'TimestampOpts': return accessor(index, new TimestampOpts())! as TimestampOpts;
+    case 'CommonParameters': return accessor(index, new CommonParameters())! as CommonParameters;
+    case 'DecimalParameters': return accessor(index, new DecimalParameters())! as DecimalParameters;
+    case 'DateParameters': return accessor(index, new DateParameters())! as DateParameters;
+    case 'TimeParameters': return accessor(index, new TimeParameters())! as TimeParameters;
+    case 'TimestampParameters': return accessor(index, new TimestampParameters())! as TimestampParameters;
     default: return null;
   }
 }

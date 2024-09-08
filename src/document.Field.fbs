@@ -4,9 +4,9 @@
  * @license Apache2.0
  */
 
-include "./enum.AggType.fbs";
+include "./enum.AggregationType.fbs";
 include "./enum.DataType.fbs";
-include "./enum.DecBitWidth.fbs";
+include "./enum.DecimalBitWidth.fbs";
 include "./enum.DateUnit.fbs";
 include "./enum.OrderType.fbs";
 include "./enum.TimeUnit.fbs";
@@ -14,60 +14,60 @@ include "./enum.TimeZone.fbs";
 
 namespace document;
 
-/// Common data type options structure.
-table CommonOpts {
-  nullable: bool;
+/// Common data type parameters structure.
+table CommonParameters {
+  Nullable: bool;
 }
 
-/// Decimal data type options structure.
-table DecimalOpts {
-  nullable: bool;
-  scale: ushort;
-  precision: ushort;
-  bit_width: enum.DecBitWidth;
+/// Decimal data type parameters structure.
+table DecimalParameters {
+  Nullable: bool;
+  Scale: ushort;
+  Precision: ushort;
+  BitWidth: enum.DecimalBitWidth;
 }
 
-/// Date data type options structure.
-table DateOpts {
-  nullable: bool;
-  unit: enum.DateUnit;
+/// Date data type parameters structure.
+table DateParameters {
+  Nullable: bool;
+  Unit: enum.DateUnit;
 }
 
-/// Time data type options structure.
-table TimeOpts {
-  nullable: bool;
-  unit: enum.TimeUnit;
+/// Time data type parameters structure.
+table TimeParameters {
+  Nullable: bool;
+  Unit: enum.TimeUnit;
 }
 
-/// Timestamp data type options structure.
-table TimestampOpts {
-  nullable: bool;
-  unit: enum.TimeUnit;
-  timezone: enum.TimeZone;
+/// Timestamp data type parameters structure.
+table TimestampParameters {
+  Nullable: bool;
+  Unit: enum.TimeUnit;
+  Timezone: enum.TimeZone;
 }
 
-/// Data type options union.
+/// Data type options.
 union DataTypeOptions {
-  CommonOpts,
-  DecimalOpts,
-  DateOpts,
-  TimeOpts,
-  TimestampOpts,
+  CommonParameters,
+  DecimalParameters,
+  DateParameters,
+  TimeParameters,
+  TimestampParameters,
 }
 
 /// Field type structure.
 table FieldType {
-  type: enum.DataType;
-  options: DataTypeOptions;
+  Type: enum.DataType;
+  Options: DataTypeOptions;
 }
 
 /// Data field structure.
 table Field {
-  name: string;
-  description: string;
-  origin: string;
-  clause: string;
-  type: FieldType;
-  agg: enum.AggType;
-  asc: enum.OrderType;
+  Name: string;
+  Description: string;
+  Origin: string;
+  Clause: string;
+  Type: FieldType;
+  Aggregation: enum.AggregationType;
+  Order: enum.OrderType;
 }

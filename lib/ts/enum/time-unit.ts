@@ -3,11 +3,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any, @typescript-eslint/no-non-null-assertion */
 
 /**
- * Time type units enum.
+ * Time units enum.
  */
 export enum TimeUnit {
-  second = 0,
-  millisecond = 1,
-  microsecond = 2,
-  nanosecond = 3
+  Second = 0,
+  Millisecond = 1,
+  Microsecond = 2,
+  Nanosecond = 3
 }

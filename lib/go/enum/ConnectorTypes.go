@@ -4,7 +4,7 @@ package enum
 
 import "strconv"
 
-/// Database connector type.
+/// Database connectors type.
 type ConnectorTypes int8
 
 const (

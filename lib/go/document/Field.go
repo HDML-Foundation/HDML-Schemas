@@ -89,19 +89,19 @@ func (rcv *Field) Type(obj *FieldType) *FieldType {
 	return nil
 }
 
-func (rcv *Field) Agg() enum.AggType {
+func (rcv *Field) Aggregation() enum.AggregationType {
 	o := flatbuffers.UOffsetT(rcv._tab.Offset(14))
 	if o != 0 {
-		return enum.AggType(rcv._tab.GetInt8(o + rcv._tab.Pos))
+		return enum.AggregationType(rcv._tab.GetInt8(o + rcv._tab.Pos))
 	}
 	return 0
 }
 
-func (rcv *Field) MutateAgg(n enum.AggType) bool {
+func (rcv *Field) MutateAggregation(n enum.AggregationType) bool {
 	return rcv._tab.MutateInt8Slot(14, int8(n))
 }
 
-func (rcv *Field) Asc() enum.OrderType {
+func (rcv *Field) Order() enum.OrderType {
 	o := flatbuffers.UOffsetT(rcv._tab.Offset(16))
 	if o != 0 {
 		return enum.OrderType(rcv._tab.GetInt8(o + rcv._tab.Pos))
@@ -109,7 +109,7 @@ func (rcv *Field) Asc() enum.OrderType {
 	return 0
 }
 
-func (rcv *Field) MutateAsc(n enum.OrderType) bool {
+func (rcv *Field) MutateOrder(n enum.OrderType) bool {
 	return rcv._tab.MutateInt8Slot(16, int8(n))
 }
 
@@ -131,11 +131,11 @@ func FieldAddClause(builder *flatbuffers.Builder, clause flatbuffers.UOffsetT) {
 func FieldAddType(builder *flatbuffers.Builder, type_ flatbuffers.UOffsetT) {
 	builder.PrependUOffsetTSlot(4, flatbuffers.UOffsetT(type_), 0)
 }
-func FieldAddAgg(builder *flatbuffers.Builder, agg enum.AggType) {
-	builder.PrependInt8Slot(5, int8(agg), 0)
+func FieldAddAggregation(builder *flatbuffers.Builder, aggregation enum.AggregationType) {
+	builder.PrependInt8Slot(5, int8(aggregation), 0)
 }
-func FieldAddAsc(builder *flatbuffers.Builder, asc enum.OrderType) {
-	builder.PrependInt8Slot(6, int8(asc), 0)
+func FieldAddOrder(builder *flatbuffers.Builder, order enum.OrderType) {
+	builder.PrependInt8Slot(6, int8(order), 0)
 }
 func FieldEnd(builder *flatbuffers.Builder) flatbuffers.UOffsetT {
 	return builder.EndObject()

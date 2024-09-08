@@ -6,8 +6,8 @@
 
 namespace enum;
 
-/// Date type units enum.
+/// Date units enum.
 enum DateUnit: byte {
-  second,
-  millisecond,
+  Second,
+  Millisecond,
 }

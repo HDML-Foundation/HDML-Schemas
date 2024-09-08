@@ -4,34 +4,34 @@ package document
 
 import "strconv"
 
-/// Data type options union.
+/// Data type options.
 type DataTypeOptions byte
 
 const (
-	DataTypeOptionsNONE          DataTypeOptions = 0
-	DataTypeOptionsCommonOpts    DataTypeOptions = 1
-	DataTypeOptionsDecimalOpts   DataTypeOptions = 2
-	DataTypeOptionsDateOpts      DataTypeOptions = 3
-	DataTypeOptionsTimeOpts      DataTypeOptions = 4
-	DataTypeOptionsTimestampOpts DataTypeOptions = 5
+	DataTypeOptionsNONE                DataTypeOptions = 0
+	DataTypeOptionsCommonParameters    DataTypeOptions = 1
+	DataTypeOptionsDecimalParameters   DataTypeOptions = 2
+	DataTypeOptionsDateParameters      DataTypeOptions = 3
+	DataTypeOptionsTimeParameters      DataTypeOptions = 4
+	DataTypeOptionsTimestampParameters DataTypeOptions = 5
 )
 
 var EnumNamesDataTypeOptions = map[DataTypeOptions]string{
-	DataTypeOptionsNONE:          "NONE",
-	DataTypeOptionsCommonOpts:    "CommonOpts",
-	DataTypeOptionsDecimalOpts:   "DecimalOpts",
-	DataTypeOptionsDateOpts:      "DateOpts",
-	DataTypeOptionsTimeOpts:      "TimeOpts",
-	DataTypeOptionsTimestampOpts: "TimestampOpts",
+	DataTypeOptionsNONE:                "NONE",
+	DataTypeOptionsCommonParameters:    "CommonParameters",
+	DataTypeOptionsDecimalParameters:   "DecimalParameters",
+	DataTypeOptionsDateParameters:      "DateParameters",
+	DataTypeOptionsTimeParameters:      "TimeParameters",
+	DataTypeOptionsTimestampParameters: "TimestampParameters",
 }
 
 var EnumValuesDataTypeOptions = map[string]DataTypeOptions{
-	"NONE":          DataTypeOptionsNONE,
-	"CommonOpts":    DataTypeOptionsCommonOpts,
-	"DecimalOpts":   DataTypeOptionsDecimalOpts,
-	"DateOpts":      DataTypeOptionsDateOpts,
-	"TimeOpts":      DataTypeOptionsTimeOpts,
-	"TimestampOpts": DataTypeOptionsTimestampOpts,
+	"NONE":                DataTypeOptionsNONE,
+	"CommonParameters":    DataTypeOptionsCommonParameters,
+	"DecimalParameters":   DataTypeOptionsDecimalParameters,
+	"DateParameters":      DataTypeOptionsDateParameters,
+	"TimeParameters":      DataTypeOptionsTimeParameters,
+	"TimestampParameters": DataTypeOptionsTimestampParameters,
 }
 
 func (v DataTypeOptions) String() string {

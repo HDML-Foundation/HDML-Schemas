@@ -4,22 +4,22 @@ package enum
 
 import "strconv"
 
-/// Date type units enum.
+/// Date units enum.
 type DateUnit int8
 
 const (
-	DateUnitsecond      DateUnit = 0
-	DateUnitmillisecond DateUnit = 1
+	DateUnitSecond      DateUnit = 0
+	DateUnitMillisecond DateUnit = 1
 )
 
 var EnumNamesDateUnit = map[DateUnit]string{
-	DateUnitsecond:      "second",
-	DateUnitmillisecond: "millisecond",
+	DateUnitSecond:      "Second",
+	DateUnitMillisecond: "Millisecond",
 }
 
 var EnumValuesDateUnit = map[string]DateUnit{
-	"second":      DateUnitsecond,
-	"millisecond": DateUnitmillisecond,
+	"Second":      DateUnitSecond,
+	"Millisecond": DateUnitMillisecond,
 }
 
 func (v DateUnit) String() string {

@@ -4,7 +4,7 @@ package enum
 
 import "strconv"
 
-/// Field data types enum.
+/// Data types enum.
 type DataType int8
 
 const (

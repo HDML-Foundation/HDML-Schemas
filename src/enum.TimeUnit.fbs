@@ -6,10 +6,10 @@
 
 namespace enum;
 
-/// Time type units enum.
+/// Time units enum.
 enum TimeUnit: byte {
-  second,
-  millisecond,
-  microsecond,
-  nanosecond,
+  Second,
+  Millisecond,
+  Microsecond,
+  Nanosecond,
 }
