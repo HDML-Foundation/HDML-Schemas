@@ -1,0 +1,49 @@
+/**
+ * @author Artem Lytvynov
+ * @copyright Artem Lytvynov
+ * @license Apache2.0
+ */
+
+include "./enum.FilterType.fbs";
+include "./enum.FilterName.fbs";
+include "./enum.FilterOperator.fbs";
+
+namespace document;
+
+/// Expression filter parameters.
+table ExpressionParameters {
+  clause: string;
+}
+
+/// Keys (joins) filter parameters.
+table KeysParameters {
+  left: string;
+  right: string;
+}
+
+/// Named filter parameters.
+table NamedParameters {
+  name: enum.FilterName;
+  field: string;
+  values: [string];
+}
+
+/// Filter options.
+union FilterOptions {
+  ExpressionParameters,
+  KeysParameters,
+  NamedParameters,
+}
+
+/// Single filter structure.
+table Filter {
+  type: enum.FilterType;
+  options: FilterOptions;
+}
+
+/// Filter clause structure.
+table FilterClause {
+  type: enum.FilterOperator;
+  filters: [Filter];
+  children: [FilterClause];
+}
