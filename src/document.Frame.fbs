@@ -1,0 +1,24 @@
+/**
+ * @author Artem Lytvynov
+ * @copyright Artem Lytvynov
+ * @license Apache2.0
+ */
+
+include "./document.Field.fbs";
+include "./document.FilterClause.fbs";
+
+namespace document;
+
+/// Frame structure.
+table Frame {
+  name: string;
+  source: string;
+  offset: ulong;
+  limit: ulong;
+  fields: [document.Field];
+  filter_by: document.FilterClause;
+  group_by: [document.Field];
+  split_by: [document.Field];
+  sort_by: [document.Field];
+  parent: Frame;
+}
