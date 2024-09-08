@@ -72,12 +72,12 @@ export interface Table {
 }
 
 /**
- * The `Join` interface represents a join operation between two data 
- * sets. It defines the type of join, the left and right data sets 
+ * The `Join` interface represents a join operation between two data
+ * sets. It defines the type of join, the left and right data sets
  * involved, and the filtering conditions applied to the join.
  *
  * ## Properties:
- * 
+ *
  * - `type` (JoinType): Specifies the type of join operation
  *   represented by the `JoinType` enum:
  *   - Cross
@@ -93,8 +93,8 @@ export interface Table {
  *
  * - `right` (string): The name of the right-side data set.
  *
- * - `clause` (FilterClause): A `FilterClause` object that defines the 
- *   filtering conditions (e.g., keys or expressions) used to match 
+ * - `clause` (FilterClause): A `FilterClause` object that defines the
+ *   filtering conditions (e.g., keys or expressions) used to match
  *   records between the left and right data sets.
  *
  * ## Example:
@@ -117,8 +117,8 @@ export interface Table {
  * };
  * ```
  *
- * In this example, an inner join is performed between the `orders` 
- * and `customers` data sets, using a key-based filter on `order_id` 
+ * In this example, an inner join is performed between the `orders`
+ * and `customers` data sets, using a key-based filter on `order_id`
  * and `id`.
  */
 export interface Join {
@@ -129,19 +129,19 @@ export interface Join {
 }
 
 /**
- * The `Model` interface represents a data model that includes a set 
- * of tables and joins between them. It defines the structure of 
+ * The `Model` interface represents a data model that includes a set
+ * of tables and joins between them. It defines the structure of
  * related tables and how they are connected.
  *
  * ## Properties:
  *
- * - `name` (string): The name of the model, representing the 
+ * - `name` (string): The name of the model, representing the
  *   collection of tables and their relationships.
  *
- * - `tables` (Table[]): An array of `Table` objects representing the 
+ * - `tables` (Table[]): An array of `Table` objects representing the
  *   tables included in the model.
  *
- * - `joins` (Join[]): An array of `Join` objects defining the 
+ * - `joins` (Join[]): An array of `Join` objects defining the
  *   relationships between the tables based on specific conditions.
  *
  * ## Example:
@@ -150,10 +150,10 @@ export interface Join {
  * const model: Model = {
  *   name: "sales_model",
  *   tables: [
- *     { 
+ *     {
  *       name: "orders",
  *       type: TableType.Fact,
- *       identifier: "`conn`.`db`.`orders`", 
+ *       identifier: "`conn`.`db`.`orders`",
  *       fields: []
  *     },
  *     {
@@ -167,7 +167,7 @@ export interface Join {
  *     {
  *       type: JoinType.Inner,
  *       left: "orders",
- *       right: "customers", 
+ *       right: "customers",
  *       clause: {
  *         type: FilterOperator.And,
  *         filters: [
@@ -183,7 +183,7 @@ export interface Join {
  * };
  * ```
  *
- * In this example, the `Model` contains two tables (`orders` and 
+ * In this example, the `Model` contains two tables (`orders` and
  * `customers`) with an inner join between them.
  */
 export interface Model {

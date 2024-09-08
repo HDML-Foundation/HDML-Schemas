@@ -8,15 +8,15 @@ import { Field } from "./Field";
 import { FilterClause } from "./FilterClause";
 
 /**
- * The `Frame` interface represents a query structure that is defined 
- * over a `Model` or another `Frame`. It allows specifying fields, 
+ * The `Frame` interface represents a query structure that is defined
+ * over a `Model` or another `Frame`. It allows specifying fields,
  * filtering, grouping, and sorting conditions for data retrieval.
  *
  * ## Properties:
  *
  * - `name` (string): The name of the frame, representing the query.
  *
- * - `source` (string): The name of the `Model` or `Frame` from which 
+ * - `source` (string): The name of the `Model` or `Frame` from which
  *   data is queried.
  *
  * - `offset` (number): The starting point of the data to be
@@ -24,22 +24,22 @@ import { FilterClause } from "./FilterClause";
  *
  * - `limit` (number): The maximum number of records to be returned.
  *
- * - `fields` (Field[]): An array of `Field` objects specifying the 
+ * - `fields` (Field[]): An array of `Field` objects specifying the
  *   fields to be retrieved in the query.
  *
- * - `filter_by` (FilterClause): A `FilterClause` used to apply 
+ * - `filter_by` (FilterClause): A `FilterClause` used to apply
  *   conditions for filtering the data.
  *
- * - `group_by` (Field[]): An array of `Field` objects representing 
+ * - `group_by` (Field[]): An array of `Field` objects representing
  *   the fields by which the data is grouped.
  *
- * - `split_by` (Field[]): An array of `Field` objects used to split 
+ * - `split_by` (Field[]): An array of `Field` objects used to split
  *   the data into distinct segments.
  *
- * - `sort_by` (Field[]): An array of `Field` objects that determine 
+ * - `sort_by` (Field[]): An array of `Field` objects that determine
  *   the order in which the data is sorted.
  *
- * - `parent` (Frame): The parent `Frame` if the query is based on 
+ * - `parent` (Frame): The parent `Frame` if the query is based on
  *   another frame rather than a model.
  *
  * ## Example:
@@ -63,7 +63,7 @@ import { FilterClause } from "./FilterClause";
  * };
  * ```
  *
- * In this example, the frame queries data from the `sales_model` with 
+ * In this example, the frame queries data from the `sales_model` with
  * specified limits, filters, and grouping options.
  */
 export interface Frame {
