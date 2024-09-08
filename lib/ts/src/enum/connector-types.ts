@@ -18,5 +18,6 @@ export enum ConnectorTypes {
   BigQuery = 9,
   GoogleSheets = 10,
   ElasticSearch = 11,
-  MongoDB = 12
+  MongoDB = 12,
+  Snowflake = 13
 }

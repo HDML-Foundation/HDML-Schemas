@@ -10,7 +10,7 @@
   "customizations": {
     "vscode": {
       "settings": {},
-      "extensions": ["gaborv.flatbuffers", "golang.go"]
+      "extensions": ["ms-azuretools.vscode-docker", "gaborv.flatbuffers", "golang.go"]
     }
   }
 }

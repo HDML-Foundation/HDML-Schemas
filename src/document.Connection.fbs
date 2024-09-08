@@ -52,6 +52,16 @@ table MongoDBParameters {
   ssl: bool;
 }
 
+/// Parameters to connect to the Snowflake.
+table SnowflakeParameters {
+  account: string;
+  user: string;
+  password: string;
+  database: string;
+  role: string;
+  warehouse: string;
+}
+
 /// Union type to describe DB connection parameters.
 union ConnectionParameters {
   JDBCParameters,
@@ -59,6 +69,7 @@ union ConnectionParameters {
   GoogleSheetsParameters,
   ElasticsearchParameters,
   MongoDBParameters,
+  SnowflakeParameters,
 }
 
 /// Database connection options structure.

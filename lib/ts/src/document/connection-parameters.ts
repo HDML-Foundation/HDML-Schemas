@@ -7,6 +7,7 @@ import { ElasticsearchParameters } from '../document/elasticsearch-parameters.js
 import { GoogleSheetsParameters } from '../document/google-sheets-parameters.js';
 import { JDBCParameters } from '../document/jdbcparameters.js';
 import { MongoDBParameters } from '../document/mongo-dbparameters.js';
+import { SnowflakeParameters } from '../document/snowflake-parameters.js';
 
 
 /**
@@ -18,13 +19,14 @@ export enum ConnectionParameters {
   BigQueryParameters = 2,
   GoogleSheetsParameters = 3,
   ElasticsearchParameters = 4,
-  MongoDBParameters = 5
+  MongoDBParameters = 5,
+  SnowflakeParameters = 6
 }
 
 export function unionToConnectionParameters(
   type: ConnectionParameters,
-  accessor: (obj:BigQueryParameters|ElasticsearchParameters|GoogleSheetsParameters|JDBCParameters|MongoDBParameters) => BigQueryParameters|ElasticsearchParameters|GoogleSheetsParameters|JDBCParameters|MongoDBParameters|null
-): BigQueryParameters|ElasticsearchParameters|GoogleSheetsParameters|JDBCParameters|MongoDBParameters|null {
+  accessor: (obj:BigQueryParameters|ElasticsearchParameters|GoogleSheetsParameters|JDBCParameters|MongoDBParameters|SnowflakeParameters) => BigQueryParameters|ElasticsearchParameters|GoogleSheetsParameters|JDBCParameters|MongoDBParameters|SnowflakeParameters|null
+): BigQueryParameters|ElasticsearchParameters|GoogleSheetsParameters|JDBCParameters|MongoDBParameters|SnowflakeParameters|null {
   switch(ConnectionParameters[type]) {
     case 'NONE': return null; 
     case 'JDBCParameters': return accessor(new JDBCParameters())! as JDBCParameters;
@@ -32,15 +34,16 @@ export function unionToConnectionParameters(
     case 'GoogleSheetsParameters': return accessor(new GoogleSheetsParameters())! as GoogleSheetsParameters;
     case 'ElasticsearchParameters': return accessor(new ElasticsearchParameters())! as ElasticsearchParameters;
     case 'MongoDBParameters': return accessor(new MongoDBParameters())! as MongoDBParameters;
+    case 'SnowflakeParameters': return accessor(new SnowflakeParameters())! as SnowflakeParameters;
     default: return null;
   }
 }
 
 export function unionListToConnectionParameters(
   type: ConnectionParameters, 
-  accessor: (index: number, obj:BigQueryParameters|ElasticsearchParameters|GoogleSheetsParameters|JDBCParameters|MongoDBParameters) => BigQueryParameters|ElasticsearchParameters|GoogleSheetsParameters|JDBCParameters|MongoDBParameters|null, 
+  accessor: (index: number, obj:BigQueryParameters|ElasticsearchParameters|GoogleSheetsParameters|JDBCParameters|MongoDBParameters|SnowflakeParameters) => BigQueryParameters|ElasticsearchParameters|GoogleSheetsParameters|JDBCParameters|MongoDBParameters|SnowflakeParameters|null, 
   index: number
-): BigQueryParameters|ElasticsearchParameters|GoogleSheetsParameters|JDBCParameters|MongoDBParameters|null {
+): BigQueryParameters|ElasticsearchParameters|GoogleSheetsParameters|JDBCParameters|MongoDBParameters|SnowflakeParameters|null {
   switch(ConnectionParameters[type]) {
     case 'NONE': return null; 
     case 'JDBCParameters': return accessor(index, new JDBCParameters())! as JDBCParameters;
@@ -48,6 +51,7 @@ export function unionListToConnectionParameters(
     case 'GoogleSheetsParameters': return accessor(index, new GoogleSheetsParameters())! as GoogleSheetsParameters;
     case 'ElasticsearchParameters': return accessor(index, new ElasticsearchParameters())! as ElasticsearchParameters;
     case 'MongoDBParameters': return accessor(index, new MongoDBParameters())! as MongoDBParameters;
+    case 'SnowflakeParameters': return accessor(index, new SnowflakeParameters())! as SnowflakeParameters;
     default: return null;
   }
 }

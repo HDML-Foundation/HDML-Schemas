@@ -14,6 +14,7 @@ const (
 	ConnectionParametersGoogleSheetsParameters  ConnectionParameters = 3
 	ConnectionParametersElasticsearchParameters ConnectionParameters = 4
 	ConnectionParametersMongoDBParameters       ConnectionParameters = 5
+	ConnectionParametersSnowflakeParameters     ConnectionParameters = 6
 )
 
 var EnumNamesConnectionParameters = map[ConnectionParameters]string{
@@ -23,6 +24,7 @@ var EnumNamesConnectionParameters = map[ConnectionParameters]string{
 	ConnectionParametersGoogleSheetsParameters:  "GoogleSheetsParameters",
 	ConnectionParametersElasticsearchParameters: "ElasticsearchParameters",
 	ConnectionParametersMongoDBParameters:       "MongoDBParameters",
+	ConnectionParametersSnowflakeParameters:     "SnowflakeParameters",
 }
 
 var EnumValuesConnectionParameters = map[string]ConnectionParameters{
@@ -32,6 +34,7 @@ var EnumValuesConnectionParameters = map[string]ConnectionParameters{
 	"GoogleSheetsParameters":  ConnectionParametersGoogleSheetsParameters,
 	"ElasticsearchParameters": ConnectionParametersElasticsearchParameters,
 	"MongoDBParameters":       ConnectionParametersMongoDBParameters,
+	"SnowflakeParameters":     ConnectionParametersSnowflakeParameters,
 }
 
 func (v ConnectionParameters) String() string {

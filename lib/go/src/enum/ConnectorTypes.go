@@ -21,6 +21,7 @@ const (
 	ConnectorTypesGoogleSheets  ConnectorTypes = 10
 	ConnectorTypesElasticSearch ConnectorTypes = 11
 	ConnectorTypesMongoDB       ConnectorTypes = 12
+	ConnectorTypesSnowflake     ConnectorTypes = 13
 )
 
 var EnumNamesConnectorTypes = map[ConnectorTypes]string{
@@ -37,6 +38,7 @@ var EnumNamesConnectorTypes = map[ConnectorTypes]string{
 	ConnectorTypesGoogleSheets:  "GoogleSheets",
 	ConnectorTypesElasticSearch: "ElasticSearch",
 	ConnectorTypesMongoDB:       "MongoDB",
+	ConnectorTypesSnowflake:     "Snowflake",
 }
 
 var EnumValuesConnectorTypes = map[string]ConnectorTypes{
@@ -53,6 +55,7 @@ var EnumValuesConnectorTypes = map[string]ConnectorTypes{
 	"GoogleSheets":  ConnectorTypesGoogleSheets,
 	"ElasticSearch": ConnectorTypesElasticSearch,
 	"MongoDB":       ConnectorTypesMongoDB,
+	"Snowflake":     ConnectorTypesSnowflake,
 }
 
 func (v ConnectorTypes) String() string {

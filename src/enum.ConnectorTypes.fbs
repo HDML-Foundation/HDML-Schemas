@@ -21,4 +21,5 @@ enum ConnectorTypes: byte {
   GoogleSheets,
   ElasticSearch,
   MongoDB,
+  Snowflake,
 }
