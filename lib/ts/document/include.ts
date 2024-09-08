@@ -42,7 +42,7 @@ static addPath(builder:flatbuffers.Builder, pathOffset:flatbuffers.Offset) {
 
 static endInclude(builder:flatbuffers.Builder):flatbuffers.Offset {
   const offset = builder.endObject();
-  builder.requiredField(offset, 4) // Path
+  builder.requiredField(offset, 4) // path
   return offset;
 }
 
