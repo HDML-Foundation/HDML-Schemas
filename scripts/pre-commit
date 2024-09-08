@@ -1,6 +1,9 @@
 #!/bin/bash
 
-rm -rf ./lib && \
-  flatc --ts --ts-omit-entrypoint -o ./lib/ts -I ./src ./src/*.fbs && \
-  flatc --go -o ./lib/go -I ./src ./src/*.fbs && \
-  git add .
+rm -rf ./lib/ts/document && \
+rm -rf ./lib/ts/enum && \
+rm -rf ./lib/go/document && \
+rm -rf ./lib/go/enum && \
+flatc --ts --ts-omit-entrypoint -o ./lib/ts -I ./src ./src/*.fbs && \
+flatc --go -o ./lib/go -I ./src ./src/*.fbs && \
+git add .
