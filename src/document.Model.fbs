@@ -1,0 +1,35 @@
+/**
+ * @author Artem Lytvynov
+ * @copyright Artem Lytvynov
+ * @license Apache2.0
+ */
+
+include "./enum.TableType.fbs";
+include "./enum.JoinType.fbs";
+include "./document.Field.fbs";
+include "./document.FilterClause.fbs";
+
+namespace document;
+
+/// Table structure.
+table Table {
+  name: string;
+  type: enum.TableType;
+  source: string;
+  fields: [document.Field];
+}
+
+/// Join structure.
+table Join {
+  type: enum.JoinType;
+  left: string;
+  right: string;
+  clause: document.FilterClause;
+}
+
+/// Model structure.
+table Model {
+  name: string;
+  tables: [Table];
+  joins: [Join];
+}
