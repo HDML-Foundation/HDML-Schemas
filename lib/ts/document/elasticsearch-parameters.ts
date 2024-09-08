@@ -115,7 +115,6 @@ static addSecretKey(builder:flatbuffers.Builder, secretKeyOffset:flatbuffers.Off
 
 static endElasticsearchParameters(builder:flatbuffers.Builder):flatbuffers.Offset {
   const offset = builder.endObject();
-  builder.requiredField(offset, 4) // host
   return offset;
 }
 

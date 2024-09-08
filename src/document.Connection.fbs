@@ -12,27 +12,27 @@ namespace document;
 /// MySQL, MS SQL, MariaDB, Oracle, ClickHouse, Druid, Ignite,
 /// Redshift.
 table JDBCParameters {
-  host: string (required);
-  user: string (required);
-  password: string (required);
+  host: string;
+  user: string;
+  password: string;
   ssl: bool;
 }
 
 /// Parameters to connect to the BigQuery.
 table BigQueryParameters {
-  project_id: string (required);
-  credentials_key: string (required);
+  project_id: string;
+  credentials_key: string;
 }
 
 /// Parameters to connect to the Google Sheets.
 table GoogleSheetsParameters {
-  sheet_id: string (required);
-  credentials_key: string (required);
+  sheet_id: string;
+  credentials_key: string;
 }
 
 /// Parameters to connect to the Elasticsearch.
 table ElasticsearchParameters {
-  host: string (required);
+  host: string;
   port: ushort;
   user: string;
   password: string;
@@ -44,11 +44,11 @@ table ElasticsearchParameters {
 
 /// Parameters to connect to the MongoDB.
 table MongoDBParameters {
-  host: string (required);
+  host: string;
   port: ushort;
-  user: string (required);
-  password: string (required);
-  schema: string (required);
+  user: string;
+  password: string;
+  schema: string;
   ssl: bool;
 }
 
@@ -69,7 +69,7 @@ table ConnectionOptions {
 
 /// HDML document connection component data structure.
 table Connection {
-  name: string (required);
+  name: string;
   meta: string;
   options: ConnectionOptions;
 }

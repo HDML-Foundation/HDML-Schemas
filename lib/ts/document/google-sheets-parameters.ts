@@ -53,8 +53,6 @@ static addCredentialsKey(builder:flatbuffers.Builder, credentialsKeyOffset:flatb
 
 static endGoogleSheetsParameters(builder:flatbuffers.Builder):flatbuffers.Offset {
   const offset = builder.endObject();
-  builder.requiredField(offset, 4) // sheet_id
-  builder.requiredField(offset, 6) // credentials_key
   return offset;
 }
 

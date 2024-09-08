@@ -75,9 +75,6 @@ static addSsl(builder:flatbuffers.Builder, ssl:boolean) {
 
 static endJDBCParameters(builder:flatbuffers.Builder):flatbuffers.Offset {
   const offset = builder.endObject();
-  builder.requiredField(offset, 4) // host
-  builder.requiredField(offset, 6) // user
-  builder.requiredField(offset, 8) // password
   return offset;
 }
 

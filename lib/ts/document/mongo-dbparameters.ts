@@ -93,10 +93,6 @@ static addSsl(builder:flatbuffers.Builder, ssl:boolean) {
 
 static endMongoDBParameters(builder:flatbuffers.Builder):flatbuffers.Offset {
   const offset = builder.endObject();
-  builder.requiredField(offset, 4) // host
-  builder.requiredField(offset, 8) // user
-  builder.requiredField(offset, 10) // password
-  builder.requiredField(offset, 12) // schema
   return offset;
 }
 

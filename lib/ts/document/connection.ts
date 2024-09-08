@@ -65,7 +65,6 @@ static addOptions(builder:flatbuffers.Builder, optionsOffset:flatbuffers.Offset)
 
 static endConnection(builder:flatbuffers.Builder):flatbuffers.Offset {
   const offset = builder.endObject();
-  builder.requiredField(offset, 4) // name
   return offset;
 }
 
