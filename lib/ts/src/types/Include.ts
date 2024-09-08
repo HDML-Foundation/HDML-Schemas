@@ -13,27 +13,27 @@
  * document composition.
  *
  * ## Properties:
- * 
- * - `path` (string): Specifies the absolute path to the external 
+ *
+ * - `path` (string): Specifies the absolute path to the external
  *   document. The path points to the location where the external HDML
  *   document can be fetched and included. This document will be
  *   processed and merged with the current document by the HDIO
  *   server.
  *
  * ## Use case:
- * 
+ *
  * Secure inclusion of remote documents with sensitive database
  * connection details.
- * 
+ *
  * The `Include` interface can be used to reference external
  * HDML documents containing sensitive data, such as database
  * credentials. These documents are securely fetched and merged
  * server-side by the HDIO server using the `<hdml-include>`
  * component. This ensures that sensitive information, like
  * connection details, is never exposed to the client or network.
- * 
+ *
  * Example:
- * 
+ *
  * ```ts
  * const includeDoc: Include = {
  *   path: "/secure/db-connection.hdml"

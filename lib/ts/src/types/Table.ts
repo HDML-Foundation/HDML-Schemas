@@ -15,20 +15,20 @@ import { Field } from "./Field";
  * views from a database or the result of a SQL query.
  *
  * ## Properties:
- * 
+ *
  * - `name` (string): The name of the table. This is used to identify
  *   the table within the data model.
- * 
+ *
  * - `type` (TableType): The type of the table. The type of the table,
  *   either `Table` for an actual database table, view, or
  *   materialized view, or `Query` for a table generated from a SQL
  *   query.
- * 
+ *
  * - `identifier` (string): The unique identifier for the table, which
  *   should include either the full three-tier table name for database
  *   tables, views, or materialized views, enclosed in back quotes for
  *   `Table` type, or SQL query for `Query` type.
- * 
+ *
  * - `fields` (Field[]): An array of fields that belong to the table.
  *   Each field contains detailed information about a column in the
  *   table, including its name, type, and other attributes.

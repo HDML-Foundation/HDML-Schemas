@@ -9,7 +9,7 @@ import { ConnectorTypes } from "../enum/connector-types";
 /**
  * The `JDBCParameters` interface defines the connection parameters
  * required to establish a connection to a JDBC-compatible database:
- * 
+ *
  * - Postgres
  * - MySQL
  * - MS SQL
@@ -19,21 +19,21 @@ import { ConnectorTypes } from "../enum/connector-types";
  * - Druid
  * - Ignite
  * - Redshift
- * 
+ *
  * It includes properties for specifying the database host, user
  * credentials, and security settings.
  *
  * ## Properties:
- * 
+ *
  * - `host` (string): The hostname or IP address of the database
  *   server.
- * 
+ *
  * - `user` (string): The username for authenticating the database
  *   connection.
- * 
+ *
  * - `password` (string): The password associated with the specified
  *   user for authentication.
- * 
+ *
  * - `ssl` (boolean): Indicates whether SSL/TLS is enabled for the
  *   connection. `true` for enabling SSL, `false` otherwise.
  *
@@ -57,7 +57,7 @@ export type JDBCParameters = {
   user: string;
   password: string;
   ssl: boolean;
-}
+};
 
 /**
  * The `BigQueryParameters` interface defines the connection
@@ -66,10 +66,10 @@ export type JDBCParameters = {
  * credentials key needed for authentication.
  *
  * ## Properties:
- * 
+ *
  * - `project_id` (string): The ID of the Google Cloud project
  *   containing the BigQuery dataset.
- * 
+ *
  * - `credentials_key` (string): The base64 encoded credentials key
  *   for the service account used to authenticate the connection to
  *   BigQuery.
@@ -89,7 +89,7 @@ export type JDBCParameters = {
 export type BigQueryParameters = {
   project_id: string;
   credentials_key: string;
-}
+};
 
 /**
  * The `GoogleSheetsParameters` interface defines the connection
@@ -98,10 +98,10 @@ export type BigQueryParameters = {
  * credentials key needed for authentication.
  *
  * ## Properties:
- * 
+ *
  * - `sheet_id` (string): The unique identifier of the Google Sheets
  *   document to be accessed.
- * 
+ *
  * - `credentials_key` (string): The base64 encoded credentials key
  *   for the service account used to authenticate the connection to
  *   Google Sheets.
@@ -122,7 +122,7 @@ export type BigQueryParameters = {
 export type GoogleSheetsParameters = {
   sheet_id: string;
   credentials_key: string;
-}
+};
 
 /**
  * The `ElasticsearchParameters` interface defines the connection
@@ -131,28 +131,28 @@ export type GoogleSheetsParameters = {
  * credentials, and security settings.
  *
  * ## Properties:
- * 
+ *
  * - `host` (string): The hostname or IP address of the Elasticsearch
  *   server.
- * 
+ *
  * - `port` (number): The port number on which the Elasticsearch
  *   server is listening.
- * 
+ *
  * - `user` (string): The username for authenticating the connection
  *   to Elasticsearch.
- * 
+ *
  * - `password` (string): The password associated with the specified
  *   user for authentication.
- * 
+ *
  * - `ssl` (boolean): Indicates whether SSL/TLS is enabled for the
  *   connection. `true` for enabling SSL, `false` otherwise.
- * 
+ *
  * - `region` (string): The AWS region where the Elasticsearch cluster
  *   is hosted.
- * 
+ *
  * - `access_key` (string): The AWS access key for authenticating
  *   requests to Elasticsearch.
- * 
+ *
  * - `secret_key` (string): The AWS secret key associated with the
  *   access key for secure authentication.
  *
@@ -183,7 +183,7 @@ export type ElasticsearchParameters = {
   region: string;
   access_key: string;
   secret_key: string;
-}
+};
 
 /**
  * The `MongoDBParameters` interface defines the connection parameters
@@ -192,20 +192,20 @@ export type ElasticsearchParameters = {
  * credentials, and security settings.
  *
  * ## Properties:
- * 
+ *
  * - `host` (string): The hostname or IP address of the MongoDB.
- * 
+ *
  * - `port` (number): The port number on which the MongoDB server is
  *   listening.
- * 
+ *
  * - `user` (string): The username for authenticating the connection.
- * 
+ *
  * - `password` (string): The password associated with the specified
  *   user for authentication.
- * 
+ *
  * - `schema` (string): A collection which contains schema
  *   information.
- * 
+ *
  * - `ssl` (boolean): Indicates whether SSL/TLS is enabled for the
  *   connection. `true` for enabling SSL, `false` otherwise.
  *
@@ -232,7 +232,7 @@ export type MongoDBParameters = {
   password: string;
   schema: string;
   ssl: boolean;
-}
+};
 
 /**
  * The `SnowflakeParameters` interface defines the connection
@@ -241,21 +241,21 @@ export type MongoDBParameters = {
  * credentials, and database settings.
  *
  * ## Properties:
- * 
+ *
  * - `account` (string): The Snowflake account identifier.
- * 
+ *
  * - `user` (string): The username for authenticating the
  *   connection to Snowflake.
- * 
+ *
  * - `password` (string): The password associated with the
  *   specified user for authentication.
- * 
+ *
  * - `database` (string): The name of the Snowflake database
  *   to connect to.
- * 
+ *
  * - `role` (string): The Snowflake role to assume for the
  *   connection.
- * 
+ *
  * - `warehouse` (string): The Snowflake warehouse to use for
  *   query execution.
  *
@@ -283,7 +283,7 @@ export type SnowflakeParameters = {
   database: string;
   role: string;
   warehouse: string;
-}
+};
 
 /**
  * The `ConnectionOptions` type defines the configuration for
@@ -291,25 +291,25 @@ export type SnowflakeParameters = {
  * connector types and their associated parameters.
  *
  * ## Types:
- * 
+ *
  * - **JDBC Connectors**: Includes connectors for databases
  *   such as PostgreSQL, MySQL, MS SQL, Oracle, Clickhouse,
  *   Druid, Ignite, and Redshift. Uses `JDBCParameters`.
- * 
+ *
  * - **BigQuery**: For Google BigQuery. Uses `BigQueryParameters`.
- * 
+ *
  * - **Google Sheets**: For accessing Google Sheets. Uses
  *   `GoogleSheetsParameters`.
- * 
+ *
  * - **Elasticsearch**: For connecting to an Elasticsearch
  *   cluster. Uses `ElasticsearchParameters`.
- * 
+ *
  * - **MongoDB**: For connecting to a MongoDB database. Uses
  *   `MongoDBParameters`.
- * 
+ *
  * - **Snowflake**: For connecting to a Snowflake data warehouse.
  *   Uses `SnowflakeParameters`.
- * 
+ *
  * ## Example:
  *
  * ```ts
@@ -329,7 +329,7 @@ export type SnowflakeParameters = {
  * connector with its associated parameters for connecting to
  * a database.
  */
-export type ConnectionOptions = 
+export type ConnectionOptions =
   | {
       connector:
         | ConnectorTypes.Postgres
@@ -360,7 +360,7 @@ export type ConnectionOptions =
     }
   | {
       connector: ConnectorTypes.Snowflake;
-      parameters: SnowflakeParameters
+      parameters: SnowflakeParameters;
     };
 
 /**
@@ -369,13 +369,13 @@ export type ConnectionOptions =
  * metadata, and the connection options.
  *
  * ## Properties:
- * 
+ *
  * - `name` (string): The name of the connection. This name is
  *   used as the first segment in a three-tier table name.
- * 
+ *
  * - `meta` (string): Metadata or description associated with
  *   the connection.
- * 
+ *
  * - `options` (ConnectionOptions): The configuration options
  *   for the connection, including the connector type and
  *   parameters.

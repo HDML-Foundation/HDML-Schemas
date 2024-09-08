@@ -14,7 +14,7 @@ import { FilterOperator } from "../enum/filter-operator";
  * conditional SQL-like expression.
  *
  * ## Properties:
- * 
+ *
  * - `clause` (string): The SQL-like conditional expression used to
  *   filter the data. This string contains the condition that needs
  *   to be satisfied for the filter to be applied.
@@ -32,7 +32,7 @@ import { FilterOperator } from "../enum/filter-operator";
  */
 export type ExpressionParameters = {
   clause: string;
-}
+};
 
 /**
  * The `KeysParameters` type defines the parameters required for a
@@ -40,10 +40,10 @@ export type ExpressionParameters = {
  * two tables, used in join operations.
  *
  * ## Properties:
- * 
+ *
  * - `left` (string): The key field from the left table in the join
  *   operation.
- * 
+ *
  * - `right` (string): The key field from the right table in the join
  *   operation.
  *
@@ -63,7 +63,7 @@ export type ExpressionParameters = {
 export type KeysParameters = {
   left: string;
   right: string;
-}
+};
 
 /**
  * The `NamedParameters` type defines the parameters required for a
@@ -71,7 +71,7 @@ export type KeysParameters = {
  * specific field with a set of values.
  *
  * ## Properties:
- * 
+ *
  * - `name` (FilterName): The name of the predefined filter to be
  *   applied:
  *   - Equals
@@ -84,13 +84,13 @@ export type KeysParameters = {
  *   - GreaterEqual
  *   - Less
  *   - LessEqual
- *   - IsNull 
- *   - IsNotNull 
+ *   - IsNull
+ *   - IsNotNull
  *   - Between
- * 
+ *
  * - `field` (string): The field to which the named filter will be
  *   applied.
- * 
+ *
  * - `values` (string[]): An array of values to be used in the filter
  *   for the specified field.
  *
@@ -111,7 +111,7 @@ export type NamedParameters = {
   name: FilterName;
   field: string;
   values: string[];
-}
+};
 
 /**
  * The `Filter` type defines a filter, which can be of various types
@@ -119,17 +119,17 @@ export type NamedParameters = {
  * its own set of parameters used for data filtering.
  *
  * ## Variants:
- * 
+ *
  * - `type: FilterType.Expression`: Represents a filter based on a
  *   conditional SQL-like expression.
  *   - `options`: Parameters for the expression filter, described by
  *     the `ExpressionParameters` type.
- * 
+ *
  * - `type: FilterType.Keys`: Indicates a filter based on key fields
  *   between two tables, used in joins.
  *   - `options`: Parameters for the keys filter, described by the
  *     `KeysParameters` type.
- * 
+ *
  * - `type: FilterType.Named`: Applies a predefined named filter to a
  *   specific field and set of values.
  *   - `options`: Parameters for the named filter, described by the
@@ -168,15 +168,15 @@ export type Filter =
  * filter clauses.
  *
  * ## Properties:
- * 
+ *
  * - `type` (FilterOperator): Specifies the logical operator used to
  *   combine the filters. The `FilterOperator` enum includes values
  *   such as `And`, `Or`, and `None`.
- * 
+ *
  * - `filters` (Filter[]): An array of filters that are applied in
  *   this clause. Each filter can be of type `Expression`, `Keys`, or
  *   `Named`, with respective parameters.
- * 
+ *
  * - `children` (FilterClause[]): An array of nested `FilterClause`
  *   objects, allowing for the construction of hierarchical filter
  *   logic. Each child clause can apply additional logical operations
@@ -197,8 +197,9 @@ export type Filter =
  * };
  * ```
  *
- * In this example, a filter clause is created using the `And` operator
- * with an `Expression` filter that selects entries where `age > 30`.
+ * In this example, a filter clause is created using the `And`
+ * operator with an `Expression` filter that selects entries where
+ * `age > 30`.
  */
 export interface FilterClause {
   type: FilterOperator;

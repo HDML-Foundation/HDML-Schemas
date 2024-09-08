@@ -19,7 +19,7 @@ import { OrderType } from "../enum/order-type";
  * binary data, and UTF-8 strings.
  *
  * ## Properties:
- * 
+ *
  * - `nullable` (boolean): Indicates whether the data type can
  *   accept `null` values. If `true`, the data type can be null;
  *   if `false`, it cannot.
@@ -37,7 +37,7 @@ import { OrderType } from "../enum/order-type";
  */
 export type CommonParameters = {
   nullable: boolean;
-}
+};
 
 /**
  * The `DecimalParameters` interface defines the parameters for
@@ -46,18 +46,18 @@ export type CommonParameters = {
  * and scale.
  *
  * ## Properties:
- * 
+ *
  * - `nullable` (boolean): Indicates whether the decimal type can
  *   accept `null` values. If `true`, the decimal can be null;
  *   if `false`, it cannot.
- * 
+ *
  * - `scale` (number): The number of digits to the right of the
  *   decimal point. This defines the scale of the decimal number.
- * 
+ *
  * - `precision` (number): The total number of significant digits
  *   (both to the left and right of the decimal point) that the
  *   decimal type can hold.
- * 
+ *
  * - `bit_width` (DecimalBitWidth): The bit width of the decimal
  *   type, specifying the amount of storage allocated for the decimal
  *   number.
@@ -82,7 +82,7 @@ export type DecimalParameters = {
   scale: number;
   precision: number;
   bit_width: DecimalBitWidth;
-}
+};
 
 /**
  * The `DateParameters` interface defines the parameters for
@@ -91,11 +91,11 @@ export type DecimalParameters = {
  * the date.
  *
  * ## Properties:
- * 
+ *
  * - `nullable` (boolean): Indicates whether the date type can
  *   accept `null` values. If `true`, the date can be null;
  *   if `false`, it cannot.
- * 
+ *
  * - `unit` (DateUnit): The unit of time used to represent the
  *   date (seconds or millisecond).
  *
@@ -114,7 +114,7 @@ export type DecimalParameters = {
 export type DateParameters = {
   nullable: boolean;
   unit: DateUnit;
-}
+};
 
 /**
  * The `TimeParameters` interface defines the parameters for
@@ -123,11 +123,11 @@ export type DateParameters = {
  * the time value.
  *
  * ## Properties:
- * 
+ *
  * - `nullable` (boolean): Indicates whether the time type can
  *   accept `null` values. If `true`, the time can be null;
  *   if `false`, it cannot.
- * 
+ *
  * - `unit` (TimeUnit): The unit of time used to represent the
  *   time value, such as seconds, milliseconds, microseconds, or
  *   nanosecond.
@@ -147,7 +147,7 @@ export type DateParameters = {
 export type TimeParameters = {
   nullable: boolean;
   unit: TimeUnit;
-}
+};
 
 /**
  * The `TimestampParameters` interface defines the parameters for
@@ -156,14 +156,14 @@ export type TimeParameters = {
  * zone associated with the timestamp.
  *
  * ## Properties:
- * 
+ *
  * - `nullable` (boolean): Indicates whether the timestamp type can
  *   accept `null` values. If `true`, the timestamp can be null;
  *   if `false`, it cannot.
- * 
+ *
  * - `unit` (TimeUnit): The unit of time used to represent the
  *   timestamp, such as seconds, milliseconds, or microseconds.
- * 
+ *
  * - `timezone` (TimeZone): The time zone associated with the
  *   timestamp, defining how the timestamp should be interpreted
  *   relative to the global time zones.
@@ -187,7 +187,7 @@ export type TimestampParameters = {
   nullable: boolean;
   unit: TimeUnit;
   timezone: TimeZone;
-}
+};
 
 /**
  * The `FieldType` type defines the various possible data types for
@@ -195,18 +195,18 @@ export type TimestampParameters = {
  * associated parameters for each type.
  *
  * ## Types:
- * 
+ *
  * - **Primitive Types**: Includes integer types (`Int8`, `Int16`,
  *   `Int32`, `Int64`), floating-point types (`Float32`, `Float64`),
  *   binary data (`Binary`), and UTF-8 strings (`Utf8`). Uses
  *   `CommonParameters`.
- * 
+ *
  * - **Decimal**: For decimal numbers. Uses `DecimalParameters`.
- * 
+ *
  * - **Date**: For dates. Uses `DateParameters`.
- * 
+ *
  * - **Time**: For time values. Uses `TimeParameters`.
- * 
+ *
  * - **Timestamp**: For timestamp values. Uses `TimestampParameters`.
  *
  * ## Example:
@@ -262,29 +262,29 @@ export type FieldType =
  * clause, type, aggregation, and ordering.
  *
  * ## Properties:
- * 
+ *
  * - `name` (string): The name of the field in the HDML context.
- * 
+ *
  * - `description` (string): A description of the field. This provides
  *   additional information about the field's purpose or usage.
- * 
+ *
  * - `origin` (string): The name of the original field in the database
  *   if used within the scope of hdml-table, or in the parent
  *   structure if used within the scope of an hdml-frame. If omitted,
  *   it is assumed to be the same as the HDML field name.
- * 
+ *
  * - `clause` (string): An SQL clause defining the field. It takes
- *   precedence over the origin attribute. For example, 
+ *   precedence over the origin attribute. For example,
  *   ```clause="concat(`table_catalog`, '-', `table_schema`)"```.
- * 
+ *
  * - `type` (FieldType): The data type of the field. It defines the
  *   kind of data the field can hold, such as integer, decimal, date,
  *   time, or timestamp, along with its associated parameters.
- * 
+ *
  * - `aggregation` (AggregationType): Specifies an aggregation
  *   function for the field. Supported functions include: None, Count,
  *   CountDistinct, CountDistinctApprox, Sum, Avg, Min, Max.
- * 
+ *
  * - `order` (OrderType): The order type for sorting the field,
  *   such as Ascending, Descending, or None.
  *
