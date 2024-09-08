@@ -276,7 +276,6 @@ export type MongoDBParameters = {
  * details for a Snowflake data warehouse, including account,
  * user, and database settings.
  */
-
 export type SnowflakeParameters = {
   account: string;
   user: string;
@@ -286,6 +285,50 @@ export type SnowflakeParameters = {
   warehouse: string;
 }
 
+/**
+ * The `ConnectionOptions` type defines the configuration for
+ * different types of data connectors. It includes various
+ * connector types and their associated parameters.
+ *
+ * ## Types:
+ * 
+ * - **JDBC Connectors**: Includes connectors for databases
+ *   such as PostgreSQL, MySQL, MS SQL, Oracle, Clickhouse,
+ *   Druid, Ignite, and Redshift. Uses `JDBCParameters`.
+ * 
+ * - **BigQuery**: For Google BigQuery. Uses `BigQueryParameters`.
+ * 
+ * - **Google Sheets**: For accessing Google Sheets. Uses
+ *   `GoogleSheetsParameters`.
+ * 
+ * - **Elasticsearch**: For connecting to an Elasticsearch
+ *   cluster. Uses `ElasticsearchParameters`.
+ * 
+ * - **MongoDB**: For connecting to a MongoDB database. Uses
+ *   `MongoDBParameters`.
+ * 
+ * - **Snowflake**: For connecting to a Snowflake data warehouse.
+ *   Uses `SnowflakeParameters`.
+ * 
+ * ## Example:
+ *
+ * ```ts
+ * const connectionOptions: ConnectionOptions = {
+ *   connector: ConnectorTypes.Postgres,
+ *   parameters: {
+ *     host: "db.example.com",
+ *     port: 5432,
+ *     user: "admin",
+ *     password: "securepassword",
+ *     ssl: true
+ *   }
+ * };
+ * ```
+ *
+ * In this example, `connectionOptions` specifies a PostgreSQL
+ * connector with its associated parameters for connecting to
+ * a database.
+ */
 export type ConnectionOptions = 
   | {
       connector:
@@ -320,6 +363,48 @@ export type ConnectionOptions =
       parameters: SnowflakeParameters
     };
 
+/**
+ * The `Connection` interface represents a data connection
+ * configuration. It includes details for the connection name,
+ * metadata, and the connection options.
+ *
+ * ## Properties:
+ * 
+ * - `name` (string): The name of the connection. This name is
+ *   used as the first segment in a three-tier table name.
+ * 
+ * - `meta` (string): Metadata or description associated with
+ *   the connection.
+ * 
+ * - `options` (ConnectionOptions): The configuration options
+ *   for the connection, including the connector type and
+ *   parameters.
+ *
+ * ## Example:
+ *
+ * ```ts
+ * const connection: Connection = {
+ *   name: "my_connection",
+ *   meta: "A description of the connection",
+ *   options: {
+ *     connector: ConnectorTypes.MongoDB,
+ *     parameters: {
+ *       host: "mongodb.example.com",
+ *       port: 27017,
+ *       user: "admin",
+ *       password: "securepassword",
+ *       schema: "mydatabase",
+ *       ssl: true
+ *     }
+ *   }
+ * };
+ * ```
+ *
+ * In this example, `connection` defines a MongoDB connection
+ * with a specified name, metadata, and connection options.
+ */
 export interface Connection {
-  //
+  name: string;
+  meta: string;
+  options: ConnectionOptions;
 }

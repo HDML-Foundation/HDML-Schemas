@@ -8,21 +8,21 @@ import "strconv"
 type OrderType int8
 
 const (
-	OrderTypeNone OrderType = 0
-	OrderTypeAsc  OrderType = 1
-	OrderTypeDesc OrderType = 2
+	OrderTypeNone       OrderType = 0
+	OrderTypeAscending  OrderType = 1
+	OrderTypeDescending OrderType = 2
 )
 
 var EnumNamesOrderType = map[OrderType]string{
-	OrderTypeNone: "None",
-	OrderTypeAsc:  "Asc",
-	OrderTypeDesc: "Desc",
+	OrderTypeNone:       "None",
+	OrderTypeAscending:  "Ascending",
+	OrderTypeDescending: "Descending",
 }
 
 var EnumValuesOrderType = map[string]OrderType{
-	"None": OrderTypeNone,
-	"Asc":  OrderTypeAsc,
-	"Desc": OrderTypeDesc,
+	"None":       OrderTypeNone,
+	"Ascending":  OrderTypeAscending,
+	"Descending": OrderTypeDescending,
 }
 
 func (v OrderType) String() string {

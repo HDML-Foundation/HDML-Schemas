@@ -9,6 +9,6 @@ namespace enum;
 /// Ordering types enum.
 enum OrderType: byte {
   None = 0,
-  Asc,
-  Desc,
+  Ascending,
+  Descending,
 }

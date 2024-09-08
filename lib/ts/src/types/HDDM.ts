@@ -5,6 +5,7 @@
  */
 
 import { Include } from "./Include";
+import { Connection } from "./Connection";
 
 /**
  * The `HDDM` interface represents the structure of an HDML document.
@@ -17,7 +18,7 @@ export interface HDDM {
    * includes
    */
   includes: Include[];
-  connections: unknown;
+  connections: Connection[];
   models: unknown;
   frames: unknown;
 }
