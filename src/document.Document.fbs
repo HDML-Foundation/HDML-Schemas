@@ -6,6 +6,8 @@
 
 include "./document.Include.fbs";
 include "./document.Connection.fbs";
+include "./document.Model.fbs";
+include "./document.Frame.fbs";
 
 namespace document;
 
@@ -13,4 +15,6 @@ namespace document;
 table Document {
   includes: [document.Include];
   connections: [document.Connection];
+  models: [document.Model];
+  frames: [document.Frame];
 }

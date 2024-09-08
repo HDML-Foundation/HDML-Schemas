@@ -5,7 +5,9 @@
 import * as flatbuffers from 'flatbuffers';
 
 import { Connection } from '../document/connection.js';
+import { Frame } from '../document/frame.js';
 import { Include } from '../document/include.js';
+import { Model } from '../document/model.js';
 
 
 /**
@@ -49,8 +51,28 @@ connectionsLength():number {
   return offset ? this.bb!.__vector_len(this.bb_pos + offset) : 0;
 }
 
+models(index: number, obj?:Model):Model|null {
+  const offset = this.bb!.__offset(this.bb_pos, 8);
+  return offset ? (obj || new Model()).__init(this.bb!.__indirect(this.bb!.__vector(this.bb_pos + offset) + index * 4), this.bb!) : null;
+}
+
+modelsLength():number {
+  const offset = this.bb!.__offset(this.bb_pos, 8);
+  return offset ? this.bb!.__vector_len(this.bb_pos + offset) : 0;
+}
+
+frames(index: number, obj?:Frame):Frame|null {
+  const offset = this.bb!.__offset(this.bb_pos, 10);
+  return offset ? (obj || new Frame()).__init(this.bb!.__indirect(this.bb!.__vector(this.bb_pos + offset) + index * 4), this.bb!) : null;
+}
+
+framesLength():number {
+  const offset = this.bb!.__offset(this.bb_pos, 10);
+  return offset ? this.bb!.__vector_len(this.bb_pos + offset) : 0;
+}
+
 static startDocument(builder:flatbuffers.Builder) {
-  builder.startObject(2);
+  builder.startObject(4);
 }
 
 static addIncludes(builder:flatbuffers.Builder, includesOffset:flatbuffers.Offset) {
@@ -85,15 +107,49 @@ static startConnectionsVector(builder:flatbuffers.Builder, numElems:number) {
   builder.startVector(4, numElems, 4);
 }
 
+static addModels(builder:flatbuffers.Builder, modelsOffset:flatbuffers.Offset) {
+  builder.addFieldOffset(2, modelsOffset, 0);
+}
+
+static createModelsVector(builder:flatbuffers.Builder, data:flatbuffers.Offset[]):flatbuffers.Offset {
+  builder.startVector(4, data.length, 4);
+  for (let i = data.length - 1; i >= 0; i--) {
+    builder.addOffset(data[i]!);
+  }
+  return builder.endVector();
+}
+
+static startModelsVector(builder:flatbuffers.Builder, numElems:number) {
+  builder.startVector(4, numElems, 4);
+}
+
+static addFrames(builder:flatbuffers.Builder, framesOffset:flatbuffers.Offset) {
+  builder.addFieldOffset(3, framesOffset, 0);
+}
+
+static createFramesVector(builder:flatbuffers.Builder, data:flatbuffers.Offset[]):flatbuffers.Offset {
+  builder.startVector(4, data.length, 4);
+  for (let i = data.length - 1; i >= 0; i--) {
+    builder.addOffset(data[i]!);
+  }
+  return builder.endVector();
+}
+
+static startFramesVector(builder:flatbuffers.Builder, numElems:number) {
+  builder.startVector(4, numElems, 4);
+}
+
 static endDocument(builder:flatbuffers.Builder):flatbuffers.Offset {
   const offset = builder.endObject();
   return offset;
 }
 
-static createDocument(builder:flatbuffers.Builder, includesOffset:flatbuffers.Offset, connectionsOffset:flatbuffers.Offset):flatbuffers.Offset {
+static createDocument(builder:flatbuffers.Builder, includesOffset:flatbuffers.Offset, connectionsOffset:flatbuffers.Offset, modelsOffset:flatbuffers.Offset, framesOffset:flatbuffers.Offset):flatbuffers.Offset {
   Document.startDocument(builder);
   Document.addIncludes(builder, includesOffset);
   Document.addConnections(builder, connectionsOffset);
+  Document.addModels(builder, modelsOffset);
+  Document.addFrames(builder, framesOffset);
   return Document.endDocument(builder);
 }
 }
