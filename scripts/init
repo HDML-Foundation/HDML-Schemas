@@ -4,4 +4,5 @@
 # unsafe repositories" button and picking it up from the dropdown (for
 # VSCode).
 
-git config core.sshCommand "$(which ssh) -i ~/.ssh/hdml.github"
+git config --global --add safe.directory /workspaces/HDML-Schemas
+git config core.sshCommand "$(which ssh) -i /home/.ssh/hdml.github"
