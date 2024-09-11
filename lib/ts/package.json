@@ -33,7 +33,7 @@
     "compile_dts": "tsc -b ./tsconfig/dts.json",
     "compile_tst": "tsc -b ./tsconfig/tst.json",
     "compile_all": "npm run compile_cjs && npm run compile_esm && npm run compile_dts",
-    "test": "npm run compile_tst && ./node_modules/.bin/jest --config ./.jestrc.js --roots ./tst --coverageDirectory ./coverage",
+    "test": "npm run compile_tst && ./node_modules/.bin/jest --config ./.jestrc.js --roots ./tst --coverage --coverageDirectory ./coverage",
     "build": "npm run clear && npm run test -- --coverage && npm run lint && npm run compile_all && npm run docs",
     "docs": "./node_modules/.bin/typedoc ./src/index.ts --tsconfig ./tsconfig/cjs.json --out ./docs --includes ./"
   },

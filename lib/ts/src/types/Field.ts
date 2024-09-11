@@ -313,10 +313,10 @@ export type FieldType =
  */
 export interface Field {
   name: string;
-  description: string;
-  origin: string;
-  clause: string;
-  type: FieldType;
-  aggregation: AggregationType;
-  order: OrderType;
+  description?: string;
+  origin?: string;
+  clause?: string;
+  type?: FieldType;
+  aggregation?: AggregationType;
+  order?: OrderType;
 }
