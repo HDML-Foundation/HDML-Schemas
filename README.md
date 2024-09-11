@@ -56,16 +56,9 @@ git clone git@github.com:HDML-Foundation/HDML-Schemas.git
 cd HDML-Schemas
 ```
 
-3. Install pre-commit hook:
+3. Open the repository in a development environment that supports devcontainers (e.g., Visual Studio Code with the Dev Containers extension). The devcontainer will automatically set up everything you need, including the FlatBuffers compiler.
 
-```bash
-cp ./scripts/pre-commit ./.git/hooks
-chmod +x .git/hooks/pre-commit
-```
-
-4. Open the repository in a development environment that supports devcontainers (e.g., Visual Studio Code with the Dev Containers extension). The devcontainer will automatically set up everything you need, including the FlatBuffers compiler.
-
-5. The FlatBuffers compilation is handled automatically by a pre-commit hook, so you don’t need to run `flatc` manually. Every time you commit changes, the schemas will be compiled as needed.
+4. The FlatBuffers compilation is handled automatically by a pre-commit hook, so you don’t need to run `flatc` manually. Every time you commit changes, the schemas will be compiled as needed.
 
 ## Contributing
 
