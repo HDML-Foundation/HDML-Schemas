@@ -40,8 +40,25 @@ export function bufferizeField(
   return Field.endField(builder);
 }
 
+export function htmlizeField(field: Field): string {
+  if (!field.name()) {
+    throw new Error("A required property is missing: name");
+  }
+  let result = `<hdml-field name="${field.name()}"`;
+  result =
+    result + (field.origin() ? ` origin="${field.origin()}"` : "");
+  result =
+    result +
+    (field.description() ? ` meta="${field.description()}"` : "");
+  result =
+    result +
+    (field.clause()
+      ? ` clause="${field.clause()?.replaceAll('"', "`")}"`
+      : "");
+  result = result + "></hdml-field>";
+  return result;
+}
+
 export function objectizeField(): void {}
 
 export function sqlizeField(): void {}
-
-export function htmlizeField(): void {}
