@@ -57,7 +57,7 @@ jobs:
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v3
     - name: Login to Docker Hub
-      if: steps.filter.outputs.devcontainer != 'true'
+      if: steps.filter.outputs.devcontainer == 'true'
       uses: docker/login-action@v3
       with:
         username: ${{ secrets.HDML_FOUNDATION_DOCKER_NAME }}
@@ -70,15 +70,16 @@ jobs:
         push: always
     # else
     - name: No Changes Warning
-      if: steps.filter.outputs.workflows == 'true'
+      if: steps.filter.outputs.workflows != 'true'
       run: echo "DevContainer was not changed"
 
   build_ts:
     runs-on: ubuntu-latest
+    needs: build_devcontainer
     timeout-minutes: 5
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      # - name: Checkout
+      #   uses: actions/checkout@v3
       - name: Build TS library
         uses: devcontainers/ci@v0.3
         with:
