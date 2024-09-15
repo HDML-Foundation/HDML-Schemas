@@ -43,4 +43,4 @@ jobs:
             cd lib/ts
             npm ci
             npm run build
-            npm run publish
+            npm publish
