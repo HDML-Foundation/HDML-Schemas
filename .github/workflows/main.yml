@@ -37,12 +37,14 @@ on:
 jobs:
   build_ts:
     runs-on: ubuntu-latest
-    container: ubuntu:jammy
     timeout-minutes: 5
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Install NPM dependencies
-        run: ls -la && cd lib/ts && npm ci
+      # - name: Install NPM dependencies
+      #   run: ls -la && cd lib/ts && npm ci
       - name: Build TS library
-        run: ls -la && cd lib/ts && npm run build
+      #   run: ls -la && cd lib/ts && npm run build
+        uses: devcontainers/ci@v0.3
+        with:
+          runCmd: ls -la && cd lib/ts && npm ci && npm run build
