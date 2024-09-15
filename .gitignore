@@ -1,3 +1,4 @@
+.token
 lib/ts/node_modules
 lib/ts/cjs
 lib/ts/dts
@@ -6,3 +7,4 @@ lib/ts/tst
 lib/ts/coverage
 lib/ts/docs
 lib/ts/tsconfig/*.tsbuildinfo
+lib/ts/package.json.bak

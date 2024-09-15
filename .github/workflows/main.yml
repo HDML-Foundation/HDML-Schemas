@@ -82,7 +82,7 @@ jobs:
   build_ts_library:
     runs-on: ubuntu-latest
     needs: build_devcontainer
-    timeout-minutes: 10
+    timeout-minutes: 5
     steps:
       - name: Checkout Project
         uses: actions/checkout@v4

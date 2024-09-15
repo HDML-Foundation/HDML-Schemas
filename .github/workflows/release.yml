@@ -11,60 +11,36 @@ on:
       - 'v*.*.*-*'
 
 jobs:
-  release_npm:
-    name: Release `npm` packages
+  release_ts_library:
     runs-on: ubuntu-latest
-    container: imazzine/hdml.io-devtools:latest
-    timeout-minutes: 30
+    timeout-minutes: 5
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Install `lerna`
-        run: npm i -g lerna@^6.6.2
-      - name: Install `hdml` dependencies
-        run: npm ci
-      - name: Bootstrap `hdml`
-        run: npm run bootstrap
-      - name: Build `hdml`
-        run: HOME=/root npm run build
-      - name: Set `npm` token
-        run: echo //registry.npmjs.org/:_authToken=$NPM_TOKEN > ~/.npmrc
+      - name: Checkout Project
+        uses: actions/checkout@v4
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.HDML_FOUNDATION_DOCKER_NAME }}
+          password: ${{ secrets.HDML_FOUNDATION_DOCKER }}
+      - name: Replace devcontainer.json to CI version
+        run: |
+          rm .devcontainer/devcontainer.json
+          mv .devcontainer/devcontainer_ci.json .devcontainer/devcontainer.json
+      - name: Setup NPM Registry
+        run: echo //registry.npmjs.org/:_authToken=$NPM_TOKEN > lib/ts/.npmrc
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - name: Publish `hdml`
-        run: npm run publish
-
-  release_docker_services:
-    name: Release `${{ matrix.service }}` service docker image
-    runs-on: ubuntu-latest
-    timeout-minutes: 30
-    needs: [release_npm]
-    strategy:
-      matrix:
-        service:
-          - gateway
-          - hideway
-          - pulsar
-          - querier
-          - trino
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Setting up QEMU
-        uses: docker/setup-qemu-action@v2
-      - name: Setting up Docker Buildx
-        uses: docker/setup-buildx-action@v2
-      - name: Login to Docker Hub
-        uses: docker/login-action@v2
+      - name: Build and Publish TS library
+        uses: devcontainers/ci@v0.3
         with:
-          username: ${{ secrets.DOCKERHUB_USER }}
-          password: ${{ secrets.DOCKERHUB_PASS }}
-      - name: Setup version
-        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
-      - name: Build and push
-        uses: docker/build-push-action@v4
-        with:
-          push: true
-          tags: imazzine/hdml.io-${{ matrix.service }}:${{ env.RELEASE_VERSION }}
-          file: ./docker/services/Dockerfile.${{ matrix.service }}
-          context: .
+          push: never
+          cacheFrom: hdio/hdml-schemas-dev
+          runCmd: |
+            cd lib/ts
+            npm ci
+            npm run build
+            npm run publish
