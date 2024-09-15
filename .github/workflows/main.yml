@@ -54,6 +54,11 @@ jobs:
       with:
         username: ${{ secrets.HDML_FOUNDATION_DOCKER_NAME }}
         password: ${{ secrets.HDML_FOUNDATION_DOCKER }}
+    - name: Replace devcontainer.json to CI version
+      if: steps.filter.outputs.devcontainer == 'true'
+      run: |
+        rm .devcontainer/devcontainer.json
+        mv .devcontainer/devcontainer_ci.json .devcontainer/devcontainer.json
     # if
     - name: Check for the DevContainer changes
       uses: dorny/paths-filter@v3
@@ -72,7 +77,7 @@ jobs:
         cacheFrom: hdio/hdml-schemas-dev
     # else
     - name: No Changes Message
-      if: steps.filter.outputs.workflows != 'true'
+      if: steps.filter.outputs.devcontainer != 'true'
       run: echo "DevContainer was not changed"
     # finally
     - name: Build TS library
@@ -81,6 +86,6 @@ jobs:
         push: never
         cacheFrom: hdio/hdml-schemas-dev
         runCmd: |
-          ls -la
           cd lib/ts
-          npm ci && npm run build
+          npm ci
+          npm run build
