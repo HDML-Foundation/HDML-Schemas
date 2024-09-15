@@ -7,7 +7,7 @@ name: Main Branch
 on:
   push:
     paths:
-      - '.github/workflows/master.yml'
+      - '.github/workflows/main.yml'
       - '.github/workflows/release.yml'
       - '.gitignore'
       - 'src/**'
