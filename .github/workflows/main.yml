@@ -78,6 +78,6 @@ jobs:
       - name: Build TS library
         uses: devcontainers/ci@v0.3
         with:
-        cacheFrom: hdio/hdml-schemas-dev:latest
-        runCmd: ls -la && cd lib/ts && npm ci && npm run build
-        push: never
+          cacheFrom: hdio/hdml-schemas-dev:latest
+          runCmd: ls -la && cd lib/ts && npm ci && npm run build
+          push: never
