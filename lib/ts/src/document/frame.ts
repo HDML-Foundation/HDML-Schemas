@@ -98,13 +98,8 @@ sortByLength():number {
   return offset ? this.bb!.__vector_len(this.bb_pos + offset) : 0;
 }
 
-parent(obj?:Frame):Frame|null {
-  const offset = this.bb!.__offset(this.bb_pos, 22);
-  return offset ? (obj || new Frame()).__init(this.bb!.__indirect(this.bb_pos + offset), this.bb!) : null;
-}
-
 static startFrame(builder:flatbuffers.Builder) {
-  builder.startObject(10);
+  builder.startObject(9);
 }
 
 static addName(builder:flatbuffers.Builder, nameOffset:flatbuffers.Offset) {
@@ -189,10 +184,6 @@ static createSortByVector(builder:flatbuffers.Builder, data:flatbuffers.Offset[]
 
 static startSortByVector(builder:flatbuffers.Builder, numElems:number) {
   builder.startVector(4, numElems, 4);
-}
-
-static addParent(builder:flatbuffers.Builder, parentOffset:flatbuffers.Offset) {
-  builder.addFieldOffset(9, parentOffset, 0);
 }
 
 static endFrame(builder:flatbuffers.Builder):flatbuffers.Offset {

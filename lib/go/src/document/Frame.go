@@ -175,21 +175,8 @@ func (rcv *Frame) SortByLength() int {
 	return 0
 }
 
-func (rcv *Frame) Parent(obj *Frame) *Frame {
-	o := flatbuffers.UOffsetT(rcv._tab.Offset(22))
-	if o != 0 {
-		x := rcv._tab.Indirect(o + rcv._tab.Pos)
-		if obj == nil {
-			obj = new(Frame)
-		}
-		obj.Init(rcv._tab.Bytes, x)
-		return obj
-	}
-	return nil
-}
-
 func FrameStart(builder *flatbuffers.Builder) {
-	builder.StartObject(10)
+	builder.StartObject(9)
 }
 func FrameAddName(builder *flatbuffers.Builder, name flatbuffers.UOffsetT) {
 	builder.PrependUOffsetTSlot(0, flatbuffers.UOffsetT(name), 0)
@@ -229,9 +216,6 @@ func FrameAddSortBy(builder *flatbuffers.Builder, sortBy flatbuffers.UOffsetT) {
 }
 func FrameStartSortByVector(builder *flatbuffers.Builder, numElems int) flatbuffers.UOffsetT {
 	return builder.StartVector(4, numElems, 4)
-}
-func FrameAddParent(builder *flatbuffers.Builder, parent flatbuffers.UOffsetT) {
-	builder.PrependUOffsetTSlot(9, flatbuffers.UOffsetT(parent), 0)
 }
 func FrameEnd(builder *flatbuffers.Builder) flatbuffers.UOffsetT {
 	return builder.EndObject()

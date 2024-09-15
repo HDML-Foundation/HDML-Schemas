@@ -20,5 +20,4 @@ table Frame {
   group_by: [document.Field];
   split_by: [document.Field];
   sort_by: [document.Field];
-  parent: Frame;
 }
