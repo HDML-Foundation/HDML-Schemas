@@ -65,8 +65,8 @@ jobs:
     - name: Pre-build dev container image
       uses: devcontainers/ci@v0.3
       with:
-        imageName: hdio/hdml-schemas-dev:latest
-        cacheFrom: hdio/hdml-schemas-dev:latest
+        imageName: hdio/hdml-schemas-dev
+        cacheFrom: hdio/hdml-schemas-dev
         push: always
     # else
     - name: No Changes Warning
@@ -82,6 +82,6 @@ jobs:
       - name: Build TS library
         uses: devcontainers/ci@v0.3
         with:
-          cacheFrom: hdio/hdml-schemas-dev:latest
+          cacheFrom: hdio/hdml-schemas-dev
           runCmd: ls -la && cd lib/ts && npm ci && npm run build
           push: never
