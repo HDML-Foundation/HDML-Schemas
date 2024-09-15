@@ -5,5 +5,5 @@ rm -rf ./lib/ts/src/enum && \
 rm -rf ./lib/go/src/document && \
 rm -rf ./lib/go/src/enum && \
 flatc --ts --ts-omit-entrypoint -o ./lib/ts/src -I ./src ./src/*.fbs && \
-flatc --go -o ./lib/go/src -I ./src ./src/*.fbs && \
+flatc --go --go-module-name github.com/HDML-Foundation/HDML-Schemas/lib/go -o ./lib/go -I ./src ./src/*.fbs && \
 git add .

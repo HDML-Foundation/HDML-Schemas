@@ -2,7 +2,6 @@
 # @copyright Artem Lytvynov
 # @license Apache-2.0
 
-# Development tools image
 FROM ubuntu:jammy AS hdml-schemas-dev
 ARG DEBIAN_FRONTEND=noninteractive
 ARG TZ=Etc/UTC
@@ -29,3 +28,7 @@ RUN git clone --depth 1 --branch v24.3.25 https://github.com/google/flatbuffers.
 RUN cd flatc && cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release && make
 RUN ln -s /flatc/flatc /usr/local/bin/flatc
 RUN chmod +x /flatc/flatc
+RUN wget https://go.dev/dl/go1.22.2.linux-amd64.tar.gz -O go.tar.gz
+RUN rm -rf /usr/local/go && tar -C /usr/local -xzf go.tar.gz
+RUN echo export PATH=$PATH:/usr/local/go/bin >> ~/.profile
+RUN rm go.tar.gz
