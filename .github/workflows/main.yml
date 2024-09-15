@@ -52,8 +52,12 @@ jobs:
           devcontainer:
             - '.devcontainer/Dockerfile'
     # then
+    - name: Set up QEMU
+      uses: docker/setup-qemu-action@v3
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
     - name: Login to Docker Hub
-      if: steps.filter.outputs.devcontainer == 'true'
+      if: steps.filter.outputs.devcontainer != 'true'
       uses: docker/login-action@v3
       with:
         username: ${{ secrets.HDML_FOUNDATION_DOCKER_NAME }}
@@ -66,7 +70,7 @@ jobs:
         push: always
     # else
     - name: No Changes Warning
-      if: steps.filter.outputs.workflows != 'true'
+      if: steps.filter.outputs.workflows == 'true'
       run: echo "DevContainer was not changed"
 
   build_ts:
