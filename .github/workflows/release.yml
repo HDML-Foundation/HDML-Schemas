@@ -31,9 +31,9 @@ jobs:
           rm .devcontainer/devcontainer.json
           mv .devcontainer/devcontainer_ci.json .devcontainer/devcontainer.json
       - name: Setup NPM Registry
-        run: echo //registry.npmjs.org/:_authToken=$NPM_TOKEN > lib/ts/.npmrc
+        run: echo //registry.npmjs.org/:_authToken=$HDML_FOUNDATION_NPM > lib/ts/.npmrc
         env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          HDML_FOUNDATION_NPM: ${{ secrets.HDML_FOUNDATION_NPM }}
       - name: Build and Publish TS library
         uses: devcontainers/ci@v0.3
         with:
