@@ -1,0 +1,48 @@
+# @author Artem Lytvynov
+# @copyright Artem Lytvynov
+# @license Apache-2.0
+
+name: Main Branch
+
+on:
+  push:
+    paths:
+      - '.github/workflows/master.yml'
+      - '.github/workflows/release.yml'
+      - '.gitignore'
+      - 'src/**'
+      - 'lib/ts/src/**'
+      - 'lib/ts/tsconfig/**'
+      - 'lib/ts/.eslintrc.js'
+      - 'lib/ts/.jestrc.js'
+      - 'lib/ts/package-lock.json'
+      - 'lib/ts/package.json'
+      - 'README.md'
+    branches:
+      - 'main'
+  pull_request:
+    paths:
+      - '.github/workflows/main.yml'
+      - '.github/workflows/release.yml'
+      - '.gitignore'
+      - 'src/**'
+      - 'lib/ts/src/**'
+      - 'lib/ts/tsconfig/**'
+      - 'lib/ts/.eslintrc.js'
+      - 'lib/ts/.jestrc.js'
+      - 'lib/ts/package-lock.json'
+      - 'lib/ts/package.json'
+      - 'README.md'
+
+jobs:
+  build_ts:
+    runs-on: ubuntu-latest
+    container: ubuntu:jammy
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Install NPM dependencies
+        run: ls-ls && cd lib/ts && npm ci
+      - name: Build TS library
+        run: ls-ls && cd lib/ts && npm run build
