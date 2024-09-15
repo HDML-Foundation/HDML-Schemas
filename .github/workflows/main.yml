@@ -53,8 +53,10 @@ jobs:
             - '.devcontainer/Dockerfile'
     # then
     - name: Set up QEMU
+      if: steps.filter.outputs.devcontainer == 'true'
       uses: docker/setup-qemu-action@v3
     - name: Set up Docker Buildx
+      if: steps.filter.outputs.devcontainer == 'true'
       uses: docker/setup-buildx-action@v3
     - name: Login to Docker Hub
       if: steps.filter.outputs.devcontainer == 'true'
@@ -63,6 +65,7 @@ jobs:
         username: ${{ secrets.HDML_FOUNDATION_DOCKER_NAME }}
         password: ${{ secrets.HDML_FOUNDATION_DOCKER }}
     - name: Pre-build dev container image
+      if: steps.filter.outputs.devcontainer == 'true'
       uses: devcontainers/ci@v0.3
       with:
         imageName: hdio/hdml-schemas-dev
