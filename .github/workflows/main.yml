@@ -43,28 +43,27 @@ jobs:
     outputs:
       output1: ${{ steps.filter.outputs.workflows }}
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout Project
+      uses: actions/checkout@v4
+    - name: Set up QEMU
+      uses: docker/setup-qemu-action@v3
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+    - name: Login to Docker Hub
+      uses: docker/login-action@v3
+      with:
+        username: ${{ secrets.HDML_FOUNDATION_DOCKER_NAME }}
+        password: ${{ secrets.HDML_FOUNDATION_DOCKER }}
     # if
-    - uses: dorny/paths-filter@v3
+    - name: Check for the DevContainer changes
+      uses: dorny/paths-filter@v3
       id: filter
       with:
         filters: |
           devcontainer:
             - '.devcontainer/Dockerfile'
     # then
-    - name: Set up QEMU
-      if: steps.filter.outputs.devcontainer == 'true'
-      uses: docker/setup-qemu-action@v3
-    - name: Set up Docker Buildx
-      if: steps.filter.outputs.devcontainer == 'true'
-      uses: docker/setup-buildx-action@v3
-    - name: Login to Docker Hub
-      if: steps.filter.outputs.devcontainer == 'true'
-      uses: docker/login-action@v3
-      with:
-        username: ${{ secrets.HDML_FOUNDATION_DOCKER_NAME }}
-        password: ${{ secrets.HDML_FOUNDATION_DOCKER }}
-    - name: Pre-build dev container image
+    - name: Build and push DevContainer image
       if: steps.filter.outputs.devcontainer == 'true'
       uses: devcontainers/ci@v0.3
       with:
@@ -72,7 +71,7 @@ jobs:
         cacheFrom: hdio/hdml-schemas-dev
         push: always
     # else
-    - name: No Changes Warning
+    - name: No Changes Message
       if: steps.filter.outputs.workflows != 'true'
       run: echo "DevContainer was not changed"
 
@@ -81,8 +80,8 @@ jobs:
     needs: build_devcontainer
     timeout-minutes: 5
     steps:
-      # - name: Checkout
-      #   uses: actions/checkout@v3
+      - name: Checkout Project
+        uses: actions/checkout@v4
       - name: Build TS library
         uses: devcontainers/ci@v0.3
         with:
