@@ -22,7 +22,7 @@ describe("@hdml/schema", () => {
     expect(schema.DateUnit).toBeDefined();
     expect(schema.DecimalBitWidth).toBeDefined();
     expect(schema.DecimalParameters).toBeDefined();
-    expect(schema.Document).toBeDefined();
+    expect(schema.HDDM).toBeDefined();
     expect(schema.ElasticsearchParameters).toBeDefined();
     expect(schema.ExpressionParameters).toBeDefined();
     expect(schema.Field).toBeDefined();

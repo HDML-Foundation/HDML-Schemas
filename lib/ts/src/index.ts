@@ -7,7 +7,7 @@
 /* eslint-disable max-len */
 
 export {
-  HDDM as HDDM,
+  HDDM as IHDDM,
   Frame as IFrame,
   Include as IInclude,
   Join as IJoin,
@@ -59,7 +59,7 @@ export { ConnectionParameters } from "./document/connection-parameters";
 export { DataTypeOptions } from "./document/data-type-options";
 export { DateParameters } from "./document/date-parameters";
 export { DecimalParameters } from "./document/decimal-parameters";
-export { Document } from "./document/document";
+export { HDDM } from "./document/hddm";
 export { ElasticsearchParameters } from "./document/elasticsearch-parameters";
 export { ExpressionParameters } from "./document/expression-parameters";
 export { Field } from "./document/field";
