@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# @author Artem Lytvynov
+# @copyright Artem Lytvynov
+# @license Apache-2.0
+
 rm -rf ./lib/ts/src/document && \
 rm -rf ./lib/ts/src/enum && \
 rm -rf ./lib/go/document && \

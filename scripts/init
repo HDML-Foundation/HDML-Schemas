@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# Repository MUST be added to the trusted repos by clicking on "Manage
-# unsafe repositories" button and picking it up from the dropdown (for
-# VSCode).
+# @author Artem Lytvynov
+# @copyright Artem Lytvynov
+# @license Apache-2.0
 
 git config --global --add safe.directory /workspaces/HDML-Schemas
 git config core.sshCommand "$(which ssh) -i /home/.ssh/hdml.github"
