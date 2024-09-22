@@ -13,22 +13,22 @@ import { Model } from '../document/model.js';
 /**
  * HDML document data structure.
  */
-export class Document {
+export class HDDM {
   bb: flatbuffers.ByteBuffer|null = null;
   bb_pos = 0;
-  __init(i:number, bb:flatbuffers.ByteBuffer):Document {
+  __init(i:number, bb:flatbuffers.ByteBuffer):HDDM {
   this.bb_pos = i;
   this.bb = bb;
   return this;
 }
 
-static getRootAsDocument(bb:flatbuffers.ByteBuffer, obj?:Document):Document {
-  return (obj || new Document()).__init(bb.readInt32(bb.position()) + bb.position(), bb);
+static getRootAsHDDM(bb:flatbuffers.ByteBuffer, obj?:HDDM):HDDM {
+  return (obj || new HDDM()).__init(bb.readInt32(bb.position()) + bb.position(), bb);
 }
 
-static getSizePrefixedRootAsDocument(bb:flatbuffers.ByteBuffer, obj?:Document):Document {
+static getSizePrefixedRootAsHDDM(bb:flatbuffers.ByteBuffer, obj?:HDDM):HDDM {
   bb.setPosition(bb.position() + flatbuffers.SIZE_PREFIX_LENGTH);
-  return (obj || new Document()).__init(bb.readInt32(bb.position()) + bb.position(), bb);
+  return (obj || new HDDM()).__init(bb.readInt32(bb.position()) + bb.position(), bb);
 }
 
 includes(index: number, obj?:Include):Include|null {
@@ -71,7 +71,7 @@ framesLength():number {
   return offset ? this.bb!.__vector_len(this.bb_pos + offset) : 0;
 }
 
-static startDocument(builder:flatbuffers.Builder) {
+static startHDDM(builder:flatbuffers.Builder) {
   builder.startObject(4);
 }
 
@@ -139,17 +139,17 @@ static startFramesVector(builder:flatbuffers.Builder, numElems:number) {
   builder.startVector(4, numElems, 4);
 }
 
-static endDocument(builder:flatbuffers.Builder):flatbuffers.Offset {
+static endHDDM(builder:flatbuffers.Builder):flatbuffers.Offset {
   const offset = builder.endObject();
   return offset;
 }
 
-static createDocument(builder:flatbuffers.Builder, includesOffset:flatbuffers.Offset, connectionsOffset:flatbuffers.Offset, modelsOffset:flatbuffers.Offset, framesOffset:flatbuffers.Offset):flatbuffers.Offset {
-  Document.startDocument(builder);
-  Document.addIncludes(builder, includesOffset);
-  Document.addConnections(builder, connectionsOffset);
-  Document.addModels(builder, modelsOffset);
-  Document.addFrames(builder, framesOffset);
-  return Document.endDocument(builder);
+static createHDDM(builder:flatbuffers.Builder, includesOffset:flatbuffers.Offset, connectionsOffset:flatbuffers.Offset, modelsOffset:flatbuffers.Offset, framesOffset:flatbuffers.Offset):flatbuffers.Offset {
+  HDDM.startHDDM(builder);
+  HDDM.addIncludes(builder, includesOffset);
+  HDDM.addConnections(builder, connectionsOffset);
+  HDDM.addModels(builder, modelsOffset);
+  HDDM.addFrames(builder, framesOffset);
+  return HDDM.endHDDM(builder);
 }
 }

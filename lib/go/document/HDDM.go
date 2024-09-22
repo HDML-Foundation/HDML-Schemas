@@ -7,42 +7,42 @@ import (
 )
 
 /// HDML document data structure.
-type Document struct {
+type HDDM struct {
 	_tab flatbuffers.Table
 }
 
-func GetRootAsDocument(buf []byte, offset flatbuffers.UOffsetT) *Document {
+func GetRootAsHDDM(buf []byte, offset flatbuffers.UOffsetT) *HDDM {
 	n := flatbuffers.GetUOffsetT(buf[offset:])
-	x := &Document{}
+	x := &HDDM{}
 	x.Init(buf, n+offset)
 	return x
 }
 
-func FinishDocumentBuffer(builder *flatbuffers.Builder, offset flatbuffers.UOffsetT) {
+func FinishHDDMBuffer(builder *flatbuffers.Builder, offset flatbuffers.UOffsetT) {
 	builder.Finish(offset)
 }
 
-func GetSizePrefixedRootAsDocument(buf []byte, offset flatbuffers.UOffsetT) *Document {
+func GetSizePrefixedRootAsHDDM(buf []byte, offset flatbuffers.UOffsetT) *HDDM {
 	n := flatbuffers.GetUOffsetT(buf[offset+flatbuffers.SizeUint32:])
-	x := &Document{}
+	x := &HDDM{}
 	x.Init(buf, n+offset+flatbuffers.SizeUint32)
 	return x
 }
 
-func FinishSizePrefixedDocumentBuffer(builder *flatbuffers.Builder, offset flatbuffers.UOffsetT) {
+func FinishSizePrefixedHDDMBuffer(builder *flatbuffers.Builder, offset flatbuffers.UOffsetT) {
 	builder.FinishSizePrefixed(offset)
 }
 
-func (rcv *Document) Init(buf []byte, i flatbuffers.UOffsetT) {
+func (rcv *HDDM) Init(buf []byte, i flatbuffers.UOffsetT) {
 	rcv._tab.Bytes = buf
 	rcv._tab.Pos = i
 }
 
-func (rcv *Document) Table() flatbuffers.Table {
+func (rcv *HDDM) Table() flatbuffers.Table {
 	return rcv._tab
 }
 
-func (rcv *Document) Includes(obj *Include, j int) bool {
+func (rcv *HDDM) Includes(obj *Include, j int) bool {
 	o := flatbuffers.UOffsetT(rcv._tab.Offset(4))
 	if o != 0 {
 		x := rcv._tab.Vector(o)
@@ -54,7 +54,7 @@ func (rcv *Document) Includes(obj *Include, j int) bool {
 	return false
 }
 
-func (rcv *Document) IncludesLength() int {
+func (rcv *HDDM) IncludesLength() int {
 	o := flatbuffers.UOffsetT(rcv._tab.Offset(4))
 	if o != 0 {
 		return rcv._tab.VectorLen(o)
@@ -62,7 +62,7 @@ func (rcv *Document) IncludesLength() int {
 	return 0
 }
 
-func (rcv *Document) Connections(obj *Connection, j int) bool {
+func (rcv *HDDM) Connections(obj *Connection, j int) bool {
 	o := flatbuffers.UOffsetT(rcv._tab.Offset(6))
 	if o != 0 {
 		x := rcv._tab.Vector(o)
@@ -74,7 +74,7 @@ func (rcv *Document) Connections(obj *Connection, j int) bool {
 	return false
 }
 
-func (rcv *Document) ConnectionsLength() int {
+func (rcv *HDDM) ConnectionsLength() int {
 	o := flatbuffers.UOffsetT(rcv._tab.Offset(6))
 	if o != 0 {
 		return rcv._tab.VectorLen(o)
@@ -82,7 +82,7 @@ func (rcv *Document) ConnectionsLength() int {
 	return 0
 }
 
-func (rcv *Document) Models(obj *Model, j int) bool {
+func (rcv *HDDM) Models(obj *Model, j int) bool {
 	o := flatbuffers.UOffsetT(rcv._tab.Offset(8))
 	if o != 0 {
 		x := rcv._tab.Vector(o)
@@ -94,7 +94,7 @@ func (rcv *Document) Models(obj *Model, j int) bool {
 	return false
 }
 
-func (rcv *Document) ModelsLength() int {
+func (rcv *HDDM) ModelsLength() int {
 	o := flatbuffers.UOffsetT(rcv._tab.Offset(8))
 	if o != 0 {
 		return rcv._tab.VectorLen(o)
@@ -102,7 +102,7 @@ func (rcv *Document) ModelsLength() int {
 	return 0
 }
 
-func (rcv *Document) Frames(obj *Frame, j int) bool {
+func (rcv *HDDM) Frames(obj *Frame, j int) bool {
 	o := flatbuffers.UOffsetT(rcv._tab.Offset(10))
 	if o != 0 {
 		x := rcv._tab.Vector(o)
@@ -114,7 +114,7 @@ func (rcv *Document) Frames(obj *Frame, j int) bool {
 	return false
 }
 
-func (rcv *Document) FramesLength() int {
+func (rcv *HDDM) FramesLength() int {
 	o := flatbuffers.UOffsetT(rcv._tab.Offset(10))
 	if o != 0 {
 		return rcv._tab.VectorLen(o)
@@ -122,33 +122,33 @@ func (rcv *Document) FramesLength() int {
 	return 0
 }
 
-func DocumentStart(builder *flatbuffers.Builder) {
+func HDDMStart(builder *flatbuffers.Builder) {
 	builder.StartObject(4)
 }
-func DocumentAddIncludes(builder *flatbuffers.Builder, includes flatbuffers.UOffsetT) {
+func HDDMAddIncludes(builder *flatbuffers.Builder, includes flatbuffers.UOffsetT) {
 	builder.PrependUOffsetTSlot(0, flatbuffers.UOffsetT(includes), 0)
 }
-func DocumentStartIncludesVector(builder *flatbuffers.Builder, numElems int) flatbuffers.UOffsetT {
+func HDDMStartIncludesVector(builder *flatbuffers.Builder, numElems int) flatbuffers.UOffsetT {
 	return builder.StartVector(4, numElems, 4)
 }
-func DocumentAddConnections(builder *flatbuffers.Builder, connections flatbuffers.UOffsetT) {
+func HDDMAddConnections(builder *flatbuffers.Builder, connections flatbuffers.UOffsetT) {
 	builder.PrependUOffsetTSlot(1, flatbuffers.UOffsetT(connections), 0)
 }
-func DocumentStartConnectionsVector(builder *flatbuffers.Builder, numElems int) flatbuffers.UOffsetT {
+func HDDMStartConnectionsVector(builder *flatbuffers.Builder, numElems int) flatbuffers.UOffsetT {
 	return builder.StartVector(4, numElems, 4)
 }
-func DocumentAddModels(builder *flatbuffers.Builder, models flatbuffers.UOffsetT) {
+func HDDMAddModels(builder *flatbuffers.Builder, models flatbuffers.UOffsetT) {
 	builder.PrependUOffsetTSlot(2, flatbuffers.UOffsetT(models), 0)
 }
-func DocumentStartModelsVector(builder *flatbuffers.Builder, numElems int) flatbuffers.UOffsetT {
+func HDDMStartModelsVector(builder *flatbuffers.Builder, numElems int) flatbuffers.UOffsetT {
 	return builder.StartVector(4, numElems, 4)
 }
-func DocumentAddFrames(builder *flatbuffers.Builder, frames flatbuffers.UOffsetT) {
+func HDDMAddFrames(builder *flatbuffers.Builder, frames flatbuffers.UOffsetT) {
 	builder.PrependUOffsetTSlot(3, flatbuffers.UOffsetT(frames), 0)
 }
-func DocumentStartFramesVector(builder *flatbuffers.Builder, numElems int) flatbuffers.UOffsetT {
+func HDDMStartFramesVector(builder *flatbuffers.Builder, numElems int) flatbuffers.UOffsetT {
 	return builder.StartVector(4, numElems, 4)
 }
-func DocumentEnd(builder *flatbuffers.Builder) flatbuffers.UOffsetT {
+func HDDMEnd(builder *flatbuffers.Builder) flatbuffers.UOffsetT {
 	return builder.EndObject()
 }

@@ -44,4 +44,4 @@ jobs:
           cacheFrom: hdio/hdml-schemas-dev
           runCmd: |
             cd lib/ts
-            npm unpublish @hdml/schemas@${{ inputs.version }} --force
+            npm unpublish @hdml/schemas@${{ inputs.version }}

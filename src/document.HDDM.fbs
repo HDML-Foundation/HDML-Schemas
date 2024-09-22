@@ -12,7 +12,7 @@ include "./document.Frame.fbs";
 namespace document;
 
 /// HDML document data structure.
-table Document {
+table HDDM {
   includes: [document.Include];
   connections: [document.Connection];
   models: [document.Model];
