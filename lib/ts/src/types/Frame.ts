@@ -58,8 +58,7 @@ import { FilterClause } from "./FilterClause";
  *   },
  *   group_by: [],
  *   split_by: [],
- *   sort_by: [],
- *   parent: null
+ *   sort_by: []
  * };
  * ```
  *
@@ -76,5 +75,4 @@ export interface Frame {
   group_by: Field[];
   split_by: Field[];
   sort_by: Field[];
-  parent: Frame;
 }
