@@ -39,9 +39,6 @@ import { FilterClause } from "./FilterClause";
  * - `sort_by` (Field[]): An array of `Field` objects that determine
  *   the order in which the data is sorted.
  *
- * - `parent` (Frame): The parent `Frame` if the query is based on
- *   another frame rather than a model.
- *
  * ## Example:
  *
  * ```ts

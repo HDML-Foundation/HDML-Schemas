@@ -293,7 +293,7 @@ export type SnowflakeParameters = {
  * ## Types:
  *
  * - **JDBC Connectors**: Includes connectors for databases
- *   such as PostgreSQL, MySQL, MS SQL, Oracle, Clickhouse,
+ *   such as PostgreSQL, MySQL, MS SQL, Oracle, MariaDB, Clickhouse,
  *   Druid, Ignite, and Redshift. Uses `JDBCParameters`.
  *
  * - **BigQuery**: For Google BigQuery. Uses `BigQueryParameters`.
@@ -339,7 +339,8 @@ export type ConnectionOptions =
         | ConnectorTypes.Clickhouse
         | ConnectorTypes.Druid
         | ConnectorTypes.Ignite
-        | ConnectorTypes.Redshift;
+        | ConnectorTypes.Redshift
+        | ConnectorTypes.MariaDB;
       parameters: JDBCParameters;
     }
   | {
