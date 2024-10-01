@@ -176,7 +176,7 @@ export type GoogleSheetsParameters = {
  */
 export type ElasticsearchParameters = {
   host: string;
-  port: null | number;
+  port: number;
   user: null | string;
   password: null | string;
   ssl: boolean;
