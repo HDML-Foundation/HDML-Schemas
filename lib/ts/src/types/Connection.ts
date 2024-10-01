@@ -176,13 +176,13 @@ export type GoogleSheetsParameters = {
  */
 export type ElasticsearchParameters = {
   host: string;
-  port: number;
-  user: string;
-  password: string;
+  port: null | number;
+  user: null | string;
+  password: null | string;
   ssl: boolean;
-  region: string;
-  access_key: string;
-  secret_key: string;
+  region: null | string;
+  access_key: null | string;
+  secret_key: null | string;
 };
 
 /**
