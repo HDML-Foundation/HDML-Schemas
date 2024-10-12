@@ -30,7 +30,7 @@ export { ConnectionParametersStruct } from "./document/connection-parameters-str
 export { DataTypeOptionsStruct } from "./document/data-type-options-struct";
 export { DateParametersStruct } from "./document/date-parameters-struct";
 export { DecimalParametersStruct } from "./document/decimal-parameters-struct";
-export { HDOM } from "./document/hdom";
+export { HDOMStruct } from "./document/hdom-struct";
 export { ElasticsearchParametersStruct } from "./document/elasticsearch-parameters-struct";
 export { ExpressionParametersStruct } from "./document/expression-parameters-struct";
 export { FieldStruct } from "./document/field-struct";

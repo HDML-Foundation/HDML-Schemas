@@ -6,43 +6,43 @@ import (
 	flatbuffers "github.com/google/flatbuffers/go"
 )
 
-/// HDML document data structure.
-type HDOM struct {
+/// HyperData Object Model data structure.
+type HDOMStruct struct {
 	_tab flatbuffers.Table
 }
 
-func GetRootAsHDOM(buf []byte, offset flatbuffers.UOffsetT) *HDOM {
+func GetRootAsHDOMStruct(buf []byte, offset flatbuffers.UOffsetT) *HDOMStruct {
 	n := flatbuffers.GetUOffsetT(buf[offset:])
-	x := &HDOM{}
+	x := &HDOMStruct{}
 	x.Init(buf, n+offset)
 	return x
 }
 
-func FinishHDOMBuffer(builder *flatbuffers.Builder, offset flatbuffers.UOffsetT) {
+func FinishHDOMStructBuffer(builder *flatbuffers.Builder, offset flatbuffers.UOffsetT) {
 	builder.Finish(offset)
 }
 
-func GetSizePrefixedRootAsHDOM(buf []byte, offset flatbuffers.UOffsetT) *HDOM {
+func GetSizePrefixedRootAsHDOMStruct(buf []byte, offset flatbuffers.UOffsetT) *HDOMStruct {
 	n := flatbuffers.GetUOffsetT(buf[offset+flatbuffers.SizeUint32:])
-	x := &HDOM{}
+	x := &HDOMStruct{}
 	x.Init(buf, n+offset+flatbuffers.SizeUint32)
 	return x
 }
 
-func FinishSizePrefixedHDOMBuffer(builder *flatbuffers.Builder, offset flatbuffers.UOffsetT) {
+func FinishSizePrefixedHDOMStructBuffer(builder *flatbuffers.Builder, offset flatbuffers.UOffsetT) {
 	builder.FinishSizePrefixed(offset)
 }
 
-func (rcv *HDOM) Init(buf []byte, i flatbuffers.UOffsetT) {
+func (rcv *HDOMStruct) Init(buf []byte, i flatbuffers.UOffsetT) {
 	rcv._tab.Bytes = buf
 	rcv._tab.Pos = i
 }
 
-func (rcv *HDOM) Table() flatbuffers.Table {
+func (rcv *HDOMStruct) Table() flatbuffers.Table {
 	return rcv._tab
 }
 
-func (rcv *HDOM) Includes(obj *IncludeStruct, j int) bool {
+func (rcv *HDOMStruct) Includes(obj *IncludeStruct, j int) bool {
 	o := flatbuffers.UOffsetT(rcv._tab.Offset(4))
 	if o != 0 {
 		x := rcv._tab.Vector(o)
@@ -54,7 +54,7 @@ func (rcv *HDOM) Includes(obj *IncludeStruct, j int) bool {
 	return false
 }
 
-func (rcv *HDOM) IncludesLength() int {
+func (rcv *HDOMStruct) IncludesLength() int {
 	o := flatbuffers.UOffsetT(rcv._tab.Offset(4))
 	if o != 0 {
 		return rcv._tab.VectorLen(o)
@@ -62,7 +62,7 @@ func (rcv *HDOM) IncludesLength() int {
 	return 0
 }
 
-func (rcv *HDOM) Connections(obj *ConnectionStruct, j int) bool {
+func (rcv *HDOMStruct) Connections(obj *ConnectionStruct, j int) bool {
 	o := flatbuffers.UOffsetT(rcv._tab.Offset(6))
 	if o != 0 {
 		x := rcv._tab.Vector(o)
@@ -74,7 +74,7 @@ func (rcv *HDOM) Connections(obj *ConnectionStruct, j int) bool {
 	return false
 }
 
-func (rcv *HDOM) ConnectionsLength() int {
+func (rcv *HDOMStruct) ConnectionsLength() int {
 	o := flatbuffers.UOffsetT(rcv._tab.Offset(6))
 	if o != 0 {
 		return rcv._tab.VectorLen(o)
@@ -82,7 +82,7 @@ func (rcv *HDOM) ConnectionsLength() int {
 	return 0
 }
 
-func (rcv *HDOM) Models(obj *ModelStruct, j int) bool {
+func (rcv *HDOMStruct) Models(obj *ModelStruct, j int) bool {
 	o := flatbuffers.UOffsetT(rcv._tab.Offset(8))
 	if o != 0 {
 		x := rcv._tab.Vector(o)
@@ -94,7 +94,7 @@ func (rcv *HDOM) Models(obj *ModelStruct, j int) bool {
 	return false
 }
 
-func (rcv *HDOM) ModelsLength() int {
+func (rcv *HDOMStruct) ModelsLength() int {
 	o := flatbuffers.UOffsetT(rcv._tab.Offset(8))
 	if o != 0 {
 		return rcv._tab.VectorLen(o)
@@ -102,7 +102,7 @@ func (rcv *HDOM) ModelsLength() int {
 	return 0
 }
 
-func (rcv *HDOM) Frames(obj *FrameStruct, j int) bool {
+func (rcv *HDOMStruct) Frames(obj *FrameStruct, j int) bool {
 	o := flatbuffers.UOffsetT(rcv._tab.Offset(10))
 	if o != 0 {
 		x := rcv._tab.Vector(o)
@@ -114,7 +114,7 @@ func (rcv *HDOM) Frames(obj *FrameStruct, j int) bool {
 	return false
 }
 
-func (rcv *HDOM) FramesLength() int {
+func (rcv *HDOMStruct) FramesLength() int {
 	o := flatbuffers.UOffsetT(rcv._tab.Offset(10))
 	if o != 0 {
 		return rcv._tab.VectorLen(o)
@@ -122,33 +122,33 @@ func (rcv *HDOM) FramesLength() int {
 	return 0
 }
 
-func HDOMStart(builder *flatbuffers.Builder) {
+func HDOMStructStart(builder *flatbuffers.Builder) {
 	builder.StartObject(4)
 }
-func HDOMAddIncludes(builder *flatbuffers.Builder, includes flatbuffers.UOffsetT) {
+func HDOMStructAddIncludes(builder *flatbuffers.Builder, includes flatbuffers.UOffsetT) {
 	builder.PrependUOffsetTSlot(0, flatbuffers.UOffsetT(includes), 0)
 }
-func HDOMStartIncludesVector(builder *flatbuffers.Builder, numElems int) flatbuffers.UOffsetT {
+func HDOMStructStartIncludesVector(builder *flatbuffers.Builder, numElems int) flatbuffers.UOffsetT {
 	return builder.StartVector(4, numElems, 4)
 }
-func HDOMAddConnections(builder *flatbuffers.Builder, connections flatbuffers.UOffsetT) {
+func HDOMStructAddConnections(builder *flatbuffers.Builder, connections flatbuffers.UOffsetT) {
 	builder.PrependUOffsetTSlot(1, flatbuffers.UOffsetT(connections), 0)
 }
-func HDOMStartConnectionsVector(builder *flatbuffers.Builder, numElems int) flatbuffers.UOffsetT {
+func HDOMStructStartConnectionsVector(builder *flatbuffers.Builder, numElems int) flatbuffers.UOffsetT {
 	return builder.StartVector(4, numElems, 4)
 }
-func HDOMAddModels(builder *flatbuffers.Builder, models flatbuffers.UOffsetT) {
+func HDOMStructAddModels(builder *flatbuffers.Builder, models flatbuffers.UOffsetT) {
 	builder.PrependUOffsetTSlot(2, flatbuffers.UOffsetT(models), 0)
 }
-func HDOMStartModelsVector(builder *flatbuffers.Builder, numElems int) flatbuffers.UOffsetT {
+func HDOMStructStartModelsVector(builder *flatbuffers.Builder, numElems int) flatbuffers.UOffsetT {
 	return builder.StartVector(4, numElems, 4)
 }
-func HDOMAddFrames(builder *flatbuffers.Builder, frames flatbuffers.UOffsetT) {
+func HDOMStructAddFrames(builder *flatbuffers.Builder, frames flatbuffers.UOffsetT) {
 	builder.PrependUOffsetTSlot(3, flatbuffers.UOffsetT(frames), 0)
 }
-func HDOMStartFramesVector(builder *flatbuffers.Builder, numElems int) flatbuffers.UOffsetT {
+func HDOMStructStartFramesVector(builder *flatbuffers.Builder, numElems int) flatbuffers.UOffsetT {
 	return builder.StartVector(4, numElems, 4)
 }
-func HDOMEnd(builder *flatbuffers.Builder) flatbuffers.UOffsetT {
+func HDOMStructEnd(builder *flatbuffers.Builder) flatbuffers.UOffsetT {
 	return builder.EndObject()
 }

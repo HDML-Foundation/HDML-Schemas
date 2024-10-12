@@ -11,24 +11,24 @@ import { ModelStruct } from '../document/model-struct.js';
 
 
 /**
- * HDML document data structure.
+ * HyperData Object Model data structure.
  */
-export class HDOM {
+export class HDOMStruct {
   bb: flatbuffers.ByteBuffer|null = null;
   bb_pos = 0;
-  __init(i:number, bb:flatbuffers.ByteBuffer):HDOM {
+  __init(i:number, bb:flatbuffers.ByteBuffer):HDOMStruct {
   this.bb_pos = i;
   this.bb = bb;
   return this;
 }
 
-static getRootAsHDOM(bb:flatbuffers.ByteBuffer, obj?:HDOM):HDOM {
-  return (obj || new HDOM()).__init(bb.readInt32(bb.position()) + bb.position(), bb);
+static getRootAsHDOMStruct(bb:flatbuffers.ByteBuffer, obj?:HDOMStruct):HDOMStruct {
+  return (obj || new HDOMStruct()).__init(bb.readInt32(bb.position()) + bb.position(), bb);
 }
 
-static getSizePrefixedRootAsHDOM(bb:flatbuffers.ByteBuffer, obj?:HDOM):HDOM {
+static getSizePrefixedRootAsHDOMStruct(bb:flatbuffers.ByteBuffer, obj?:HDOMStruct):HDOMStruct {
   bb.setPosition(bb.position() + flatbuffers.SIZE_PREFIX_LENGTH);
-  return (obj || new HDOM()).__init(bb.readInt32(bb.position()) + bb.position(), bb);
+  return (obj || new HDOMStruct()).__init(bb.readInt32(bb.position()) + bb.position(), bb);
 }
 
 includes(index: number, obj?:IncludeStruct):IncludeStruct|null {
@@ -71,7 +71,7 @@ framesLength():number {
   return offset ? this.bb!.__vector_len(this.bb_pos + offset) : 0;
 }
 
-static startHDOM(builder:flatbuffers.Builder) {
+static startHDOMStruct(builder:flatbuffers.Builder) {
   builder.startObject(4);
 }
 
@@ -139,17 +139,17 @@ static startFramesVector(builder:flatbuffers.Builder, numElems:number) {
   builder.startVector(4, numElems, 4);
 }
 
-static endHDOM(builder:flatbuffers.Builder):flatbuffers.Offset {
+static endHDOMStruct(builder:flatbuffers.Builder):flatbuffers.Offset {
   const offset = builder.endObject();
   return offset;
 }
 
-static createHDOM(builder:flatbuffers.Builder, includesOffset:flatbuffers.Offset, connectionsOffset:flatbuffers.Offset, modelsOffset:flatbuffers.Offset, framesOffset:flatbuffers.Offset):flatbuffers.Offset {
-  HDOM.startHDOM(builder);
-  HDOM.addIncludes(builder, includesOffset);
-  HDOM.addConnections(builder, connectionsOffset);
-  HDOM.addModels(builder, modelsOffset);
-  HDOM.addFrames(builder, framesOffset);
-  return HDOM.endHDOM(builder);
+static createHDOMStruct(builder:flatbuffers.Builder, includesOffset:flatbuffers.Offset, connectionsOffset:flatbuffers.Offset, modelsOffset:flatbuffers.Offset, framesOffset:flatbuffers.Offset):flatbuffers.Offset {
+  HDOMStruct.startHDOMStruct(builder);
+  HDOMStruct.addIncludes(builder, includesOffset);
+  HDOMStruct.addConnections(builder, connectionsOffset);
+  HDOMStruct.addModels(builder, modelsOffset);
+  HDOMStruct.addFrames(builder, framesOffset);
+  return HDOMStruct.endHDOMStruct(builder);
 }
 }

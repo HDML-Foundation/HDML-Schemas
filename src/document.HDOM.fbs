@@ -11,8 +11,8 @@ include "./document.Frame.fbs";
 
 namespace document;
 
-/// HDML document data structure.
-table HDOM {
+/// HyperData Object Model data structure.
+table HDOMStruct {
   includes: [document.IncludeStruct];
   connections: [document.ConnectionStruct];
   models: [document.ModelStruct];
