@@ -51,3 +51,4 @@ export { SnowflakeParametersStruct } from "./document/snowflake-parameters-struc
 export { TableStruct } from "./document/table-struct";
 export { TimeParametersStruct } from "./document/time-parameters-struct";
 export { TimestampParametersStruct } from "./document/timestamp-parameters-struct";
+export { UnspecifiedParametersStruct } from "./document/unspecified-parameters-struct";
