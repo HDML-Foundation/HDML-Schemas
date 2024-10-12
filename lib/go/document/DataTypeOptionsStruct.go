@@ -8,30 +8,33 @@ import "strconv"
 type DataTypeOptionsStruct byte
 
 const (
-	DataTypeOptionsStructNONE                      DataTypeOptionsStruct = 0
-	DataTypeOptionsStructCommonParametersStruct    DataTypeOptionsStruct = 1
-	DataTypeOptionsStructDecimalParametersStruct   DataTypeOptionsStruct = 2
-	DataTypeOptionsStructDateParametersStruct      DataTypeOptionsStruct = 3
-	DataTypeOptionsStructTimeParametersStruct      DataTypeOptionsStruct = 4
-	DataTypeOptionsStructTimestampParametersStruct DataTypeOptionsStruct = 5
+	DataTypeOptionsStructNONE                        DataTypeOptionsStruct = 0
+	DataTypeOptionsStructUnspecifiedParametersStruct DataTypeOptionsStruct = 1
+	DataTypeOptionsStructCommonParametersStruct      DataTypeOptionsStruct = 2
+	DataTypeOptionsStructDecimalParametersStruct     DataTypeOptionsStruct = 3
+	DataTypeOptionsStructDateParametersStruct        DataTypeOptionsStruct = 4
+	DataTypeOptionsStructTimeParametersStruct        DataTypeOptionsStruct = 5
+	DataTypeOptionsStructTimestampParametersStruct   DataTypeOptionsStruct = 6
 )
 
 var EnumNamesDataTypeOptionsStruct = map[DataTypeOptionsStruct]string{
-	DataTypeOptionsStructNONE:                      "NONE",
-	DataTypeOptionsStructCommonParametersStruct:    "CommonParametersStruct",
-	DataTypeOptionsStructDecimalParametersStruct:   "DecimalParametersStruct",
-	DataTypeOptionsStructDateParametersStruct:      "DateParametersStruct",
-	DataTypeOptionsStructTimeParametersStruct:      "TimeParametersStruct",
-	DataTypeOptionsStructTimestampParametersStruct: "TimestampParametersStruct",
+	DataTypeOptionsStructNONE:                        "NONE",
+	DataTypeOptionsStructUnspecifiedParametersStruct: "UnspecifiedParametersStruct",
+	DataTypeOptionsStructCommonParametersStruct:      "CommonParametersStruct",
+	DataTypeOptionsStructDecimalParametersStruct:     "DecimalParametersStruct",
+	DataTypeOptionsStructDateParametersStruct:        "DateParametersStruct",
+	DataTypeOptionsStructTimeParametersStruct:        "TimeParametersStruct",
+	DataTypeOptionsStructTimestampParametersStruct:   "TimestampParametersStruct",
 }
 
 var EnumValuesDataTypeOptionsStruct = map[string]DataTypeOptionsStruct{
-	"NONE":                      DataTypeOptionsStructNONE,
-	"CommonParametersStruct":    DataTypeOptionsStructCommonParametersStruct,
-	"DecimalParametersStruct":   DataTypeOptionsStructDecimalParametersStruct,
-	"DateParametersStruct":      DataTypeOptionsStructDateParametersStruct,
-	"TimeParametersStruct":      DataTypeOptionsStructTimeParametersStruct,
-	"TimestampParametersStruct": DataTypeOptionsStructTimestampParametersStruct,
+	"NONE":                        DataTypeOptionsStructNONE,
+	"UnspecifiedParametersStruct": DataTypeOptionsStructUnspecifiedParametersStruct,
+	"CommonParametersStruct":      DataTypeOptionsStructCommonParametersStruct,
+	"DecimalParametersStruct":     DataTypeOptionsStructDecimalParametersStruct,
+	"DateParametersStruct":        DataTypeOptionsStructDateParametersStruct,
+	"TimeParametersStruct":        DataTypeOptionsStructTimeParametersStruct,
+	"TimestampParametersStruct":   DataTypeOptionsStructTimestampParametersStruct,
 }
 
 func (v DataTypeOptionsStruct) String() string {

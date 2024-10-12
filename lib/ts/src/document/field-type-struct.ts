@@ -31,7 +31,7 @@ static getSizePrefixedRootAsFieldTypeStruct(bb:flatbuffers.ByteBuffer, obj?:Fiel
 
 type():DataTypeEnum {
   const offset = this.bb!.__offset(this.bb_pos, 4);
-  return offset ? this.bb!.readInt8(this.bb_pos + offset) : DataTypeEnum.Int8;
+  return offset ? this.bb!.readInt8(this.bb_pos + offset) : DataTypeEnum.Unspecified;
 }
 
 optionsType():DataTypeOptionsStruct {
@@ -49,7 +49,7 @@ static startFieldTypeStruct(builder:flatbuffers.Builder) {
 }
 
 static addType(builder:flatbuffers.Builder, type:DataTypeEnum) {
-  builder.addFieldInt8(0, type, DataTypeEnum.Int8);
+  builder.addFieldInt8(0, type, DataTypeEnum.Unspecified);
 }
 
 static addOptionsType(builder:flatbuffers.Builder, optionsType:DataTypeOptionsStruct) {

@@ -8,48 +8,51 @@ import "strconv"
 type DataTypeEnum int8
 
 const (
-	DataTypeEnumInt8      DataTypeEnum = 0
-	DataTypeEnumInt16     DataTypeEnum = 1
-	DataTypeEnumInt32     DataTypeEnum = 2
-	DataTypeEnumInt64     DataTypeEnum = 3
-	DataTypeEnumFloat32   DataTypeEnum = 4
-	DataTypeEnumFloat64   DataTypeEnum = 5
-	DataTypeEnumDecimal   DataTypeEnum = 6
-	DataTypeEnumDate      DataTypeEnum = 7
-	DataTypeEnumTime      DataTypeEnum = 8
-	DataTypeEnumTimestamp DataTypeEnum = 9
-	DataTypeEnumBinary    DataTypeEnum = 10
-	DataTypeEnumUtf8      DataTypeEnum = 11
+	DataTypeEnumUnspecified DataTypeEnum = 0
+	DataTypeEnumInt8        DataTypeEnum = 1
+	DataTypeEnumInt16       DataTypeEnum = 2
+	DataTypeEnumInt32       DataTypeEnum = 3
+	DataTypeEnumInt64       DataTypeEnum = 4
+	DataTypeEnumFloat32     DataTypeEnum = 5
+	DataTypeEnumFloat64     DataTypeEnum = 6
+	DataTypeEnumDecimal     DataTypeEnum = 7
+	DataTypeEnumDate        DataTypeEnum = 8
+	DataTypeEnumTime        DataTypeEnum = 9
+	DataTypeEnumTimestamp   DataTypeEnum = 10
+	DataTypeEnumBinary      DataTypeEnum = 11
+	DataTypeEnumUtf8        DataTypeEnum = 12
 )
 
 var EnumNamesDataTypeEnum = map[DataTypeEnum]string{
-	DataTypeEnumInt8:      "Int8",
-	DataTypeEnumInt16:     "Int16",
-	DataTypeEnumInt32:     "Int32",
-	DataTypeEnumInt64:     "Int64",
-	DataTypeEnumFloat32:   "Float32",
-	DataTypeEnumFloat64:   "Float64",
-	DataTypeEnumDecimal:   "Decimal",
-	DataTypeEnumDate:      "Date",
-	DataTypeEnumTime:      "Time",
-	DataTypeEnumTimestamp: "Timestamp",
-	DataTypeEnumBinary:    "Binary",
-	DataTypeEnumUtf8:      "Utf8",
+	DataTypeEnumUnspecified: "Unspecified",
+	DataTypeEnumInt8:        "Int8",
+	DataTypeEnumInt16:       "Int16",
+	DataTypeEnumInt32:       "Int32",
+	DataTypeEnumInt64:       "Int64",
+	DataTypeEnumFloat32:     "Float32",
+	DataTypeEnumFloat64:     "Float64",
+	DataTypeEnumDecimal:     "Decimal",
+	DataTypeEnumDate:        "Date",
+	DataTypeEnumTime:        "Time",
+	DataTypeEnumTimestamp:   "Timestamp",
+	DataTypeEnumBinary:      "Binary",
+	DataTypeEnumUtf8:        "Utf8",
 }
 
 var EnumValuesDataTypeEnum = map[string]DataTypeEnum{
-	"Int8":      DataTypeEnumInt8,
-	"Int16":     DataTypeEnumInt16,
-	"Int32":     DataTypeEnumInt32,
-	"Int64":     DataTypeEnumInt64,
-	"Float32":   DataTypeEnumFloat32,
-	"Float64":   DataTypeEnumFloat64,
-	"Decimal":   DataTypeEnumDecimal,
-	"Date":      DataTypeEnumDate,
-	"Time":      DataTypeEnumTime,
-	"Timestamp": DataTypeEnumTimestamp,
-	"Binary":    DataTypeEnumBinary,
-	"Utf8":      DataTypeEnumUtf8,
+	"Unspecified": DataTypeEnumUnspecified,
+	"Int8":        DataTypeEnumInt8,
+	"Int16":       DataTypeEnumInt16,
+	"Int32":       DataTypeEnumInt32,
+	"Int64":       DataTypeEnumInt64,
+	"Float32":     DataTypeEnumFloat32,
+	"Float64":     DataTypeEnumFloat64,
+	"Decimal":     DataTypeEnumDecimal,
+	"Date":        DataTypeEnumDate,
+	"Time":        DataTypeEnumTime,
+	"Timestamp":   DataTypeEnumTimestamp,
+	"Binary":      DataTypeEnumBinary,
+	"Utf8":        DataTypeEnumUtf8,
 }
 
 func (v DataTypeEnum) String() string {
