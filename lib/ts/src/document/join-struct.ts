@@ -53,8 +53,15 @@ clause(obj?:FilterClauseStruct):FilterClauseStruct|null {
   return offset ? (obj || new FilterClauseStruct()).__init(this.bb!.__indirect(this.bb_pos + offset), this.bb!) : null;
 }
 
+description():string|null
+description(optionalEncoding:flatbuffers.Encoding):string|Uint8Array|null
+description(optionalEncoding?:any):string|Uint8Array|null {
+  const offset = this.bb!.__offset(this.bb_pos, 12);
+  return offset ? this.bb!.__string(this.bb_pos + offset, optionalEncoding) : null;
+}
+
 static startJoinStruct(builder:flatbuffers.Builder) {
-  builder.startObject(4);
+  builder.startObject(5);
 }
 
 static addType(builder:flatbuffers.Builder, type:JoinTypeEnum) {
@@ -71,6 +78,10 @@ static addRight(builder:flatbuffers.Builder, rightOffset:flatbuffers.Offset) {
 
 static addClause(builder:flatbuffers.Builder, clauseOffset:flatbuffers.Offset) {
   builder.addFieldOffset(3, clauseOffset, 0);
+}
+
+static addDescription(builder:flatbuffers.Builder, descriptionOffset:flatbuffers.Offset) {
+  builder.addFieldOffset(4, descriptionOffset, 0);
 }
 
 static endJoinStruct(builder:flatbuffers.Builder):flatbuffers.Offset {

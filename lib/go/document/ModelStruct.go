@@ -50,8 +50,16 @@ func (rcv *ModelStruct) Name() []byte {
 	return nil
 }
 
-func (rcv *ModelStruct) Tables(obj *TableStruct, j int) bool {
+func (rcv *ModelStruct) Description() []byte {
 	o := flatbuffers.UOffsetT(rcv._tab.Offset(6))
+	if o != 0 {
+		return rcv._tab.ByteVector(o + rcv._tab.Pos)
+	}
+	return nil
+}
+
+func (rcv *ModelStruct) Tables(obj *TableStruct, j int) bool {
+	o := flatbuffers.UOffsetT(rcv._tab.Offset(8))
 	if o != 0 {
 		x := rcv._tab.Vector(o)
 		x += flatbuffers.UOffsetT(j) * 4
@@ -63,7 +71,7 @@ func (rcv *ModelStruct) Tables(obj *TableStruct, j int) bool {
 }
 
 func (rcv *ModelStruct) TablesLength() int {
-	o := flatbuffers.UOffsetT(rcv._tab.Offset(6))
+	o := flatbuffers.UOffsetT(rcv._tab.Offset(8))
 	if o != 0 {
 		return rcv._tab.VectorLen(o)
 	}
@@ -71,7 +79,7 @@ func (rcv *ModelStruct) TablesLength() int {
 }
 
 func (rcv *ModelStruct) Joins(obj *JoinStruct, j int) bool {
-	o := flatbuffers.UOffsetT(rcv._tab.Offset(8))
+	o := flatbuffers.UOffsetT(rcv._tab.Offset(10))
 	if o != 0 {
 		x := rcv._tab.Vector(o)
 		x += flatbuffers.UOffsetT(j) * 4
@@ -83,7 +91,7 @@ func (rcv *ModelStruct) Joins(obj *JoinStruct, j int) bool {
 }
 
 func (rcv *ModelStruct) JoinsLength() int {
-	o := flatbuffers.UOffsetT(rcv._tab.Offset(8))
+	o := flatbuffers.UOffsetT(rcv._tab.Offset(10))
 	if o != 0 {
 		return rcv._tab.VectorLen(o)
 	}
@@ -91,19 +99,22 @@ func (rcv *ModelStruct) JoinsLength() int {
 }
 
 func ModelStructStart(builder *flatbuffers.Builder) {
-	builder.StartObject(3)
+	builder.StartObject(4)
 }
 func ModelStructAddName(builder *flatbuffers.Builder, name flatbuffers.UOffsetT) {
 	builder.PrependUOffsetTSlot(0, flatbuffers.UOffsetT(name), 0)
 }
+func ModelStructAddDescription(builder *flatbuffers.Builder, description flatbuffers.UOffsetT) {
+	builder.PrependUOffsetTSlot(1, flatbuffers.UOffsetT(description), 0)
+}
 func ModelStructAddTables(builder *flatbuffers.Builder, tables flatbuffers.UOffsetT) {
-	builder.PrependUOffsetTSlot(1, flatbuffers.UOffsetT(tables), 0)
+	builder.PrependUOffsetTSlot(2, flatbuffers.UOffsetT(tables), 0)
 }
 func ModelStructStartTablesVector(builder *flatbuffers.Builder, numElems int) flatbuffers.UOffsetT {
 	return builder.StartVector(4, numElems, 4)
 }
 func ModelStructAddJoins(builder *flatbuffers.Builder, joins flatbuffers.UOffsetT) {
-	builder.PrependUOffsetTSlot(2, flatbuffers.UOffsetT(joins), 0)
+	builder.PrependUOffsetTSlot(3, flatbuffers.UOffsetT(joins), 0)
 }
 func ModelStructStartJoinsVector(builder *flatbuffers.Builder, numElems int) flatbuffers.UOffsetT {
 	return builder.StartVector(4, numElems, 4)

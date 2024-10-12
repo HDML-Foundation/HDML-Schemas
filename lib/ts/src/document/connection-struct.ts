@@ -35,9 +35,9 @@ name(optionalEncoding?:any):string|Uint8Array|null {
   return offset ? this.bb!.__string(this.bb_pos + offset, optionalEncoding) : null;
 }
 
-meta():string|null
-meta(optionalEncoding:flatbuffers.Encoding):string|Uint8Array|null
-meta(optionalEncoding?:any):string|Uint8Array|null {
+description():string|null
+description(optionalEncoding:flatbuffers.Encoding):string|Uint8Array|null
+description(optionalEncoding?:any):string|Uint8Array|null {
   const offset = this.bb!.__offset(this.bb_pos, 6);
   return offset ? this.bb!.__string(this.bb_pos + offset, optionalEncoding) : null;
 }
@@ -55,8 +55,8 @@ static addName(builder:flatbuffers.Builder, nameOffset:flatbuffers.Offset) {
   builder.addFieldOffset(0, nameOffset, 0);
 }
 
-static addMeta(builder:flatbuffers.Builder, metaOffset:flatbuffers.Offset) {
-  builder.addFieldOffset(1, metaOffset, 0);
+static addDescription(builder:flatbuffers.Builder, descriptionOffset:flatbuffers.Offset) {
+  builder.addFieldOffset(1, descriptionOffset, 0);
 }
 
 static addOptions(builder:flatbuffers.Builder, optionsOffset:flatbuffers.Offset) {

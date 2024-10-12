@@ -81,6 +81,6 @@ table ConnectionOptionsStruct {
 /// HDML document connection component data structure.
 table ConnectionStruct {
   name: string;
-  meta: string;
+  description: string;
   options: ConnectionOptionsStruct;
 }

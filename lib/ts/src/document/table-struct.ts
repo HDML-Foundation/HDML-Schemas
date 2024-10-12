@@ -36,46 +36,57 @@ name(optionalEncoding?:any):string|Uint8Array|null {
   return offset ? this.bb!.__string(this.bb_pos + offset, optionalEncoding) : null;
 }
 
-type():TableTypeEnum {
+description():string|null
+description(optionalEncoding:flatbuffers.Encoding):string|Uint8Array|null
+description(optionalEncoding?:any):string|Uint8Array|null {
   const offset = this.bb!.__offset(this.bb_pos, 6);
+  return offset ? this.bb!.__string(this.bb_pos + offset, optionalEncoding) : null;
+}
+
+type():TableTypeEnum {
+  const offset = this.bb!.__offset(this.bb_pos, 8);
   return offset ? this.bb!.readInt8(this.bb_pos + offset) : TableTypeEnum.Table;
 }
 
 identifier():string|null
 identifier(optionalEncoding:flatbuffers.Encoding):string|Uint8Array|null
 identifier(optionalEncoding?:any):string|Uint8Array|null {
-  const offset = this.bb!.__offset(this.bb_pos, 8);
+  const offset = this.bb!.__offset(this.bb_pos, 10);
   return offset ? this.bb!.__string(this.bb_pos + offset, optionalEncoding) : null;
 }
 
 fields(index: number, obj?:FieldStruct):FieldStruct|null {
-  const offset = this.bb!.__offset(this.bb_pos, 10);
+  const offset = this.bb!.__offset(this.bb_pos, 12);
   return offset ? (obj || new FieldStruct()).__init(this.bb!.__indirect(this.bb!.__vector(this.bb_pos + offset) + index * 4), this.bb!) : null;
 }
 
 fieldsLength():number {
-  const offset = this.bb!.__offset(this.bb_pos, 10);
+  const offset = this.bb!.__offset(this.bb_pos, 12);
   return offset ? this.bb!.__vector_len(this.bb_pos + offset) : 0;
 }
 
 static startTableStruct(builder:flatbuffers.Builder) {
-  builder.startObject(4);
+  builder.startObject(5);
 }
 
 static addName(builder:flatbuffers.Builder, nameOffset:flatbuffers.Offset) {
   builder.addFieldOffset(0, nameOffset, 0);
 }
 
+static addDescription(builder:flatbuffers.Builder, descriptionOffset:flatbuffers.Offset) {
+  builder.addFieldOffset(1, descriptionOffset, 0);
+}
+
 static addType(builder:flatbuffers.Builder, type:TableTypeEnum) {
-  builder.addFieldInt8(1, type, TableTypeEnum.Table);
+  builder.addFieldInt8(2, type, TableTypeEnum.Table);
 }
 
 static addIdentifier(builder:flatbuffers.Builder, identifierOffset:flatbuffers.Offset) {
-  builder.addFieldOffset(2, identifierOffset, 0);
+  builder.addFieldOffset(3, identifierOffset, 0);
 }
 
 static addFields(builder:flatbuffers.Builder, fieldsOffset:flatbuffers.Offset) {
-  builder.addFieldOffset(3, fieldsOffset, 0);
+  builder.addFieldOffset(4, fieldsOffset, 0);
 }
 
 static createFieldsVector(builder:flatbuffers.Builder, data:flatbuffers.Offset[]):flatbuffers.Offset {
@@ -95,9 +106,10 @@ static endTableStruct(builder:flatbuffers.Builder):flatbuffers.Offset {
   return offset;
 }
 
-static createTableStruct(builder:flatbuffers.Builder, nameOffset:flatbuffers.Offset, type:TableTypeEnum, identifierOffset:flatbuffers.Offset, fieldsOffset:flatbuffers.Offset):flatbuffers.Offset {
+static createTableStruct(builder:flatbuffers.Builder, nameOffset:flatbuffers.Offset, descriptionOffset:flatbuffers.Offset, type:TableTypeEnum, identifierOffset:flatbuffers.Offset, fieldsOffset:flatbuffers.Offset):flatbuffers.Offset {
   TableStruct.startTableStruct(builder);
   TableStruct.addName(builder, nameOffset);
+  TableStruct.addDescription(builder, descriptionOffset);
   TableStruct.addType(builder, type);
   TableStruct.addIdentifier(builder, identifierOffset);
   TableStruct.addFields(builder, fieldsOffset);

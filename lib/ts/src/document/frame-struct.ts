@@ -36,90 +36,101 @@ name(optionalEncoding?:any):string|Uint8Array|null {
   return offset ? this.bb!.__string(this.bb_pos + offset, optionalEncoding) : null;
 }
 
-source():string|null
-source(optionalEncoding:flatbuffers.Encoding):string|Uint8Array|null
-source(optionalEncoding?:any):string|Uint8Array|null {
+description():string|null
+description(optionalEncoding:flatbuffers.Encoding):string|Uint8Array|null
+description(optionalEncoding?:any):string|Uint8Array|null {
   const offset = this.bb!.__offset(this.bb_pos, 6);
   return offset ? this.bb!.__string(this.bb_pos + offset, optionalEncoding) : null;
 }
 
-offset():bigint {
+source():string|null
+source(optionalEncoding:flatbuffers.Encoding):string|Uint8Array|null
+source(optionalEncoding?:any):string|Uint8Array|null {
   const offset = this.bb!.__offset(this.bb_pos, 8);
-  return offset ? this.bb!.readUint64(this.bb_pos + offset) : BigInt('0');
+  return offset ? this.bb!.__string(this.bb_pos + offset, optionalEncoding) : null;
 }
 
-limit():bigint {
+offset():bigint {
   const offset = this.bb!.__offset(this.bb_pos, 10);
   return offset ? this.bb!.readUint64(this.bb_pos + offset) : BigInt('0');
 }
 
-fields(index: number, obj?:FieldStruct):FieldStruct|null {
+limit():bigint {
   const offset = this.bb!.__offset(this.bb_pos, 12);
+  return offset ? this.bb!.readUint64(this.bb_pos + offset) : BigInt('0');
+}
+
+fields(index: number, obj?:FieldStruct):FieldStruct|null {
+  const offset = this.bb!.__offset(this.bb_pos, 14);
   return offset ? (obj || new FieldStruct()).__init(this.bb!.__indirect(this.bb!.__vector(this.bb_pos + offset) + index * 4), this.bb!) : null;
 }
 
 fieldsLength():number {
-  const offset = this.bb!.__offset(this.bb_pos, 12);
+  const offset = this.bb!.__offset(this.bb_pos, 14);
   return offset ? this.bb!.__vector_len(this.bb_pos + offset) : 0;
 }
 
 filterBy(obj?:FilterClauseStruct):FilterClauseStruct|null {
-  const offset = this.bb!.__offset(this.bb_pos, 14);
+  const offset = this.bb!.__offset(this.bb_pos, 16);
   return offset ? (obj || new FilterClauseStruct()).__init(this.bb!.__indirect(this.bb_pos + offset), this.bb!) : null;
 }
 
 groupBy(index: number, obj?:FieldStruct):FieldStruct|null {
-  const offset = this.bb!.__offset(this.bb_pos, 16);
+  const offset = this.bb!.__offset(this.bb_pos, 18);
   return offset ? (obj || new FieldStruct()).__init(this.bb!.__indirect(this.bb!.__vector(this.bb_pos + offset) + index * 4), this.bb!) : null;
 }
 
 groupByLength():number {
-  const offset = this.bb!.__offset(this.bb_pos, 16);
+  const offset = this.bb!.__offset(this.bb_pos, 18);
   return offset ? this.bb!.__vector_len(this.bb_pos + offset) : 0;
 }
 
 splitBy(index: number, obj?:FieldStruct):FieldStruct|null {
-  const offset = this.bb!.__offset(this.bb_pos, 18);
+  const offset = this.bb!.__offset(this.bb_pos, 20);
   return offset ? (obj || new FieldStruct()).__init(this.bb!.__indirect(this.bb!.__vector(this.bb_pos + offset) + index * 4), this.bb!) : null;
 }
 
 splitByLength():number {
-  const offset = this.bb!.__offset(this.bb_pos, 18);
+  const offset = this.bb!.__offset(this.bb_pos, 20);
   return offset ? this.bb!.__vector_len(this.bb_pos + offset) : 0;
 }
 
 sortBy(index: number, obj?:FieldStruct):FieldStruct|null {
-  const offset = this.bb!.__offset(this.bb_pos, 20);
+  const offset = this.bb!.__offset(this.bb_pos, 22);
   return offset ? (obj || new FieldStruct()).__init(this.bb!.__indirect(this.bb!.__vector(this.bb_pos + offset) + index * 4), this.bb!) : null;
 }
 
 sortByLength():number {
-  const offset = this.bb!.__offset(this.bb_pos, 20);
+  const offset = this.bb!.__offset(this.bb_pos, 22);
   return offset ? this.bb!.__vector_len(this.bb_pos + offset) : 0;
 }
 
 static startFrameStruct(builder:flatbuffers.Builder) {
-  builder.startObject(9);
+  builder.startObject(10);
 }
 
 static addName(builder:flatbuffers.Builder, nameOffset:flatbuffers.Offset) {
   builder.addFieldOffset(0, nameOffset, 0);
 }
 
+static addDescription(builder:flatbuffers.Builder, descriptionOffset:flatbuffers.Offset) {
+  builder.addFieldOffset(1, descriptionOffset, 0);
+}
+
 static addSource(builder:flatbuffers.Builder, sourceOffset:flatbuffers.Offset) {
-  builder.addFieldOffset(1, sourceOffset, 0);
+  builder.addFieldOffset(2, sourceOffset, 0);
 }
 
 static addOffset(builder:flatbuffers.Builder, offset:bigint) {
-  builder.addFieldInt64(2, offset, BigInt('0'));
+  builder.addFieldInt64(3, offset, BigInt('0'));
 }
 
 static addLimit(builder:flatbuffers.Builder, limit:bigint) {
-  builder.addFieldInt64(3, limit, BigInt('0'));
+  builder.addFieldInt64(4, limit, BigInt('0'));
 }
 
 static addFields(builder:flatbuffers.Builder, fieldsOffset:flatbuffers.Offset) {
-  builder.addFieldOffset(4, fieldsOffset, 0);
+  builder.addFieldOffset(5, fieldsOffset, 0);
 }
 
 static createFieldsVector(builder:flatbuffers.Builder, data:flatbuffers.Offset[]):flatbuffers.Offset {
@@ -135,11 +146,11 @@ static startFieldsVector(builder:flatbuffers.Builder, numElems:number) {
 }
 
 static addFilterBy(builder:flatbuffers.Builder, filterByOffset:flatbuffers.Offset) {
-  builder.addFieldOffset(5, filterByOffset, 0);
+  builder.addFieldOffset(6, filterByOffset, 0);
 }
 
 static addGroupBy(builder:flatbuffers.Builder, groupByOffset:flatbuffers.Offset) {
-  builder.addFieldOffset(6, groupByOffset, 0);
+  builder.addFieldOffset(7, groupByOffset, 0);
 }
 
 static createGroupByVector(builder:flatbuffers.Builder, data:flatbuffers.Offset[]):flatbuffers.Offset {
@@ -155,7 +166,7 @@ static startGroupByVector(builder:flatbuffers.Builder, numElems:number) {
 }
 
 static addSplitBy(builder:flatbuffers.Builder, splitByOffset:flatbuffers.Offset) {
-  builder.addFieldOffset(7, splitByOffset, 0);
+  builder.addFieldOffset(8, splitByOffset, 0);
 }
 
 static createSplitByVector(builder:flatbuffers.Builder, data:flatbuffers.Offset[]):flatbuffers.Offset {
@@ -171,7 +182,7 @@ static startSplitByVector(builder:flatbuffers.Builder, numElems:number) {
 }
 
 static addSortBy(builder:flatbuffers.Builder, sortByOffset:flatbuffers.Offset) {
-  builder.addFieldOffset(8, sortByOffset, 0);
+  builder.addFieldOffset(9, sortByOffset, 0);
 }
 
 static createSortByVector(builder:flatbuffers.Builder, data:flatbuffers.Offset[]):flatbuffers.Offset {

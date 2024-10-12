@@ -14,6 +14,7 @@ namespace document;
 /// Table structure.
 table TableStruct {
   name: string;
+  description: string;
   type: enum.TableTypeEnum;
   identifier: string;
   fields: [document.FieldStruct];
@@ -25,11 +26,13 @@ table JoinStruct {
   left: string;
   right: string;
   clause: document.FilterClauseStruct;
+  description: string;
 }
 
 /// Model structure.
 table ModelStruct {
   name: string;
+  description: string;
   tables: [TableStruct];
   joins: [JoinStruct];
 }

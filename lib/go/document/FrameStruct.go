@@ -50,7 +50,7 @@ func (rcv *FrameStruct) Name() []byte {
 	return nil
 }
 
-func (rcv *FrameStruct) Source() []byte {
+func (rcv *FrameStruct) Description() []byte {
 	o := flatbuffers.UOffsetT(rcv._tab.Offset(6))
 	if o != 0 {
 		return rcv._tab.ByteVector(o + rcv._tab.Pos)
@@ -58,19 +58,15 @@ func (rcv *FrameStruct) Source() []byte {
 	return nil
 }
 
-func (rcv *FrameStruct) Offset() uint64 {
+func (rcv *FrameStruct) Source() []byte {
 	o := flatbuffers.UOffsetT(rcv._tab.Offset(8))
 	if o != 0 {
-		return rcv._tab.GetUint64(o + rcv._tab.Pos)
+		return rcv._tab.ByteVector(o + rcv._tab.Pos)
 	}
-	return 0
+	return nil
 }
 
-func (rcv *FrameStruct) MutateOffset(n uint64) bool {
-	return rcv._tab.MutateUint64Slot(8, n)
-}
-
-func (rcv *FrameStruct) Limit() uint64 {
+func (rcv *FrameStruct) Offset() uint64 {
 	o := flatbuffers.UOffsetT(rcv._tab.Offset(10))
 	if o != 0 {
 		return rcv._tab.GetUint64(o + rcv._tab.Pos)
@@ -78,12 +74,24 @@ func (rcv *FrameStruct) Limit() uint64 {
 	return 0
 }
 
-func (rcv *FrameStruct) MutateLimit(n uint64) bool {
+func (rcv *FrameStruct) MutateOffset(n uint64) bool {
 	return rcv._tab.MutateUint64Slot(10, n)
 }
 
-func (rcv *FrameStruct) Fields(obj *FieldStruct, j int) bool {
+func (rcv *FrameStruct) Limit() uint64 {
 	o := flatbuffers.UOffsetT(rcv._tab.Offset(12))
+	if o != 0 {
+		return rcv._tab.GetUint64(o + rcv._tab.Pos)
+	}
+	return 0
+}
+
+func (rcv *FrameStruct) MutateLimit(n uint64) bool {
+	return rcv._tab.MutateUint64Slot(12, n)
+}
+
+func (rcv *FrameStruct) Fields(obj *FieldStruct, j int) bool {
+	o := flatbuffers.UOffsetT(rcv._tab.Offset(14))
 	if o != 0 {
 		x := rcv._tab.Vector(o)
 		x += flatbuffers.UOffsetT(j) * 4
@@ -95,7 +103,7 @@ func (rcv *FrameStruct) Fields(obj *FieldStruct, j int) bool {
 }
 
 func (rcv *FrameStruct) FieldsLength() int {
-	o := flatbuffers.UOffsetT(rcv._tab.Offset(12))
+	o := flatbuffers.UOffsetT(rcv._tab.Offset(14))
 	if o != 0 {
 		return rcv._tab.VectorLen(o)
 	}
@@ -103,7 +111,7 @@ func (rcv *FrameStruct) FieldsLength() int {
 }
 
 func (rcv *FrameStruct) FilterBy(obj *FilterClauseStruct) *FilterClauseStruct {
-	o := flatbuffers.UOffsetT(rcv._tab.Offset(14))
+	o := flatbuffers.UOffsetT(rcv._tab.Offset(16))
 	if o != 0 {
 		x := rcv._tab.Indirect(o + rcv._tab.Pos)
 		if obj == nil {
@@ -116,7 +124,7 @@ func (rcv *FrameStruct) FilterBy(obj *FilterClauseStruct) *FilterClauseStruct {
 }
 
 func (rcv *FrameStruct) GroupBy(obj *FieldStruct, j int) bool {
-	o := flatbuffers.UOffsetT(rcv._tab.Offset(16))
+	o := flatbuffers.UOffsetT(rcv._tab.Offset(18))
 	if o != 0 {
 		x := rcv._tab.Vector(o)
 		x += flatbuffers.UOffsetT(j) * 4
@@ -128,7 +136,7 @@ func (rcv *FrameStruct) GroupBy(obj *FieldStruct, j int) bool {
 }
 
 func (rcv *FrameStruct) GroupByLength() int {
-	o := flatbuffers.UOffsetT(rcv._tab.Offset(16))
+	o := flatbuffers.UOffsetT(rcv._tab.Offset(18))
 	if o != 0 {
 		return rcv._tab.VectorLen(o)
 	}
@@ -136,7 +144,7 @@ func (rcv *FrameStruct) GroupByLength() int {
 }
 
 func (rcv *FrameStruct) SplitBy(obj *FieldStruct, j int) bool {
-	o := flatbuffers.UOffsetT(rcv._tab.Offset(18))
+	o := flatbuffers.UOffsetT(rcv._tab.Offset(20))
 	if o != 0 {
 		x := rcv._tab.Vector(o)
 		x += flatbuffers.UOffsetT(j) * 4
@@ -148,7 +156,7 @@ func (rcv *FrameStruct) SplitBy(obj *FieldStruct, j int) bool {
 }
 
 func (rcv *FrameStruct) SplitByLength() int {
-	o := flatbuffers.UOffsetT(rcv._tab.Offset(18))
+	o := flatbuffers.UOffsetT(rcv._tab.Offset(20))
 	if o != 0 {
 		return rcv._tab.VectorLen(o)
 	}
@@ -156,7 +164,7 @@ func (rcv *FrameStruct) SplitByLength() int {
 }
 
 func (rcv *FrameStruct) SortBy(obj *FieldStruct, j int) bool {
-	o := flatbuffers.UOffsetT(rcv._tab.Offset(20))
+	o := flatbuffers.UOffsetT(rcv._tab.Offset(22))
 	if o != 0 {
 		x := rcv._tab.Vector(o)
 		x += flatbuffers.UOffsetT(j) * 4
@@ -168,7 +176,7 @@ func (rcv *FrameStruct) SortBy(obj *FieldStruct, j int) bool {
 }
 
 func (rcv *FrameStruct) SortByLength() int {
-	o := flatbuffers.UOffsetT(rcv._tab.Offset(20))
+	o := flatbuffers.UOffsetT(rcv._tab.Offset(22))
 	if o != 0 {
 		return rcv._tab.VectorLen(o)
 	}
@@ -176,43 +184,46 @@ func (rcv *FrameStruct) SortByLength() int {
 }
 
 func FrameStructStart(builder *flatbuffers.Builder) {
-	builder.StartObject(9)
+	builder.StartObject(10)
 }
 func FrameStructAddName(builder *flatbuffers.Builder, name flatbuffers.UOffsetT) {
 	builder.PrependUOffsetTSlot(0, flatbuffers.UOffsetT(name), 0)
 }
+func FrameStructAddDescription(builder *flatbuffers.Builder, description flatbuffers.UOffsetT) {
+	builder.PrependUOffsetTSlot(1, flatbuffers.UOffsetT(description), 0)
+}
 func FrameStructAddSource(builder *flatbuffers.Builder, source flatbuffers.UOffsetT) {
-	builder.PrependUOffsetTSlot(1, flatbuffers.UOffsetT(source), 0)
+	builder.PrependUOffsetTSlot(2, flatbuffers.UOffsetT(source), 0)
 }
 func FrameStructAddOffset(builder *flatbuffers.Builder, offset uint64) {
-	builder.PrependUint64Slot(2, offset, 0)
+	builder.PrependUint64Slot(3, offset, 0)
 }
 func FrameStructAddLimit(builder *flatbuffers.Builder, limit uint64) {
-	builder.PrependUint64Slot(3, limit, 0)
+	builder.PrependUint64Slot(4, limit, 0)
 }
 func FrameStructAddFields(builder *flatbuffers.Builder, fields flatbuffers.UOffsetT) {
-	builder.PrependUOffsetTSlot(4, flatbuffers.UOffsetT(fields), 0)
+	builder.PrependUOffsetTSlot(5, flatbuffers.UOffsetT(fields), 0)
 }
 func FrameStructStartFieldsVector(builder *flatbuffers.Builder, numElems int) flatbuffers.UOffsetT {
 	return builder.StartVector(4, numElems, 4)
 }
 func FrameStructAddFilterBy(builder *flatbuffers.Builder, filterBy flatbuffers.UOffsetT) {
-	builder.PrependUOffsetTSlot(5, flatbuffers.UOffsetT(filterBy), 0)
+	builder.PrependUOffsetTSlot(6, flatbuffers.UOffsetT(filterBy), 0)
 }
 func FrameStructAddGroupBy(builder *flatbuffers.Builder, groupBy flatbuffers.UOffsetT) {
-	builder.PrependUOffsetTSlot(6, flatbuffers.UOffsetT(groupBy), 0)
+	builder.PrependUOffsetTSlot(7, flatbuffers.UOffsetT(groupBy), 0)
 }
 func FrameStructStartGroupByVector(builder *flatbuffers.Builder, numElems int) flatbuffers.UOffsetT {
 	return builder.StartVector(4, numElems, 4)
 }
 func FrameStructAddSplitBy(builder *flatbuffers.Builder, splitBy flatbuffers.UOffsetT) {
-	builder.PrependUOffsetTSlot(7, flatbuffers.UOffsetT(splitBy), 0)
+	builder.PrependUOffsetTSlot(8, flatbuffers.UOffsetT(splitBy), 0)
 }
 func FrameStructStartSplitByVector(builder *flatbuffers.Builder, numElems int) flatbuffers.UOffsetT {
 	return builder.StartVector(4, numElems, 4)
 }
 func FrameStructAddSortBy(builder *flatbuffers.Builder, sortBy flatbuffers.UOffsetT) {
-	builder.PrependUOffsetTSlot(8, flatbuffers.UOffsetT(sortBy), 0)
+	builder.PrependUOffsetTSlot(9, flatbuffers.UOffsetT(sortBy), 0)
 }
 func FrameStructStartSortByVector(builder *flatbuffers.Builder, numElems int) flatbuffers.UOffsetT {
 	return builder.StartVector(4, numElems, 4)

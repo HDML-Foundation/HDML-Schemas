@@ -85,8 +85,16 @@ func (rcv *JoinStruct) Clause(obj *FilterClauseStruct) *FilterClauseStruct {
 	return nil
 }
 
+func (rcv *JoinStruct) Description() []byte {
+	o := flatbuffers.UOffsetT(rcv._tab.Offset(12))
+	if o != 0 {
+		return rcv._tab.ByteVector(o + rcv._tab.Pos)
+	}
+	return nil
+}
+
 func JoinStructStart(builder *flatbuffers.Builder) {
-	builder.StartObject(4)
+	builder.StartObject(5)
 }
 func JoinStructAddType(builder *flatbuffers.Builder, type_ enum.JoinTypeEnum) {
 	builder.PrependInt8Slot(0, int8(type_), 0)
@@ -99,6 +107,9 @@ func JoinStructAddRight(builder *flatbuffers.Builder, right flatbuffers.UOffsetT
 }
 func JoinStructAddClause(builder *flatbuffers.Builder, clause flatbuffers.UOffsetT) {
 	builder.PrependUOffsetTSlot(3, flatbuffers.UOffsetT(clause), 0)
+}
+func JoinStructAddDescription(builder *flatbuffers.Builder, description flatbuffers.UOffsetT) {
+	builder.PrependUOffsetTSlot(4, flatbuffers.UOffsetT(description), 0)
 }
 func JoinStructEnd(builder *flatbuffers.Builder) flatbuffers.UOffsetT {
 	return builder.EndObject()

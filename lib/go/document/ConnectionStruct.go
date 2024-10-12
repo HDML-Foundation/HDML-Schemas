@@ -50,7 +50,7 @@ func (rcv *ConnectionStruct) Name() []byte {
 	return nil
 }
 
-func (rcv *ConnectionStruct) Meta() []byte {
+func (rcv *ConnectionStruct) Description() []byte {
 	o := flatbuffers.UOffsetT(rcv._tab.Offset(6))
 	if o != 0 {
 		return rcv._tab.ByteVector(o + rcv._tab.Pos)
@@ -77,8 +77,8 @@ func ConnectionStructStart(builder *flatbuffers.Builder) {
 func ConnectionStructAddName(builder *flatbuffers.Builder, name flatbuffers.UOffsetT) {
 	builder.PrependUOffsetTSlot(0, flatbuffers.UOffsetT(name), 0)
 }
-func ConnectionStructAddMeta(builder *flatbuffers.Builder, meta flatbuffers.UOffsetT) {
-	builder.PrependUOffsetTSlot(1, flatbuffers.UOffsetT(meta), 0)
+func ConnectionStructAddDescription(builder *flatbuffers.Builder, description flatbuffers.UOffsetT) {
+	builder.PrependUOffsetTSlot(1, flatbuffers.UOffsetT(description), 0)
 }
 func ConnectionStructAddOptions(builder *flatbuffers.Builder, options flatbuffers.UOffsetT) {
 	builder.PrependUOffsetTSlot(2, flatbuffers.UOffsetT(options), 0)

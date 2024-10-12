@@ -12,6 +12,7 @@ namespace document;
 /// Frame structure.
 table FrameStruct {
   name: string;
+  description: string;
   source: string;
   offset: ulong;
   limit: ulong;

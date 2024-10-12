@@ -36,36 +36,47 @@ name(optionalEncoding?:any):string|Uint8Array|null {
   return offset ? this.bb!.__string(this.bb_pos + offset, optionalEncoding) : null;
 }
 
-tables(index: number, obj?:TableStruct):TableStruct|null {
+description():string|null
+description(optionalEncoding:flatbuffers.Encoding):string|Uint8Array|null
+description(optionalEncoding?:any):string|Uint8Array|null {
   const offset = this.bb!.__offset(this.bb_pos, 6);
+  return offset ? this.bb!.__string(this.bb_pos + offset, optionalEncoding) : null;
+}
+
+tables(index: number, obj?:TableStruct):TableStruct|null {
+  const offset = this.bb!.__offset(this.bb_pos, 8);
   return offset ? (obj || new TableStruct()).__init(this.bb!.__indirect(this.bb!.__vector(this.bb_pos + offset) + index * 4), this.bb!) : null;
 }
 
 tablesLength():number {
-  const offset = this.bb!.__offset(this.bb_pos, 6);
+  const offset = this.bb!.__offset(this.bb_pos, 8);
   return offset ? this.bb!.__vector_len(this.bb_pos + offset) : 0;
 }
 
 joins(index: number, obj?:JoinStruct):JoinStruct|null {
-  const offset = this.bb!.__offset(this.bb_pos, 8);
+  const offset = this.bb!.__offset(this.bb_pos, 10);
   return offset ? (obj || new JoinStruct()).__init(this.bb!.__indirect(this.bb!.__vector(this.bb_pos + offset) + index * 4), this.bb!) : null;
 }
 
 joinsLength():number {
-  const offset = this.bb!.__offset(this.bb_pos, 8);
+  const offset = this.bb!.__offset(this.bb_pos, 10);
   return offset ? this.bb!.__vector_len(this.bb_pos + offset) : 0;
 }
 
 static startModelStruct(builder:flatbuffers.Builder) {
-  builder.startObject(3);
+  builder.startObject(4);
 }
 
 static addName(builder:flatbuffers.Builder, nameOffset:flatbuffers.Offset) {
   builder.addFieldOffset(0, nameOffset, 0);
 }
 
+static addDescription(builder:flatbuffers.Builder, descriptionOffset:flatbuffers.Offset) {
+  builder.addFieldOffset(1, descriptionOffset, 0);
+}
+
 static addTables(builder:flatbuffers.Builder, tablesOffset:flatbuffers.Offset) {
-  builder.addFieldOffset(1, tablesOffset, 0);
+  builder.addFieldOffset(2, tablesOffset, 0);
 }
 
 static createTablesVector(builder:flatbuffers.Builder, data:flatbuffers.Offset[]):flatbuffers.Offset {
@@ -81,7 +92,7 @@ static startTablesVector(builder:flatbuffers.Builder, numElems:number) {
 }
 
 static addJoins(builder:flatbuffers.Builder, joinsOffset:flatbuffers.Offset) {
-  builder.addFieldOffset(2, joinsOffset, 0);
+  builder.addFieldOffset(3, joinsOffset, 0);
 }
 
 static createJoinsVector(builder:flatbuffers.Builder, data:flatbuffers.Offset[]):flatbuffers.Offset {
@@ -101,9 +112,10 @@ static endModelStruct(builder:flatbuffers.Builder):flatbuffers.Offset {
   return offset;
 }
 
-static createModelStruct(builder:flatbuffers.Builder, nameOffset:flatbuffers.Offset, tablesOffset:flatbuffers.Offset, joinsOffset:flatbuffers.Offset):flatbuffers.Offset {
+static createModelStruct(builder:flatbuffers.Builder, nameOffset:flatbuffers.Offset, descriptionOffset:flatbuffers.Offset, tablesOffset:flatbuffers.Offset, joinsOffset:flatbuffers.Offset):flatbuffers.Offset {
   ModelStruct.startModelStruct(builder);
   ModelStruct.addName(builder, nameOffset);
+  ModelStruct.addDescription(builder, descriptionOffset);
   ModelStruct.addTables(builder, tablesOffset);
   ModelStruct.addJoins(builder, joinsOffset);
   return ModelStruct.endModelStruct(builder);
