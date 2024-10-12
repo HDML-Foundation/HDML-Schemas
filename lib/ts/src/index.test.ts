@@ -31,7 +31,7 @@ describe("@hdml/schema", () => {
     expect(schema.DataTypeOptionsStruct).toBeDefined();
     expect(schema.DateParametersStruct).toBeDefined();
     expect(schema.DecimalParametersStruct).toBeDefined();
-    expect(schema.HDOM).toBeDefined();
+    expect(schema.HDOMStruct).toBeDefined();
     expect(schema.ElasticsearchParametersStruct).toBeDefined();
     expect(schema.ExpressionParametersStruct).toBeDefined();
     expect(schema.FieldStruct).toBeDefined();
