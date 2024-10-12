@@ -12,9 +12,9 @@ include "./document.Frame.fbs";
 namespace document;
 
 /// HDML document data structure.
-table HDDM {
-  includes: [document.Include];
-  connections: [document.Connection];
-  models: [document.Model];
-  frames: [document.Frame];
+table HDOM {
+  includes: [document.IncludeStruct];
+  connections: [document.ConnectionStruct];
+  models: [document.ModelStruct];
+  frames: [document.FrameStruct];
 }

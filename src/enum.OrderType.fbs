@@ -7,7 +7,7 @@
 namespace enum;
 
 /// Ordering types enum.
-enum OrderType: byte {
+enum OrderTypeEnum: byte {
   None = 0,
   Ascending,
   Descending,

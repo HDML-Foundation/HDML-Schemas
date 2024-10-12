@@ -7,7 +7,7 @@
 namespace enum;
 
 /// Supported Timezones enum.
-enum TimeZone: short {
+enum TimeZoneEnum: short {
   UTC,
   GMT,
   GMT_m_12,

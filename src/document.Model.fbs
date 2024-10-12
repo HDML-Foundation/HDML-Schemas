@@ -12,24 +12,24 @@ include "./document.FilterClause.fbs";
 namespace document;
 
 /// Table structure.
-table Table {
+table TableStruct {
   name: string;
-  type: enum.TableType;
+  type: enum.TableTypeEnum;
   identifier: string;
-  fields: [document.Field];
+  fields: [document.FieldStruct];
 }
 
 /// Join structure.
-table Join {
-  type: enum.JoinType;
+table JoinStruct {
+  type: enum.JoinTypeEnum;
   left: string;
   right: string;
-  clause: document.FilterClause;
+  clause: document.FilterClauseStruct;
 }
 
 /// Model structure.
-table Model {
+table ModelStruct {
   name: string;
-  tables: [Table];
-  joins: [Join];
+  tables: [TableStruct];
+  joins: [JoinStruct];
 }

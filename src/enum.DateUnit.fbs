@@ -7,7 +7,7 @@
 namespace enum;
 
 /// Date units enum.
-enum DateUnit: byte {
+enum DateUnitEnum: byte {
   Second,
   Millisecond,
 }

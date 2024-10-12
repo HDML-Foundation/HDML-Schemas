@@ -7,7 +7,7 @@
 namespace enum;
 
 /// Filter types enum.
-enum FilterType: byte {
+enum FilterTypeEnum: byte {
   Expression,
   Keys,
   Named,

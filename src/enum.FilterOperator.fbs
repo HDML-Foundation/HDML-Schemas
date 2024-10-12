@@ -7,7 +7,7 @@
 namespace enum;
 
 /// Filter oprators enum.
-enum FilterOperator: byte {
+enum FilterOperatorEnum: byte {
   Or,
   And,
   None,

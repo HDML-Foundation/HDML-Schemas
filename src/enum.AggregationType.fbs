@@ -7,7 +7,7 @@
 namespace enum;
 
 /// Aggregation functions enum.
-enum AggregationType: byte {
+enum AggregationTypeEnum: byte {
   None = 0,
   Count,
   CountDistinct,

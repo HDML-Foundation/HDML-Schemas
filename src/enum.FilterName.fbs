@@ -7,7 +7,7 @@
 namespace enum;
 
 /// Filter names enum.
-enum FilterName: byte {
+enum FilterNameEnum: byte {
   Equals,
   NotEquals,
   Contains,

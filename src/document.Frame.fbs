@@ -10,14 +10,14 @@ include "./document.FilterClause.fbs";
 namespace document;
 
 /// Frame structure.
-table Frame {
+table FrameStruct {
   name: string;
   source: string;
   offset: ulong;
   limit: ulong;
-  fields: [document.Field];
-  filter_by: document.FilterClause;
-  group_by: [document.Field];
-  split_by: [document.Field];
-  sort_by: [document.Field];
+  fields: [document.FieldStruct];
+  filter_by: document.FilterClauseStruct;
+  group_by: [document.FieldStruct];
+  split_by: [document.FieldStruct];
+  sort_by: [document.FieldStruct];
 }

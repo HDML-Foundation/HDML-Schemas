@@ -11,7 +11,7 @@ namespace document;
 /// Parameters to connect to one the of the following DB: Postgres,
 /// MySQL, MS SQL, MariaDB, Oracle, ClickHouse, Druid, Ignite,
 /// Redshift.
-table JDBCParameters {
+table JDBCParametersStruct {
   host: string;
   user: string;
   password: string;
@@ -19,19 +19,19 @@ table JDBCParameters {
 }
 
 /// Parameters to connect to the BigQuery.
-table BigQueryParameters {
+table BigQueryParametersStruct {
   project_id: string;
   credentials_key: string;
 }
 
 /// Parameters to connect to the Google Sheets.
-table GoogleSheetsParameters {
+table GoogleSheetsParametersStruct {
   sheet_id: string;
   credentials_key: string;
 }
 
 /// Parameters to connect to the Elasticsearch.
-table ElasticsearchParameters {
+table ElasticsearchParametersStruct {
   host: string;
   port: ushort;
   user: string;
@@ -43,7 +43,7 @@ table ElasticsearchParameters {
 }
 
 /// Parameters to connect to the MongoDB.
-table MongoDBParameters {
+table MongoDBParametersStruct {
   host: string;
   port: ushort;
   user: string;
@@ -53,7 +53,7 @@ table MongoDBParameters {
 }
 
 /// Parameters to connect to the Snowflake.
-table SnowflakeParameters {
+table SnowflakeParametersStruct {
   account: string;
   user: string;
   password: string;
@@ -63,24 +63,24 @@ table SnowflakeParameters {
 }
 
 /// Union type to describe DB connection parameters.
-union ConnectionParameters {
-  JDBCParameters,
-  BigQueryParameters,
-  GoogleSheetsParameters,
-  ElasticsearchParameters,
-  MongoDBParameters,
-  SnowflakeParameters,
+union ConnectionParametersStruct {
+  JDBCParametersStruct,
+  BigQueryParametersStruct,
+  GoogleSheetsParametersStruct,
+  ElasticsearchParametersStruct,
+  MongoDBParametersStruct,
+  SnowflakeParametersStruct,
 }
 
 /// Database connection options structure.
-table ConnectionOptions {
-  connector: enum.ConnectorTypes;
-  parameters: ConnectionParameters;
+table ConnectionOptionsStruct {
+  connector: enum.ConnectorTypesEnum;
+  parameters: ConnectionParametersStruct;
 }
 
 /// HDML document connection component data structure.
-table Connection {
+table ConnectionStruct {
   name: string;
   meta: string;
-  options: ConnectionOptions;
+  options: ConnectionOptionsStruct;
 }

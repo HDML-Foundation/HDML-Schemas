@@ -7,7 +7,7 @@
 namespace enum;
 
 /// Database connectors type.
-enum ConnectorTypes: byte {
+enum ConnectorTypesEnum: byte {
   Postgres = 0,
   MySQL,
   MsSQL,

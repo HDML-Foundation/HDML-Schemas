@@ -7,6 +7,6 @@
 namespace document;
 
 /// HDML document include component data structure.
-table Include {
+table IncludeStruct {
   path: string;
 }

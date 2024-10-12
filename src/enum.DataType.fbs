@@ -7,7 +7,7 @@
 namespace enum;
 
 /// Data types enum.
-enum DataType: byte {
+enum DataTypeEnum: byte {
   Int8,
   Int16,
   Int32,

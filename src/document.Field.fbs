@@ -15,59 +15,59 @@ include "./enum.TimeZone.fbs";
 namespace document;
 
 /// Common data type parameters structure.
-table CommonParameters {
+table CommonParametersStruct {
   nullable: bool;
 }
 
 /// Decimal data type parameters structure.
-table DecimalParameters {
+table DecimalParametersStruct {
   nullable: bool;
   scale: ushort;
   precision: ushort;
-  bit_width: enum.DecimalBitWidth;
+  bit_width: enum.DecimalBitWidthEnum;
 }
 
 /// Date data type parameters structure.
-table DateParameters {
+table DateParametersStruct {
   nullable: bool;
-  unit: enum.DateUnit;
+  unit: enum.DateUnitEnum;
 }
 
 /// Time data type parameters structure.
-table TimeParameters {
+table TimeParametersStruct {
   nullable: bool;
-  unit: enum.TimeUnit;
+  unit: enum.TimeUnitEnum;
 }
 
 /// Timestamp data type parameters structure.
-table TimestampParameters {
+table TimestampParametersStruct {
   nullable: bool;
-  unit: enum.TimeUnit;
-  timezone: enum.TimeZone;
+  unit: enum.TimeUnitEnum;
+  timezone: enum.TimeZoneEnum;
 }
 
 /// Data type options.
-union DataTypeOptions {
-  CommonParameters,
-  DecimalParameters,
-  DateParameters,
-  TimeParameters,
-  TimestampParameters,
+union DataTypeOptionsStruct {
+  CommonParametersStruct,
+  DecimalParametersStruct,
+  DateParametersStruct,
+  TimeParametersStruct,
+  TimestampParametersStruct,
 }
 
 /// Field type structure.
-table FieldType {
-  type: enum.DataType;
-  options: DataTypeOptions;
+table FieldTypeStruct {
+  type: enum.DataTypeEnum;
+  options: DataTypeOptionsStruct;
 }
 
 /// Data field structure.
-table Field {
+table FieldStruct {
   name: string;
   description: string;
   origin: string;
   clause: string;
-  type: FieldType;
-  aggregation: enum.AggregationType;
-  order: enum.OrderType;
+  type: FieldTypeStruct;
+  aggregation: enum.AggregationTypeEnum;
+  order: enum.OrderTypeEnum;
 }

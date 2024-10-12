@@ -11,39 +11,39 @@ include "./enum.FilterOperator.fbs";
 namespace document;
 
 /// Expression filter parameters.
-table ExpressionParameters {
+table ExpressionParametersStruct {
   clause: string;
 }
 
 /// Keys (joins) filter parameters.
-table KeysParameters {
+table KeysParametersStruct {
   left: string;
   right: string;
 }
 
 /// Named filter parameters.
-table NamedParameters {
-  name: enum.FilterName;
+table NamedParametersStruct {
+  name: enum.FilterNameEnum;
   field: string;
   values: [string];
 }
 
 /// Filter options.
-union FilterOptions {
-  ExpressionParameters,
-  KeysParameters,
-  NamedParameters,
+union FilterOptionsStruct {
+  ExpressionParametersStruct,
+  KeysParametersStruct,
+  NamedParametersStruct,
 }
 
 /// Single filter structure.
-table Filter {
-  type: enum.FilterType;
-  options: FilterOptions;
+table FilterStruct {
+  type: enum.FilterTypeEnum;
+  options: FilterOptionsStruct;
 }
 
 /// Filter clause structure.
-table FilterClause {
-  type: enum.FilterOperator;
-  filters: [Filter];
-  children: [FilterClause];
+table FilterClauseStruct {
+  type: enum.FilterOperatorEnum;
+  filters: [FilterStruct];
+  children: [FilterClauseStruct];
 }
