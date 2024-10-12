@@ -8,7 +8,7 @@ import * as schema from "./index";
 
 describe("@hdml/schema", () => {
   it("must exports required types", () => {
-    expect(Object.keys(schema).length).toBe(42);
+    expect(Object.keys(schema).length).toBe(43);
     expect(schema.AggregationTypeEnum).toBeDefined();
     expect(schema.ConnectorTypesEnum).toBeDefined();
     expect(schema.DataTypeEnum).toBeDefined();
@@ -52,5 +52,6 @@ describe("@hdml/schema", () => {
     expect(schema.TableStruct).toBeDefined();
     expect(schema.TimeParametersStruct).toBeDefined();
     expect(schema.TimestampParametersStruct).toBeDefined();
+    expect(schema.UnspecifiedParametersStruct).toBeDefined();
   });
 });
