@@ -6,5 +6,3 @@
 
 git config --global --add safe.directory /workspaces/HDML-Schemas
 git config core.sshCommand "$(which ssh) -i /home/.ssh/hdml.github"
-cp /workspaces/HDML-Schemas/scripts/pre-commit /workspaces/HDML-Schemas/.git/hooks
-chmod +x /workspaces/HDML-Schemas/.git/hooks/pre-commit

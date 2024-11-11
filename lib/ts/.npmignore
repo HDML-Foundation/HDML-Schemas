@@ -1,8 +1,0 @@
-/coverage
-/docs
-/tsconfig
-/tst
-/src
-.eslintrc.js
-.jestrc.js
-.npmignore
