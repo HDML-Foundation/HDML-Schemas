@@ -74,4 +74,25 @@ table FieldStruct {
   type: FieldTypeStruct;
   aggregation: enum.AggregationTypeEnum;
   order: enum.OrderTypeEnum;
+  /// The named key group this field belongs to, e.g. `pk` or
+  /// `natural`. A NAMED group rather than a `bool` because a key
+  /// is a set: a `bool` cannot tell a field that is one column of
+  /// a composite primary key from one that is an alternate unique
+  /// key on its own, and that is exactly the distinction the
+  /// fan-out detector this field exists for needs in order not to
+  /// flag a safe join (RFC 019/001 §4.4). An unknown group name is
+  /// free-form, not an error -- the vocabulary does not enumerate
+  /// key names.
+  ///
+  /// Nothing reads it yet. The fan-out detector is a later
+  /// project; 019 puts the field in the schema so that project is
+  /// possible (RFC 019/001 §4.8), and the Go binding is not
+  /// regenerated until step 22 (§4.6).
+  ///
+  /// Its one rule lives in the PARSER, not here: `key` is
+  /// meaningful only on an `<hdml-field>` whose parent is
+  /// `<hdml-dataset>`, and in the other four positions it is
+  /// reported as a `misplaced-key` warning and ignored. That is
+  /// where the field's parent is known (RFC 019/001 §4.7).
+  key: string;
 }
