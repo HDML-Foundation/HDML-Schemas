@@ -96,6 +96,14 @@ table JoinStruct {
 `TableStruct.type` selects how `identifier` is interpreted: `Table` → physical
 table/view name; `Query` → raw SQL.
 
+⚠ **`TableStruct` keeps its name although the HDML element was renamed.** Project 019
+renamed the authoring element `<hdml-table>` to `<hdml-dataset>` (breaking for document
+authors), and deliberately did **not** rename this table, this field (`ModelStruct.tables`)
+or the `TableTypeEnum`. ★ That is why the rename invalidated **no stored artifact**: the
+serialized form is byte-for-byte what it was, so no document hash and no Merkle name
+moved, and nothing had to be recompiled. A reader coming from the element vocabulary
+should expect this one asymmetry between the authoring name and the schema name.
+
 ## Frame — derived dataset
 
 [document.Frame.fbs](../src/document.Frame.fbs)
@@ -126,6 +134,21 @@ Frames chain — `source` can name a model or another frame.
 A column on a table or a projection on a frame. `type.options` is selected by
 `type.type` (the `DataTypeEnum`).
 
+★ **`key` (added 2026-10-05, project 019, `4c338b5`)** — the named key group this field
+belongs to, authored as `hdml-field@key`. It is a **group name**, not a `bool`, because a
+key is a set: a `bool` cannot distinguish one column of a composite primary key from an
+alternate unique key standing alone, and that is precisely the distinction a fan-out
+detector needs in order not to flag a safe join. Group names are **free-form** — the
+vocabulary does not enumerate them, and an unknown name is not an error.
+
+⚠ **Nothing reads it yet, deliberately.** The fan-out detector is a later project; 019
+added the field so that project is possible. In TypeScript it is written by the parser and
+carried through; in Go the binding exists (`FieldStruct.Key()`) and **no code outside
+`internal/schema/` reads any `FieldStruct` field at all**. Because the field is
+**additive**, adding it flushed no artifact and recompiled no document. The authoritative
+commentary is on the field itself in
+[`src/document.Field.fbs`](../src/document.Field.fbs).
+
 ```flatbuffers
 table FieldStruct {
   name:        string;
@@ -135,6 +158,7 @@ table FieldStruct {
   type:        FieldTypeStruct;
   aggregation: enum.AggregationTypeEnum;  // None, Count, Sum, Avg, Min, Max, …
   order:       enum.OrderTypeEnum;        // None, Ascending, Descending (used in sort_by)
+  key:         string;                    // named key group, e.g. `pk` — added 019
 }
 
 table FieldTypeStruct {
